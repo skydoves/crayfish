@@ -21,11 +21,6 @@
 <img src="previews/desktop.gif" height="520"/>
 </p>
 
-<p align="center">
-The same screen on Android, iOS and desktop. The videos those are made from are
-<a href="previews/">in <code>previews/</code></a> as <code>.mov</code>.
-</p>
-
 ## Download
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/crayfish.svg?label=Maven%20Central)](https://central.sonatype.com/search?q=skydoves%2520crayfish)
