@@ -1,0 +1,1720 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Compose Multiplatform image cropper with gestures, free angle rotation, Exif orientation, and large image support.">
+      
+      
+        <meta name="author" content="Jaewoong (skydoves)">
+      
+      
+        <link rel="canonical" href="https://github.com/skydoves/crayfish/">
+      
+      
+      
+        <link rel="next" href="memory/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Crayfish</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#download" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Crayfish" class="md-header__button md-logo" aria-label="Crayfish" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 17V1H5v4H1v2h4v10a2 2 0 0 0 2 2h10v4h2v-4h4v-2m-6-2h2V7a2 2 0 0 0-2-2H9v2h8z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Crayfish
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/skydoves/crayfish" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Crayfish
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Crayfish" class="md-nav__button md-logo" aria-label="Crayfish" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 17V1H5v4H1v2h4v10a2 2 0 0 0 2 2h10v4h2v-4h4v-2m-6-2h2V7a2 2 0 0 0-2-2H9v2h8z"/></svg>
+
+    </a>
+    Crayfish
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/skydoves/crayfish" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Crayfish
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#download" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Download">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gradle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gradle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#imagecropper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ImageCropper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cropsource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CropSource
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CropSource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-a-painter-which-is-what-a-compose-app-already-has" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From a Painter, which is what a Compose app already has
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-a-file-a-uri-or-a-network-fetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From a file, a Uri, or a network fetch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#which-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Which to use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cropper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cropper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cropstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CropState
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CropState">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getting-the-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting the result
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aspectratio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AspectRatio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cropgestures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CropGestures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#croprecipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CropRecipe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#straighten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Straighten
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cropstyle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CropStyle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cropshape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CropShape
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exif-orientation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exif orientation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#baseline-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Baseline profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crayfish-activity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crayfish Activity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Crayfish Activity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-it-returns-a-uri-and-not-the-bytes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why it returns a Uri and not the bytes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-the-request-can-carry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the request can carry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crayfish-coil" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crayfish Coil
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crayfish-landscapist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crayfish Landscapist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#find-this-repository-useful-heart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Find this repository useful? :heart:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        License
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://skydoves.github.io/crayfish/demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Large images and memory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="orientation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orientation and Exif
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="accessibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accessibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#download" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Download">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gradle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gradle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#imagecropper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ImageCropper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cropsource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CropSource
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CropSource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-a-painter-which-is-what-a-compose-app-already-has" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From a Painter, which is what a Compose app already has
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-a-file-a-uri-or-a-network-fetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From a file, a Uri, or a network fetch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#which-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Which to use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cropper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cropper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cropstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CropState
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CropState">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getting-the-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting the result
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aspectratio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AspectRatio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cropgestures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CropGestures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#croprecipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CropRecipe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#straighten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Straighten
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cropstyle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CropStyle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cropshape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CropShape
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exif-orientation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exif orientation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#baseline-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Baseline profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crayfish-activity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crayfish Activity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Crayfish Activity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-it-returns-a-uri-and-not-the-bytes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why it returns a Uri and not the bytes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-the-request-can-carry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the request can carry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crayfish-coil" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crayfish Coil
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crayfish-landscapist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crayfish Landscapist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#find-this-repository-useful-heart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Find this repository useful? :heart:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        License
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<p align="center">
+  <img src="art/logo.png" width="180" alt="Crayfish"/>
+</p>
+
+<h1 align="center">Crayfish</h1>
+<p></br></p>
+<p align="center">
+  <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
+  <a href="https://android-arsenal.com/api?level=21"><img alt="API" src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat"/></a>
+  <a href="https://github.com/skydoves/crayfish/actions/workflows/android.yml"><img alt="Build Status"
+  src="https://github.com/skydoves/crayfish/actions/workflows/android.yml/badge.svg"/></a>
+  <a href="https://github.com/skydoves"><img alt="Profile" src="https://skydoves.github.io/badges/skydoves.svg"/></a>
+  <a href="https://github.com/doveletter"><img alt="Profile" src="https://skydoves.github.io/badges/dove-letter.svg"/></a>
+</p>
+<p><br></p>
+<p align="center">
+🦞 Crayfish is a Compose Multiplatform image cropper for Android, iOS, desktop, and the web. It crops a `Painter` and hands one back, so an image loaded from a URL goes straight into a crop and straight back into an `Image`. Give it a file or a Uri instead and it takes a reference rather than a decoded bitmap, so a 100 megapixel photo never has to fit in memory. The photo sits still the way an ordinary `Image` does and the crop rectangle is what moves, with pinch, pan and free angle rotation there to switch on when a screen wants them. It reads all eight Exif orientations, ships aspect ratio presets and grid overlays, and the crop rectangle is operable without dragging.
+</p>
+<p><br></p>
+<p align="center">
+<img src="previews/android.gif" width="250"/>
+<img src="previews/ios.gif" width="250"/>
+</p>
+
+<p align="center">
+<img src="previews/desktop.gif" width="380"/>
+</p>
+
+<p align="center">
+The same screen on Android, iOS and desktop. The videos those are made from are
+<a href="previews/">in <code>previews/</code></a> as <code>.mov</code>.
+</p>
+
+<h2 id="download">Download<a class="headerlink" href="#download" title="Permanent link">&para;</a></h2>
+<p><a href="https://central.sonatype.com/search?q=skydoves%2520crayfish"><img alt="Maven Central" src="https://img.shields.io/maven-central/v/com.github.skydoves/crayfish.svg?label=Maven%20Central" /></a></p>
+<h3 id="gradle">Gradle<a class="headerlink" href="#gradle" title="Permanent link">&para;</a></h3>
+<p>Add the dependency below to your <strong>module</strong>'s <code>build.gradle</code> file:</p>
+<div class="highlight"><pre><span></span><code>dependencies {
+    implementation("com.github.skydoves:crayfish:0.1.0")
+}
+</code></pre></div>
+<p>For Kotlin Multiplatform, add the dependency below to your <strong>module</strong>'s <code>build.gradle.kts</code> file:</p>
+<div class="highlight"><pre><span></span><code>sourceSets {
+    val commonMain by getting {
+        dependencies {
+            implementation("com.github.skydoves:crayfish:$version")
+        }
+    }
+}
+</code></pre></div>
+<p>Crayfish publishes <code>android</code>, <code>desktop</code> for the JVM, <code>iosArm64</code>, <code>iosSimulatorArm64</code>, <code>macosArm64</code>,
+and <code>wasmJs</code>. It contains no native code, so there is nothing to align for the Play Store's 16 KB
+page size requirement.</p>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<p>Crayfish gives you two layers. <code>ImageCropper</code> is a suspending call that shows a dialog and returns
+the cropped bytes, and <code>Cropper</code> is the composable behind it for when the crop belongs inside a
+screen you are designing yourself.</p>
+<h3 id="imagecropper">ImageCropper<a class="headerlink" href="#imagecropper" title="Permanent link">&para;</a></h3>
+<p><code>rememberImageCropper</code> gives you a cropper you can call from a coroutine. <code>ImageCropperDialog</code>
+shows it whenever a crop is in progress, so the call site is a single <code>when</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">cropper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberImageCropper</span><span class="p">()</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">scope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberCoroutineScope</span><span class="p">()</span>
+<span class="kd">var</span><span class="w"> </span><span class="nv">cropped</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="o">&lt;</span><span class="n">ImageBitmap?</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="n">Button</span><span class="p">(</span>
+<span class="w">  </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">scope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cropper</span><span class="p">.</span><span class="na">cropToImage</span><span class="p">(</span><span class="n">source</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">is</span><span class="w"> </span><span class="n">CropImage</span><span class="p">.</span><span class="na">Success</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">cropped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">image</span>
+<span class="w">        </span><span class="k">is</span><span class="w"> </span><span class="n">CropImage</span><span class="p">.</span><span class="na">Cancelled</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
+<span class="w">        </span><span class="k">is</span><span class="w"> </span><span class="n">CropImage</span><span class="p">.</span><span class="na">Failure</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">showError</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">reason</span><span class="p">)</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Text</span><span class="p">(</span><span class="s">"Crop a photo"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">ImageCropperDialog</span><span class="p">(</span><span class="n">cropper</span><span class="p">)</span>
+
+<span class="c1">// The result is an ImageBitmap, so drawing it is the ordinary Image composable.</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cropped</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">image</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Image</span><span class="p">(</span>
+<span class="w">    </span><span class="n">bitmap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">image</span><span class="p">,</span>
+<span class="w">    </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Cropped photo"</span><span class="p">,</span>
+<span class="w">    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="m">120.</span><span class="n">dp</span><span class="p">).</span><span class="na">clip</span><span class="p">(</span><span class="n">CircleShape</span><span class="p">),</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Nothing is encoded on that path, so what comes back goes straight into <code>Image</code> with no decode step
+in between. <code>CropImage.Success.painter</code> is the same pixels for anything that takes a <code>Painter</code>.</p>
+<p><code>crop</code> returns encoded bytes instead, for an upload or a file:</p>
+<div class="highlight"><pre><span></span><code><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cropper</span><span class="p">.</span><span class="na">crop</span><span class="p">(</span><span class="n">CropSource</span><span class="p">.</span><span class="na">FilePath</span><span class="p">(</span><span class="n">path</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">is</span><span class="w"> </span><span class="n">CropResult</span><span class="p">.</span><span class="na">Success</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">upload</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">bytes</span><span class="p">)</span>
+<span class="w">  </span><span class="k">is</span><span class="w"> </span><span class="n">CropResult</span><span class="p">.</span><span class="na">Cancelled</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
+<span class="w">  </span><span class="k">is</span><span class="w"> </span><span class="n">CropResult</span><span class="p">.</span><span class="na">Failure</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">showError</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">reason</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>crop</code> suspends until the user confirms or cancels. Cancelling the calling coroutine dismisses the
+dialog, so a screen that leaves composition takes its crop with it.</p>
+<p>The dialog takes the same styling as <code>Cropper</code>, so an avatar crop stays a one liner:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ImageCropperDialog</span><span class="p">(</span>
+<span class="w">  </span><span class="n">cropper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cropper</span><span class="p">,</span>
+<span class="w">  </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CropShape</span><span class="p">.</span><span class="na">Circle</span><span class="p">,</span>
+<span class="w">  </span><span class="n">accessibility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CropAccessibility</span><span class="p">(</span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Profile photo crop area"</span><span class="p">),</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="cropsource">CropSource<a class="headerlink" href="#cropsource" title="Permanent link">&para;</a></h3>
+<h4 id="from-a-painter-which-is-what-a-compose-app-already-has">From a Painter, which is what a Compose app already has<a class="headerlink" href="#from-a-painter-which-is-what-a-compose-app-already-has" title="Permanent link">&para;</a></h4>
+<p>Whatever put the picture on screen gave you a <code>Painter</code> or an <code>ImageBitmap</code>. Either is a crop
+source, so a URL loaded by Coil, Landscapist or anything else needs nothing in between:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">painter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberAsyncImagePainter</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberCropSource</span><span class="p">(</span><span class="n">painter</span><span class="p">,</span><span class="w"> </span><span class="n">cacheKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">url</span><span class="p">)</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">source</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">val</span><span class="w"> </span><span class="nv">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberCropState</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+<span class="w">  </span><span class="n">Cropper</span><span class="p">(</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">())</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>rememberCropSource</code> also takes an <code>ImageBitmap</code> directly. It returns <code>null</code> only when the painter
+has no intrinsic size and none was given, since there is then no pixel grid to rasterise onto; pass
+<code>size = IntSize(w, h)</code> for that case.</p>
+<p><code>cacheKey</code> identifies the image. Crayfish keys the saved crop state on it, so use a value that is
+stable across process death, such as the URL or a content Uri, rather than an identity hash.</p>
+<h4 id="from-a-file-a-uri-or-a-network-fetch">From a file, a Uri, or a network fetch<a class="headerlink" href="#from-a-file-a-uri-or-a-network-fetch" title="Permanent link">&para;</a></h4>
+<p>These are references rather than pixels. Crayfish opens them, reads the header, and decodes only the
+region the frame is over, so the image never has to fit in memory:</p>
+<div class="highlight"><pre><span></span><code><span class="n">CropSource</span><span class="p">.</span><span class="na">FilePath</span><span class="p">(</span><span class="s">"/storage/emulated/0/DCIM/Camera/IMG_0001.jpg"</span><span class="p">)</span>
+
+<span class="n">CropSource</span><span class="p">.</span><span class="na">Bytes</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span><span class="w"> </span><span class="n">cacheKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uri</span><span class="p">.</span><span class="na">toString</span><span class="p">())</span>
+</code></pre></div>
+<p><code>CropSource.Loader</code> takes a suspending function and treats what comes back exactly like
+<code>CropSource.Bytes</code>, region decoding and Exif included:</p>
+<div class="highlight"><pre><span></span><code><span class="n">CropSource</span><span class="p">.</span><span class="na">Loader</span><span class="p">(</span><span class="n">cacheKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">url</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">httpClient</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="na">readRawBytes</span><span class="p">()</span><span class="w"> </span><span class="p">}</span>
+
+<span class="n">CropSource</span><span class="p">.</span><span class="na">Loader</span><span class="p">(</span><span class="n">cacheKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uri</span><span class="p">.</span><span class="na">toString</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">contentResolver</span><span class="p">.</span><span class="na">openInputStream</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span><span class="o">?.</span><span class="na">use</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">readBytes</span><span class="p">()</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The function runs once, when the cropper opens the source, and returning <code>null</code> is how it reports
+that the image could not be fetched. Crayfish carries no HTTP client of its own, which is what lets
+it promise zero external dependencies and no native code, so the loader is where yours goes.</p>
+<h4 id="which-to-use">Which to use<a class="headerlink" href="#which-to-use" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>You have</th>
+<th>Use</th>
+<th>What it costs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A <code>Painter</code> or <code>ImageBitmap</code> on screen</td>
+<td><code>rememberCropSource(painter, cacheKey)</code></td>
+<td>Nothing extra. Those pixels are already in memory</td>
+</tr>
+<tr>
+<td>A camera original, a large photo, a Uri</td>
+<td><code>CropSource.FilePath</code> / <code>CropSource.Bytes</code></td>
+<td>Nothing. Only the cropped region is ever decoded</td>
+</tr>
+<tr>
+<td>A URL for an image that may be huge</td>
+<td><code>CropSource.Loader</code> with your HTTP client</td>
+<td>One fetch of the encoded bytes, never a full decode</td>
+</tr>
+</tbody>
+</table>
+<p>The painter route is the ergonomic one and the right default for images a screen is already showing.
+It is the one route that holds the whole image in memory, because it is handed pixels rather than a
+reference, so a 100 megapixel original belongs on one of the others.</p>
+<h3 id="cropper">Cropper<a class="headerlink" href="#cropper" title="Permanent link">&para;</a></h3>
+<p><code>Cropper</code> is the composable primitive. You own the surrounding screen and drive the same state from
+your own controls:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberCropState</span><span class="p">(</span>
+<span class="w">  </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CropSource</span><span class="p">.</span><span class="na">FilePath</span><span class="p">(</span><span class="n">path</span><span class="p">),</span>
+<span class="w">  </span><span class="n">initialAspectRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AspectRatio</span><span class="p">.</span><span class="na">Square</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">Cropper</span><span class="p">(</span>
+<span class="w">  </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
+<span class="w">  </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>The crop rectangle and the transform survive configuration change and process death. This matters
+on Android 16, which ignores <code>screenOrientation</code> on any display 600dp or wider, so the portrait
+lock that older croppers rely on no longer holds.</p>
+<h3 id="cropstate">CropState<a class="headerlink" href="#cropstate" title="Permanent link">&para;</a></h3>
+<p><code>CropState</code> exposes what the crop is doing and the operations a toolbar needs:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberCropState</span><span class="p">(</span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CropSource</span><span class="p">.</span><span class="na">FilePath</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+
+<span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">status</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">is</span><span class="w"> </span><span class="n">CropStatus</span><span class="p">.</span><span class="na">Loading</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">CircularProgressIndicator</span><span class="p">()</span>
+<span class="w">  </span><span class="k">is</span><span class="w"> </span><span class="n">CropStatus</span><span class="p">.</span><span class="na">Ready</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s">"</span><span class="si">${</span><span class="n">status</span><span class="p">.</span><span class="na">imageSize</span><span class="p">.</span><span class="na">width</span><span class="si">}</span><span class="s"> x </span><span class="si">${</span><span class="n">status</span><span class="p">.</span><span class="na">imageSize</span><span class="p">.</span><span class="na">height</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="w">  </span><span class="k">is</span><span class="w"> </span><span class="n">CropStatus</span><span class="p">.</span><span class="na">Failed</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s">"Could not open this image"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">Row</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">IconButton</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">rotateBy</span><span class="p">(</span><span class="o">-</span><span class="m">90f</span><span class="p">)</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Icon</span><span class="p">(</span><span class="n">Icons</span><span class="p">.</span><span class="na">Default</span><span class="p">.</span><span class="na">RotateLeft</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="n">IconButton</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">toggleFlipHorizontal</span><span class="p">()</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Icon</span><span class="p">(</span><span class="n">Icons</span><span class="p">.</span><span class="na">Default</span><span class="p">.</span><span class="na">Flip</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="n">IconButton</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">reset</span><span class="p">()</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Icon</span><span class="p">(</span><span class="n">Icons</span><span class="p">.</span><span class="na">Default</span><span class="p">.</span><span class="na">Refresh</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>rotateBy</code> takes any angle, not just quarter turns, and it works whether or not the twist gesture
+is enabled. <code>rotateToNearestQuarterTurn</code> snaps to the nearest of 0, 90, 180, and 270, which is what
+a straighten control usually wants once a free angle has been dialled in. Every operation ends with
+the crop rectangle back inside the image, so the frame always shows which pixels the crop will
+select.</p>
+<p>Rotating and flipping reach the output. After <code>rotateBy(90f)</code> the bytes come back turned, and after
+a free angle they are the frame's own contents rather than the bounding box of the tilted frame. A
+quarter turn is a permutation of the source pixels; a free angle is interpolated, which is what
+rotating by an arbitrary angle costs. <code>CropResult.Success.region</code> stays an axis aligned rectangle of
+the source, so under a free angle it describes where the bytes came from rather than their shape.</p>
+<h4 id="getting-the-result">Getting the result<a class="headerlink" href="#getting-the-result" title="Permanent link">&para;</a></h4>
+<p><code>cropToImage</code> gives you pixels, which is usually what a Compose app wants next:</p>
+<div class="highlight"><pre><span></span><code><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">cropToImage</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">is</span><span class="w"> </span><span class="n">CropImage</span><span class="p">.</span><span class="na">Success</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Image</span><span class="p">(</span><span class="n">bitmap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">image</span><span class="p">,</span><span class="w"> </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
+<span class="w">  </span><span class="k">is</span><span class="w"> </span><span class="n">CropImage</span><span class="p">.</span><span class="na">Cancelled</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
+<span class="w">  </span><span class="k">is</span><span class="w"> </span><span class="n">CropImage</span><span class="p">.</span><span class="na">Failure</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">showError</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">reason</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>CropImage.Success</code> carries <code>image</code> for <code>Image(bitmap = ...)</code> and <code>painter</code> for
+<code>Image(painter = ...)</code>. Nothing is encoded on this path, so there are no <code>EncodeOptions</code>, alpha
+survives, and it is the shorter route: going through bytes to reach something drawable would encode
+the crop and decode it straight back.</p>
+<p><code>crop</code> gives you encoded bytes, for an upload, a file, or a content Uri:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">crop</span><span class="p">(</span><span class="n">EncodeOptions</span><span class="p">(</span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EncodedFormat</span><span class="p">.</span><span class="na">PNG</span><span class="p">))</span>
+</code></pre></div>
+<p><code>crop</code> also takes a <code>DecodeBudget</code>, which caps what the decode is allowed to allocate. The default
+is 192MiB, which is what makes a 200 megapixel source croppable at all. Lower it when the result is
+going somewhere small:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">avatar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">crop</span><span class="p">(</span>
+<span class="w">  </span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EncodeOptions</span><span class="p">(</span><span class="n">EncodedFormat</span><span class="p">.</span><span class="na">JPEG</span><span class="p">),</span>
+<span class="w">  </span><span class="n">budget</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DecodeBudget</span><span class="p">(</span><span class="n">maxByteCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8L</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1024</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1024</span><span class="p">,</span><span class="w"> </span><span class="n">maxDimension</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1024</span><span class="p">),</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>A crop that is rotated or mirrored is decoded against <strong>half</strong> the budget, because turning the
+pixels writes a second buffer while the first is still alive and the cap covers the pair. Such a
+crop comes back smaller than the same crop untransformed; raise the budget if the resolution matters
+more than the peak.</p>
+<h3 id="aspectratio">AspectRatio<a class="headerlink" href="#aspectratio" title="Permanent link">&para;</a></h3>
+<p>Pass an <code>AspectRatio</code> to <code>rememberCropState</code> as the opening one, or assign <code>state.aspectRatio</code>
+to reshape the crop rectangle in place:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberCropState</span><span class="p">(</span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">initialAspectRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AspectRatio</span><span class="p">.</span><span class="na">Square</span><span class="p">)</span>
+
+<span class="n">Row</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">listOf</span><span class="p">(</span>
+<span class="w">    </span><span class="s">"Free"</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">AspectRatio</span><span class="p">.</span><span class="na">Free</span><span class="p">,</span>
+<span class="w">    </span><span class="s">"1:1"</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">AspectRatio</span><span class="p">.</span><span class="na">Square</span><span class="p">,</span>
+<span class="w">    </span><span class="s">"3:4"</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">AspectRatio</span><span class="p">.</span><span class="na">Portrait3x4</span><span class="p">,</span>
+<span class="w">    </span><span class="s">"4:3"</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">AspectRatio</span><span class="p">.</span><span class="na">Landscape4x3</span><span class="p">,</span>
+<span class="w">    </span><span class="s">"16:9"</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">AspectRatio</span><span class="p">.</span><span class="na">Widescreen16x9</span><span class="p">,</span>
+<span class="w">    </span><span class="s">"9:16"</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">AspectRatio</span><span class="p">.</span><span class="na">Portrait9x16</span><span class="p">,</span>
+<span class="w">  </span><span class="p">).</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="n">ratio</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">    </span><span class="n">FilterChip</span><span class="p">(</span>
+<span class="w">      </span><span class="n">selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">aspectRatio</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ratio</span><span class="p">,</span>
+<span class="w">      </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">aspectRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ratio</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">label</span><span class="p">)</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>AspectRatio.Fixed(ratio)</code> takes any width divided by height. Setting the ratio reshapes the
+rectangle immediately rather than waiting for the next drag.</p>
+<h3 id="cropgestures">CropGestures<a class="headerlink" href="#cropgestures" title="Permanent link">&para;</a></h3>
+<p>By default the image does not move. It is fitted like an ordinary <code>Image</code> and left there, and every
+gesture belongs to the crop rectangle.</p>
+<p>That is a deliberate reversal of what most croppers do. Letting the photo pan, zoom and twist under
+the frame is the richer model, but it takes away the reference frame: the picture drifts and
+rescales while you are trying to place an edge against it, and nothing on screen holds still long
+enough to aim at. A fitted photo makes what is inside the frame the continuous answer to "what will
+I get", which is the one question a crop screen is there to answer.</p>
+<p>Nothing is given up for it. The frame is placed against the source's full extent either way, and the
+output is region decoded from the file rather than from the preview, so a fitted preview does not
+cap the resolution of the result.</p>
+<p>Switch the gestures on per screen:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Cropper</span><span class="p">(</span>
+<span class="w">  </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
+<span class="w">  </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">gestures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CropGestures</span><span class="p">.</span><span class="na">Zoomable</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><code>CropGestures.Default</code> is the fixed image. <code>CropGestures.Zoomable</code> adds pinch, two finger pan, a
+double tap to zoom, and fling. <code>CropGestures.All</code> adds the two finger twist on top. The three flags
+are independent, so <code>CropGestures(zoom = true)</code> is a photo you can zoom but not drag.</p>
+<p><code>CropState.rotateBy</code> is unaffected by any of this. A straighten control on your own toolbar keeps
+working with the gestures off, which is usually where a rotation belongs.</p>
+<h3 id="croprecipe">CropRecipe<a class="headerlink" href="#croprecipe" title="Permanent link">&para;</a></h3>
+<p>A crop written down as numbers, so it can be stored and edited again later.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// When the user is happy with it. Eleven floats, no pixels.</span>
+<span class="n">database</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">photoId</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">recipe</span><span class="p">.</span><span class="na">encodeToString</span><span class="p">())</span>
+
+<span class="c1">// A week later, on the original file, exactly where they left off.</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">recipe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CropRecipe</span><span class="p">.</span><span class="na">decodeFromString</span><span class="p">(</span><span class="n">database</span><span class="p">.</span><span class="na">load</span><span class="p">(</span><span class="n">photoId</span><span class="p">))</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberCropState</span><span class="p">(</span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">initialRecipe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">recipe</span><span class="p">)</span>
+</code></pre></div>
+<p>Every other cropper in this category hands back a bitmap and forgets. The crop becomes pixels, and
+"let me fix that crop from last week" means starting over. Crayfish never held the pixels, it held a
+reference and a rectangle over it, and a recipe is that rectangle made durable: the original is never
+rewritten, and a different recipe over the same source is a different crop with nothing lost between
+them.</p>
+<p><code>decodeFromString</code> returns <code>null</code> for anything it does not recognise, including a future version,
+because opening a crop somewhere the user never put it is worse than opening on the default. A
+broken <em>transform</em> is repaired instead of refused, since the rectangle is what they chose and the
+transform is only how they were looking at it.</p>
+<p>Process death uses the same eleven numbers, so there is one format rather than two that drift.</p>
+<h3 id="straighten">Straighten<a class="headerlink" href="#straighten" title="Permanent link">&para;</a></h3>
+<p><code>rotateTo</code> takes an absolute angle, which is what a slider reports:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nv">degrees</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="m">0f</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="n">Slider</span><span class="p">(</span>
+<span class="w">  </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">degrees</span><span class="p">,</span>
+<span class="w">  </span><span class="n">onValueChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">degrees</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="p">;</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">rotateTo</span><span class="p">(</span><span class="nb">it</span><span class="p">)</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="n">valueRange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="m">45f</span><span class="p">..</span><span class="m">45f</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>The crop rectangle stays where it is and the photo is zoomed the least amount that still fills it.
+That is the one place the frame does not yield: everywhere else it is the thing being dragged, but
+under a straighten slider it is the composition the user already chose, and shrinking it a little on
+every degree is a ratchet that never gives back what it took. Sliding out and back leaves the crop
+exactly where it started.</p>
+<p><code>rotateBy</code> is the same thing with the difference already added, for a quarter turn button.</p>
+<h3 id="cropstyle">CropStyle<a class="headerlink" href="#cropstyle" title="Permanent link">&para;</a></h3>
+<p><code>CropStyle</code> controls the chrome. Every value has a default, so override only what you need:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Cropper</span><span class="p">(</span>
+<span class="w">  </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
+<span class="w">  </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CropStyle</span><span class="p">(</span>
+<span class="w">    </span><span class="n">scrimColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Black</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7f</span><span class="p">),</span>
+<span class="w">    </span><span class="n">frameColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">White</span><span class="p">,</span>
+<span class="w">    </span><span class="n">gridMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CropGridMode</span><span class="p">.</span><span class="na">OnTouch</span><span class="p">,</span>
+<span class="w">    </span><span class="n">handleTouchRadius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">dp</span><span class="p">,</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><code>CropGridMode</code> is <code>Never</code>, <code>Always</code>, or <code>OnTouch</code>. <code>handleTouchRadius</code> is the touch target rather
+than the drawn size, so the handles stay reachable without drawing them larger.</p>
+<h3 id="cropshape">CropShape<a class="headerlink" href="#cropshape" title="Permanent link">&para;</a></h3>
+<p>The mask shape and the output aspect ratio are separate parameters. A circular mask does not force
+a square output, and a square ratio does not force a rectangular mask:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Cropper</span><span class="p">(</span>
+<span class="w">  </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
+<span class="w">  </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">overlay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">cropState</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">    </span><span class="n">CropOverlay</span><span class="p">(</span>
+<span class="w">      </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cropState</span><span class="p">,</span>
+<span class="w">      </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CropShape</span><span class="p">.</span><span class="na">Circle</span><span class="p">,</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><code>CropShape</code> is <code>Rectangle</code>, <code>RoundedRectangle(cornerRadius)</code>, <code>Circle</code>, or <code>Custom</code>, which builds
+a <code>Path</code> from the crop rectangle's width and height. <code>ImageCropperDialog</code> takes the same parameter,
+so a circular avatar crop is one argument on the one line API too.</p>
+<p>The shape is cut out of the <strong>result</strong>, not only drawn over the viewfinder. Setting it on the state
+drives both:</p>
+<div class="highlight"><pre><span></span><code><span class="n">state</span><span class="p">.</span><span class="na">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CropShape</span><span class="p">.</span><span class="na">Circle</span>
+
+<span class="c1">// Corners come back transparent.</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">avatar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">cropToImage</span><span class="p">()</span>
+</code></pre></div>
+<p><code>cropToImage</code> always cuts, because an <code>ImageBitmap</code> has an alpha channel. <code>crop</code> cuts only when the
+encoded format has one, so PNG and WebP keep the transparency and JPEG is left rectangular rather
+than flattened onto a colour nobody chose. <code>CropShape.Custom</code> is drawn but not cut: evaluating a
+caller's own <code>Path</code> per output pixel is not something the pipeline does.</p>
+<h3 id="exif-orientation">Exif orientation<a class="headerlink" href="#exif-orientation" title="Permanent link">&para;</a></h3>
+<p>Crayfish reads the Exif orientation from the source and applies it to both the preview and the
+output. All eight values are handled, including the four mirrored ones, which are the values that
+produce an upright but reversed photo when a cropper normalises only the rotations. For HEIF,
+Crayfish reconciles the container's own transform boxes against the Exif tag.</p>
+<p>There is nothing to configure. The cropped bytes come back upright, and <code>CropResult.Success.region</code>
+describes them in the same space as the rectangles you passed in.</p>
+<h3 id="accessibility">Accessibility<a class="headerlink" href="#accessibility" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html">WCAG 2.2 SC 2.5.7</a> makes
+drag only interaction a Level AA failure, and a crop rectangle you can only resize by dragging does
+not comply. Crayfish registers accessibility actions for moving the frame and each of its edges,
+keeps a live state description of where the frame sits, and accepts arrow keys and a D-pad.</p>
+<p>You can replace the strings without touching anything else:</p>
+<div class="highlight"><pre><span></span><code><span class="n">CropOverlay</span><span class="p">(</span>
+<span class="w">  </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
+<span class="w">  </span><span class="n">accessibility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CropAccessibility</span><span class="p">(</span>
+<span class="w">    </span><span class="n">step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24.</span><span class="n">dp</span><span class="p">,</span>
+<span class="w">    </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Crop area"</span><span class="p">,</span>
+<span class="w">    </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">localizedLabel</span><span class="p">(</span><span class="n">action</span><span class="p">)</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><code>step</code> is how far one action moves an edge, and <code>label</code> names each <code>CropAccessibilityAction</code> in the
+assistive technology's menu.</p>
+<h3 id="baseline-profile">Baseline profile<a class="headerlink" href="#baseline-profile" title="Permanent link">&para;</a></h3>
+<p>The Android artifact ships a baseline profile, so the decode, geometry and gesture paths are AOT
+compiled from the first launch of any app that depends on Crayfish. There is nothing to add and
+nothing to configure.</p>
+<p>Measured on a Galaxy S23 running Android 16, five iterations per condition, the same build with the
+profile installed and without it:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>without profile</th>
+<th>with profile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cold start to first frame, median</td>
+<td>312 ms</td>
+<td>262 ms</td>
+</tr>
+<tr>
+<td>Frame duration while dragging the crop frame, P90</td>
+<td>25.2 ms</td>
+<td>11.7 ms</td>
+</tr>
+<tr>
+<td>Frame overrun while dragging the crop frame, P90</td>
+<td>23.0 ms</td>
+<td>5.6 ms</td>
+</tr>
+</tbody>
+</table>
+<p>Frame overrun is how far past the frame deadline a frame landed, so the P90 moving from 23.0 ms to
+5.6 ms is the difference between a drag that visibly stutters and one that does not.</p>
+<h2 id="crayfish-activity">Crayfish Activity<a class="headerlink" href="#crayfish-activity" title="Permanent link">&para;</a></h2>
+<p><a href="https://central.sonatype.com/search?q=skydoves%2520crayfish-activity"><img alt="Maven Central" src="https://img.shields.io/maven-central/v/com.github.skydoves/crayfish-activity.svg?label=Maven%20Central" /></a></p>
+<p>For apps that are not hosting Compose on the screen doing the cropping. Views, Fragments, or
+anything that would rather launch a cropper than embed one:</p>
+<div class="highlight"><pre><span></span><code>dependencies {
+    implementation("com.github.skydoves:crayfish-activity:$version")
+}
+</code></pre></div>
+<p>Register the contract once, where the Activity or Fragment is constructed:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">cropper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">registerForActivityResult</span><span class="p">(</span><span class="n">CropImageContract</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">  </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">is</span><span class="w"> </span><span class="n">CropImageResult</span><span class="p">.</span><span class="na">Success</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">imageView</span><span class="p">.</span><span class="na">setImageURI</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">uri</span><span class="p">)</span>
+<span class="w">    </span><span class="k">is</span><span class="w"> </span><span class="n">CropImageResult</span><span class="p">.</span><span class="na">Cancelled</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
+<span class="w">    </span><span class="k">is</span><span class="w"> </span><span class="n">CropImageResult</span><span class="p">.</span><span class="na">Failure</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">showError</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">reason</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Then launch it whenever there is something to crop:</p>
+<div class="highlight"><pre><span></span><code><span class="n">cropper</span><span class="p">.</span><span class="na">launch</span><span class="p">(</span><span class="n">CropImageRequest</span><span class="p">(</span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">photoUri</span><span class="p">,</span><span class="w"> </span><span class="n">aspectRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1f</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CropMask</span><span class="p">.</span><span class="na">Circle</span><span class="p">))</span>
+</code></pre></div>
+<p>Nothing to declare. The activity and a <code>FileProvider</code> are in the library's own manifest, and the
+provider's authority is namespaced under your <code>applicationId</code> so two apps on one device cannot
+collide.</p>
+<h3 id="why-it-returns-a-uri-and-not-the-bytes">Why it returns a Uri and not the bytes<a class="headerlink" href="#why-it-returns-a-uri-and-not-the-bytes" title="Permanent link">&para;</a></h3>
+<p>Because bytes do not fit. An Activity result crosses a binder transaction, and that has a hard
+ceiling. Measured on a device rather than quoted: <strong>768 KB went through, 1 MB came back as
+<code>FAILED BINDER TRANSACTION</code>.</strong> A JPEG crop of an ordinary phone photo is bigger than that, a PNG one
+much bigger, and the size is yours to choose, so an API that returned bytes would pass every test and
+crash on somebody's holiday photo.</p>
+<p>So the crop is written to your app's own cache and handed back as a <code>content://</code> Uri with read
+permission already attached. If you did want the bytes, read them in process, where the size stops
+being a question:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">readBytes</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">bitmap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">readBitmap</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+</code></pre></div>
+<p>The file lives in <code>cacheDir</code> and the next crop clears the one before it. Copy it somewhere of your
+own if it has to outlive the screen.</p>
+<h3 id="what-the-request-can-carry">What the request can carry<a class="headerlink" href="#what-the-request-can-carry" title="Permanent link">&para;</a></h3>
+<p>An <code>Intent</code> carries primitives, so <code>CropImageRequest</code> does too: a ratio as a <code>Float?</code>, a <code>CropMask</code>
+enum instead of <code>CropShape</code>, a corner radius in dp. <code>CropShape.Custom</code> builds a <code>Path</code> from a lambda
+and cannot cross a process boundary, which is the one thing this route gives up against the Compose
+API.</p>
+<h2 id="crayfish-coil">Crayfish Coil<a class="headerlink" href="#crayfish-coil" title="Permanent link">&para;</a></h2>
+<p><a href="https://central.sonatype.com/search?q=skydoves%2520crayfish-coil"><img alt="Maven Central" src="https://img.shields.io/maven-central/v/com.github.skydoves/crayfish-coil.svg?label=Maven%20Central" /></a></p>
+<p>The <code>crayfish-coil</code> module applies a stored crop while <a href="https://coil-kt.github.io/coil/">Coil</a> loads
+the original, so showing a crop needs no second file and no second decode:</p>
+<div class="highlight"><pre><span></span><code>dependencies {
+    implementation("com.github.skydoves:crayfish-coil:$version")
+}
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">region</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="p">(</span><span class="n">region</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">ImageRequest</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">data</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">transformations</span><span class="p">(</span><span class="n">CropTransformation</span><span class="p">(</span><span class="n">region</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="na">build</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="n">AsyncImage</span><span class="p">(</span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
+</code></pre></div>
+<p>The transformation's <code>cacheKey</code> includes the region, so two crops of one image are two cache entries
+rather than one that changes under whichever screen asks second. A region it cannot apply leaves the
+picture alone rather than failing the load.</p>
+<p>Pairs with <code>CropRecipe</code>: keep the original, store the recipe, and let the loader apply the rectangle
+every time it draws.</p>
+<h2 id="crayfish-landscapist">Crayfish Landscapist<a class="headerlink" href="#crayfish-landscapist" title="Permanent link">&para;</a></h2>
+<p><a href="https://central.sonatype.com/search?q=skydoves%2520crayfish-landscapist"><img alt="Maven Central" src="https://img.shields.io/maven-central/v/com.github.skydoves/crayfish-landscapist.svg?label=Maven%20Central" /></a></p>
+<p>The <code>crayfish-landscapist</code> module applies a crop to an image
+<a href="https://github.com/skydoves/landscapist">Landscapist</a> has already loaded, so you can show a crop
+result without encoding and reloading it:</p>
+<div class="highlight"><pre><span></span><code>dependencies {
+    implementation("com.github.skydoves:crayfish-landscapist:$version")
+}
+</code></pre></div>
+<p><code>CropTransformation</code> is a Landscapist <code>Transformation</code>, so it goes on the request. Its cache key
+includes the region, so two crops of the same image do not collide:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">region</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">requestBuilder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="p">(</span><span class="n">region</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">addTransformation</span><span class="p">(</span><span class="n">CropTransformation</span><span class="p">(</span><span class="n">region</span><span class="p">))</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">LandscapistImage</span><span class="p">(</span>
+<span class="w">  </span><span class="n">imageModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="n">requestBuilder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requestBuilder</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Remember the builder rather than writing it inline, or the request changes identity every frame and
+the image reloads.</p>
+<h2 id="find-this-repository-useful-heart">Find this repository useful? :heart:<a class="headerlink" href="#find-this-repository-useful-heart" title="Permanent link">&para;</a></h2>
+<p>Support it by joining <strong><a href="https://github.com/skydoves/crayfish/stargazers">stargazers</a></strong> for this repository. :star: <br>
+Also, <strong><a href="https://github.com/skydoves">follow me</a></strong> on GitHub for my next creations! 🤩</p>
+<h1 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>Designed<span class="w"> </span>and<span class="w"> </span>developed<span class="w"> </span>by<span class="w"> </span>2026<span class="w"> </span>skydoves<span class="w"> </span>(Jaewoong<span class="w"> </span>Eum)
+
+Licensed<span class="w"> </span>under<span class="w"> </span>the<span class="w"> </span>Apache<span class="w"> </span>License,<span class="w"> </span>Version<span class="w"> </span>2.0<span class="w"> </span>(the<span class="w"> </span>"License");
+you<span class="w"> </span>may<span class="w"> </span>not<span class="w"> </span>use<span class="w"> </span>this<span class="w"> </span>file<span class="w"> </span>except<span class="w"> </span>in<span class="w"> </span>compliance<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>License.
+You<span class="w"> </span>may<span class="w"> </span>obtain<span class="w"> </span>a<span class="w"> </span>copy<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>License<span class="w"> </span>at
+
+<span class="w">   </span>http://www.apache.org/licenses/LICENSE-2.0
+
+Unless<span class="w"> </span>required<span class="w"> </span>by<span class="w"> </span>applicable<span class="w"> </span>law<span class="w"> </span>or<span class="w"> </span>agreed<span class="w"> </span>to<span class="w"> </span>in<span class="w"> </span>writing,<span class="w"> </span>software
+distributed<span class="w"> </span>under<span class="w"> </span>the<span class="w"> </span>License<span class="w"> </span>is<span class="w"> </span>distributed<span class="w"> </span>on<span class="w"> </span>an<span class="w"> </span>"AS<span class="w"> </span>IS"<span class="w"> </span>BASIS,
+WITHOUT<span class="w"> </span>WARRANTIES<span class="w"> </span>OR<span class="w"> </span>CONDITIONS<span class="w"> </span>OF<span class="w"> </span>ANY<span class="w"> </span>KIND,<span class="w"> </span>either<span class="w"> </span>express<span class="w"> </span>or<span class="w"> </span>implied.
+See<span class="w"> </span>the<span class="w"> </span>License<span class="w"> </span>for<span class="w"> </span>the<span class="w"> </span>specific<span class="w"> </span>language<span class="w"> </span>governing<span class="w"> </span>permissions<span class="w"> </span>and
+limitations<span class="w"> </span>under<span class="w"> </span>the<span class="w"> </span>License.
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

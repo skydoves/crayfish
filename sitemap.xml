@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://github.com/skydoves/crayfish/</loc>
+         <lastmod>2026-09-19</lastmod>
+    </url>
+    <url>
+         <loc>https://github.com/skydoves/crayfish/accessibility/</loc>
+         <lastmod>2026-09-19</lastmod>
+    </url>
+    <url>
+         <loc>https://github.com/skydoves/crayfish/memory/</loc>
+         <lastmod>2026-09-19</lastmod>
+    </url>
+    <url>
+         <loc>https://github.com/skydoves/crayfish/orientation/</loc>
+         <lastmod>2026-09-19</lastmod>
+    </url>
+    <url>
+         <loc>https://github.com/skydoves/crayfish/performance/</loc>
+         <lastmod>2026-09-19</lastmod>
+    </url>
+</urlset>
