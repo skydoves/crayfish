@@ -1,0 +1,20 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, macosArm64, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <CrayfishDemo:crayfish-landscapist>
+final class com.github.skydoves.crayfish.landscapist/CropTransformation : com.skydoves.landscapist.core.transformation/Transformation { // com.github.skydoves.crayfish.landscapist/CropTransformation|null[0]
+    constructor <init>(com.github.skydoves.crayfish.decode/ImageRegion) // com.github.skydoves.crayfish.landscapist/CropTransformation.<init>|<init>(com.github.skydoves.crayfish.decode.ImageRegion){}[0]
+
+    final val key // com.github.skydoves.crayfish.landscapist/CropTransformation.key|{}key[0]
+        final fun <get-key>(): kotlin/String // com.github.skydoves.crayfish.landscapist/CropTransformation.key.<get-key>|<get-key>(){}[0]
+
+    final suspend fun transform(kotlin/Any): kotlin/Any // com.github.skydoves.crayfish.landscapist/CropTransformation.transform|transform(kotlin.Any){}[0]
+}
+
+final val com.github.skydoves.crayfish.landscapist/com_github_skydoves_crayfish_landscapist_CropTransformation$stableprop // com.github.skydoves.crayfish.landscapist/com_github_skydoves_crayfish_landscapist_CropTransformation$stableprop|#static{}com_github_skydoves_crayfish_landscapist_CropTransformation$stableprop[0]
+
+final fun com.github.skydoves.crayfish.landscapist/com_github_skydoves_crayfish_landscapist_CropTransformation$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.landscapist/com_github_skydoves_crayfish_landscapist_CropTransformation$stableprop_getter|com_github_skydoves_crayfish_landscapist_CropTransformation$stableprop_getter(){}[0]

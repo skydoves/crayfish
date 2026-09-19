@@ -1,0 +1,846 @@
+public abstract interface class com/github/skydoves/crayfish/decode/CropSource {
+	public abstract fun getCacheKey ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/decode/CropSource$Bytes : com/github/skydoves/crayfish/decode/CropSource {
+	public static final field $stable I
+	public fun <init> ([BLjava/lang/String;)V
+	public final fun getBytes ()[B
+	public fun getCacheKey ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/decode/CropSource$FilePath : com/github/skydoves/crayfish/decode/CropSource {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public fun getCacheKey ()Ljava/lang/String;
+	public final fun getPath ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/decode/CropSource$Image : com/github/skydoves/crayfish/decode/CropSource {
+	public static final field $stable I
+	public fun <init> (Landroidx/compose/ui/graphics/ImageBitmap;Ljava/lang/String;)V
+	public final fun getBitmap ()Landroidx/compose/ui/graphics/ImageBitmap;
+	public fun getCacheKey ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/decode/CropSource$Loader : com/github/skydoves/crayfish/decode/CropSource {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public fun getCacheKey ()Ljava/lang/String;
+	public final fun getLoad ()Lkotlin/jvm/functions/Function1;
+}
+
+public final class com/github/skydoves/crayfish/decode/DecodeBudget {
+	public static final field $stable I
+	public static final field Companion Lcom/github/skydoves/crayfish/decode/DecodeBudget$Companion;
+	public fun <init> (JI)V
+	public final fun component1 ()J
+	public final fun component2 ()I
+	public final fun copy (JI)Lcom/github/skydoves/crayfish/decode/DecodeBudget;
+	public static synthetic fun copy$default (Lcom/github/skydoves/crayfish/decode/DecodeBudget;JIILjava/lang/Object;)Lcom/github/skydoves/crayfish/decode/DecodeBudget;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMaxByteCount ()J
+	public final fun getMaxDimension ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/decode/DecodeBudget$Companion {
+	public final fun getForDisplay ()Lcom/github/skydoves/crayfish/decode/DecodeBudget;
+	public final fun getForOutput ()Lcom/github/skydoves/crayfish/decode/DecodeBudget;
+}
+
+public final class com/github/skydoves/crayfish/decode/DecodedRegion : java/lang/AutoCloseable {
+	public static final field $stable I
+	public fun <init> (Lcom/github/skydoves/crayfish/decode/PlatformImage;Lcom/github/skydoves/crayfish/decode/ImageRegion;I)V
+	public fun close ()V
+	public final fun getHeight ()I
+	public final fun getImage ()Lcom/github/skydoves/crayfish/decode/PlatformImage;
+	public final fun getRegion ()Lcom/github/skydoves/crayfish/decode/ImageRegion;
+	public final fun getSampleSize ()I
+	public final fun getWidth ()I
+}
+
+public final class com/github/skydoves/crayfish/decode/ImageFormat : java/lang/Enum {
+	public static final field AVIF Lcom/github/skydoves/crayfish/decode/ImageFormat;
+	public static final field GIF Lcom/github/skydoves/crayfish/decode/ImageFormat;
+	public static final field HEIF Lcom/github/skydoves/crayfish/decode/ImageFormat;
+	public static final field JPEG Lcom/github/skydoves/crayfish/decode/ImageFormat;
+	public static final field PNG Lcom/github/skydoves/crayfish/decode/ImageFormat;
+	public static final field RAW Lcom/github/skydoves/crayfish/decode/ImageFormat;
+	public static final field WEBP Lcom/github/skydoves/crayfish/decode/ImageFormat;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getSupportsRegionDecoding ()Z
+	public static fun valueOf (Ljava/lang/String;)Lcom/github/skydoves/crayfish/decode/ImageFormat;
+	public static fun values ()[Lcom/github/skydoves/crayfish/decode/ImageFormat;
+}
+
+public final class com/github/skydoves/crayfish/decode/ImageProbe {
+	public static final field $stable I
+	public static final field HEADER_BYTE_COUNT I
+	public static final field INSTANCE Lcom/github/skydoves/crayfish/decode/ImageProbe;
+	public final fun probe ([B)Lcom/github/skydoves/crayfish/decode/ImageProbeResult;
+}
+
+public final class com/github/skydoves/crayfish/decode/ImageProbeResult {
+	public static final field $stable I
+	public fun <init> (Lcom/github/skydoves/crayfish/decode/ImageFormat;Lcom/github/skydoves/crayfish/decode/ImageSize;)V
+	public final fun component1 ()Lcom/github/skydoves/crayfish/decode/ImageFormat;
+	public final fun component2 ()Lcom/github/skydoves/crayfish/decode/ImageSize;
+	public final fun copy (Lcom/github/skydoves/crayfish/decode/ImageFormat;Lcom/github/skydoves/crayfish/decode/ImageSize;)Lcom/github/skydoves/crayfish/decode/ImageProbeResult;
+	public static synthetic fun copy$default (Lcom/github/skydoves/crayfish/decode/ImageProbeResult;Lcom/github/skydoves/crayfish/decode/ImageFormat;Lcom/github/skydoves/crayfish/decode/ImageSize;ILjava/lang/Object;)Lcom/github/skydoves/crayfish/decode/ImageProbeResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFormat ()Lcom/github/skydoves/crayfish/decode/ImageFormat;
+	public final fun getSize ()Lcom/github/skydoves/crayfish/decode/ImageSize;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/decode/ImageRegion {
+	public static final field $stable I
+	public static final field Companion Lcom/github/skydoves/crayfish/decode/ImageRegion$Companion;
+	public fun <init> (IIII)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun component3 ()I
+	public final fun component4 ()I
+	public final fun copy (IIII)Lcom/github/skydoves/crayfish/decode/ImageRegion;
+	public static synthetic fun copy$default (Lcom/github/skydoves/crayfish/decode/ImageRegion;IIIIILjava/lang/Object;)Lcom/github/skydoves/crayfish/decode/ImageRegion;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBottom ()I
+	public final fun getHeight ()I
+	public final fun getLeft ()I
+	public final fun getRight ()I
+	public final fun getSize ()Lcom/github/skydoves/crayfish/decode/ImageSize;
+	public final fun getTop ()I
+	public final fun getWidth ()I
+	public fun hashCode ()I
+	public final fun intersect (Lcom/github/skydoves/crayfish/decode/ImageRegion;)Lcom/github/skydoves/crayfish/decode/ImageRegion;
+	public final fun isEmpty ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/decode/ImageRegion$Companion {
+	public final fun of (Lcom/github/skydoves/crayfish/decode/ImageSize;)Lcom/github/skydoves/crayfish/decode/ImageRegion;
+}
+
+public final class com/github/skydoves/crayfish/decode/ImageSize {
+	public static final field $stable I
+	public static final field Companion Lcom/github/skydoves/crayfish/decode/ImageSize$Companion;
+	public fun <init> (II)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun copy (II)Lcom/github/skydoves/crayfish/decode/ImageSize;
+	public static synthetic fun copy$default (Lcom/github/skydoves/crayfish/decode/ImageSize;IIILjava/lang/Object;)Lcom/github/skydoves/crayfish/decode/ImageSize;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getArgb8888ByteCount ()J
+	public final fun getHeight ()I
+	public final fun getPixelCount ()J
+	public final fun getWidth ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/decode/ImageSize$Companion {
+	public final fun getZero ()Lcom/github/skydoves/crayfish/decode/ImageSize;
+}
+
+public final class com/github/skydoves/crayfish/decode/PlatformImage : java/lang/AutoCloseable {
+	public static final field $stable I
+	public static final field BYTES_PER_PIXEL I
+	public fun <init> (Lorg/jetbrains/skia/Bitmap;)V
+	public fun close ()V
+	public final fun getBitmap ()Lorg/jetbrains/skia/Bitmap;
+	public final fun getHeight ()I
+	public final fun getWidth ()I
+	public final fun isClosed ()Z
+	public final fun readArgbPixels ()[I
+}
+
+public abstract interface class com/github/skydoves/crayfish/decode/RegionDecoder : java/lang/AutoCloseable {
+	public abstract fun decodeRegion (Lcom/github/skydoves/crayfish/decode/ImageRegion;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getAppliedOrientation ()Lcom/github/skydoves/crayfish/exif/ImageOrientation;
+	public abstract fun getFormat ()Lcom/github/skydoves/crayfish/decode/ImageFormat;
+	public abstract fun getImageSize ()Lcom/github/skydoves/crayfish/decode/ImageSize;
+}
+
+public final class com/github/skydoves/crayfish/decode/RegionDecoderKt {
+	public static final fun createRegionDecoder (Lcom/github/skydoves/crayfish/decode/CropSource;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/github/skydoves/crayfish/decode/SampleSize {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/github/skydoves/crayfish/decode/SampleSize;
+	public static final field MAX I
+	public final fun admits (Lcom/github/skydoves/crayfish/decode/DecodeBudget;Lcom/github/skydoves/crayfish/decode/ImageSize;)Z
+	public final fun forDecode (Lcom/github/skydoves/crayfish/decode/ImageSize;Lcom/github/skydoves/crayfish/decode/ImageSize;Lcom/github/skydoves/crayfish/decode/DecodeBudget;)I
+	public static synthetic fun forDecode$default (Lcom/github/skydoves/crayfish/decode/SampleSize;Lcom/github/skydoves/crayfish/decode/ImageSize;Lcom/github/skydoves/crayfish/decode/ImageSize;Lcom/github/skydoves/crayfish/decode/DecodeBudget;ILjava/lang/Object;)I
+	public final fun sampledBy (Lcom/github/skydoves/crayfish/decode/ImageSize;I)Lcom/github/skydoves/crayfish/decode/ImageSize;
+}
+
+public final class com/github/skydoves/crayfish/encode/EncodeOptions {
+	public static final field $stable I
+	public fun <init> (Lcom/github/skydoves/crayfish/encode/EncodedFormat;II)V
+	public synthetic fun <init> (Lcom/github/skydoves/crayfish/encode/EncodedFormat;IIILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/github/skydoves/crayfish/encode/EncodedFormat;
+	public final fun component2 ()I
+	public final fun component3 ()I
+	public final fun copy (Lcom/github/skydoves/crayfish/encode/EncodedFormat;II)Lcom/github/skydoves/crayfish/encode/EncodeOptions;
+	public static synthetic fun copy$default (Lcom/github/skydoves/crayfish/encode/EncodeOptions;Lcom/github/skydoves/crayfish/encode/EncodedFormat;IIILjava/lang/Object;)Lcom/github/skydoves/crayfish/encode/EncodeOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFormat ()Lcom/github/skydoves/crayfish/encode/EncodedFormat;
+	public final fun getLosslessEffort ()I
+	public final fun getLossyQuality ()I
+	public final fun getPlatformQuality ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/encode/EncodedFormat : java/lang/Enum {
+	public static final field JPEG Lcom/github/skydoves/crayfish/encode/EncodedFormat;
+	public static final field PNG Lcom/github/skydoves/crayfish/encode/EncodedFormat;
+	public static final field WEBP_LOSSLESS Lcom/github/skydoves/crayfish/encode/EncodedFormat;
+	public static final field WEBP_LOSSY Lcom/github/skydoves/crayfish/encode/EncodedFormat;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getSupportsAlpha ()Z
+	public static fun valueOf (Ljava/lang/String;)Lcom/github/skydoves/crayfish/encode/EncodedFormat;
+	public static fun values ()[Lcom/github/skydoves/crayfish/encode/EncodedFormat;
+}
+
+public final class com/github/skydoves/crayfish/encode/ImageEncoder_skiaKt {
+	public static final fun encodeImage (Lcom/github/skydoves/crayfish/decode/PlatformImage;Lcom/github/skydoves/crayfish/encode/EncodeOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/github/skydoves/crayfish/exif/ExifReader {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/github/skydoves/crayfish/exif/ExifReader;
+	public final fun readOrientation ([B)Lcom/github/skydoves/crayfish/exif/ImageOrientation;
+}
+
+public final class com/github/skydoves/crayfish/exif/ImageOrientation : java/lang/Enum {
+	public static final field Companion Lcom/github/skydoves/crayfish/exif/ImageOrientation$Companion;
+	public static final field FLIP_HORIZONTAL Lcom/github/skydoves/crayfish/exif/ImageOrientation;
+	public static final field FLIP_VERTICAL Lcom/github/skydoves/crayfish/exif/ImageOrientation;
+	public static final field NORMAL Lcom/github/skydoves/crayfish/exif/ImageOrientation;
+	public static final field ROTATE_180 Lcom/github/skydoves/crayfish/exif/ImageOrientation;
+	public static final field ROTATE_270 Lcom/github/skydoves/crayfish/exif/ImageOrientation;
+	public static final field ROTATE_90 Lcom/github/skydoves/crayfish/exif/ImageOrientation;
+	public static final field TRANSPOSE Lcom/github/skydoves/crayfish/exif/ImageOrientation;
+	public static final field TRANSVERSE Lcom/github/skydoves/crayfish/exif/ImageOrientation;
+	public final fun applyTo ([ILcom/github/skydoves/crayfish/decode/ImageSize;)[I
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getExifValue ()I
+	public final fun getRotationDegrees ()I
+	public final fun getTransposesDimensions ()Z
+	public final fun isMirrored ()Z
+	public final fun transformSize (Lcom/github/skydoves/crayfish/decode/ImageSize;)Lcom/github/skydoves/crayfish/decode/ImageSize;
+	public static fun valueOf (Ljava/lang/String;)Lcom/github/skydoves/crayfish/exif/ImageOrientation;
+	public static fun values ()[Lcom/github/skydoves/crayfish/exif/ImageOrientation;
+}
+
+public final class com/github/skydoves/crayfish/exif/ImageOrientation$Companion {
+	public final fun fromExifValue (I)Lcom/github/skydoves/crayfish/exif/ImageOrientation;
+}
+
+public final class com/github/skydoves/crayfish/geometry/CoordinateSpace {
+	public static final field $stable I
+	public static final field Companion Lcom/github/skydoves/crayfish/geometry/CoordinateSpace$Companion;
+	public fun <init> (Lcom/github/skydoves/crayfish/decode/ImageSize;Lcom/github/skydoves/crayfish/geometry/FloatRect;Lcom/github/skydoves/crayfish/geometry/CropTransform;)V
+	public final fun component1 ()Lcom/github/skydoves/crayfish/decode/ImageSize;
+	public final fun component2 ()Lcom/github/skydoves/crayfish/geometry/FloatRect;
+	public final fun component3 ()Lcom/github/skydoves/crayfish/geometry/CropTransform;
+	public final fun copy (Lcom/github/skydoves/crayfish/decode/ImageSize;Lcom/github/skydoves/crayfish/geometry/FloatRect;Lcom/github/skydoves/crayfish/geometry/CropTransform;)Lcom/github/skydoves/crayfish/geometry/CoordinateSpace;
+	public static synthetic fun copy$default (Lcom/github/skydoves/crayfish/geometry/CoordinateSpace;Lcom/github/skydoves/crayfish/decode/ImageSize;Lcom/github/skydoves/crayfish/geometry/FloatRect;Lcom/github/skydoves/crayfish/geometry/CropTransform;ILjava/lang/Object;)Lcom/github/skydoves/crayfish/geometry/CoordinateSpace;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContentBounds ()Lcom/github/skydoves/crayfish/geometry/FloatRect;
+	public final fun getImageSize ()Lcom/github/skydoves/crayfish/decode/ImageSize;
+	public final fun getPivot ()Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+	public final fun getTransform ()Lcom/github/skydoves/crayfish/geometry/CropTransform;
+	public fun hashCode ()I
+	public final fun imageToViewport (Lcom/github/skydoves/crayfish/geometry/FloatPoint;)Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+	public final fun isValid ()Z
+	public final fun toImageRegion (Lcom/github/skydoves/crayfish/geometry/FloatRect;)Lcom/github/skydoves/crayfish/decode/ImageRegion;
+	public fun toString ()Ljava/lang/String;
+	public final fun viewportToImage (Lcom/github/skydoves/crayfish/geometry/FloatPoint;)Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+	public final fun viewportToImage (Lcom/github/skydoves/crayfish/geometry/FloatRect;)Lcom/github/skydoves/crayfish/geometry/FloatRect;
+}
+
+public final class com/github/skydoves/crayfish/geometry/CoordinateSpace$Companion {
+	public final fun fitting (Lcom/github/skydoves/crayfish/decode/ImageSize;Lcom/github/skydoves/crayfish/geometry/FloatSize;Lcom/github/skydoves/crayfish/geometry/CropTransform;)Lcom/github/skydoves/crayfish/geometry/CoordinateSpace;
+	public static synthetic fun fitting$default (Lcom/github/skydoves/crayfish/geometry/CoordinateSpace$Companion;Lcom/github/skydoves/crayfish/decode/ImageSize;Lcom/github/skydoves/crayfish/geometry/FloatSize;Lcom/github/skydoves/crayfish/geometry/CropTransform;ILjava/lang/Object;)Lcom/github/skydoves/crayfish/geometry/CoordinateSpace;
+}
+
+public final class com/github/skydoves/crayfish/geometry/CoverageCorrection {
+	public static final field $stable I
+	public fun <init> (Lcom/github/skydoves/crayfish/geometry/CropTransform;ZZ)V
+	public final fun component1 ()Lcom/github/skydoves/crayfish/geometry/CropTransform;
+	public final fun component2 ()Z
+	public final fun component3 ()Z
+	public final fun copy (Lcom/github/skydoves/crayfish/geometry/CropTransform;ZZ)Lcom/github/skydoves/crayfish/geometry/CoverageCorrection;
+	public static synthetic fun copy$default (Lcom/github/skydoves/crayfish/geometry/CoverageCorrection;Lcom/github/skydoves/crayfish/geometry/CropTransform;ZZILjava/lang/Object;)Lcom/github/skydoves/crayfish/geometry/CoverageCorrection;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getScaled ()Z
+	public final fun getTransform ()Lcom/github/skydoves/crayfish/geometry/CropTransform;
+	public final fun getTranslated ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/geometry/CropBounds {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/github/skydoves/crayfish/geometry/CropBounds;
+	public final fun coerceOffset (Lcom/github/skydoves/crayfish/geometry/CropTransform;Lcom/github/skydoves/crayfish/geometry/FloatRect;Lcom/github/skydoves/crayfish/geometry/FloatRect;Lcom/github/skydoves/crayfish/geometry/FloatPoint;)Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+	public static synthetic fun coerceOffset$default (Lcom/github/skydoves/crayfish/geometry/CropBounds;Lcom/github/skydoves/crayfish/geometry/CropTransform;Lcom/github/skydoves/crayfish/geometry/FloatRect;Lcom/github/skydoves/crayfish/geometry/FloatRect;Lcom/github/skydoves/crayfish/geometry/FloatPoint;ILjava/lang/Object;)Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+	public final fun getCenterAlignment ()Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+}
+
+public final class com/github/skydoves/crayfish/geometry/CropCoverage {
+	public static final field $stable I
+	public static final field CORRECTION_SLACK F
+	public static final field INSTANCE Lcom/github/skydoves/crayfish/geometry/CropCoverage;
+	public final fun correct (Lcom/github/skydoves/crayfish/geometry/CropTransform;Lcom/github/skydoves/crayfish/geometry/FloatRect;Lcom/github/skydoves/crayfish/geometry/FloatRect;)Lcom/github/skydoves/crayfish/geometry/CoverageCorrection;
+	public final fun covers (Lcom/github/skydoves/crayfish/geometry/CropTransform;Lcom/github/skydoves/crayfish/geometry/FloatRect;Lcom/github/skydoves/crayfish/geometry/FloatRect;F)Z
+	public static synthetic fun covers$default (Lcom/github/skydoves/crayfish/geometry/CropCoverage;Lcom/github/skydoves/crayfish/geometry/CropTransform;Lcom/github/skydoves/crayfish/geometry/FloatRect;Lcom/github/skydoves/crayfish/geometry/FloatRect;FILjava/lang/Object;)Z
+}
+
+public final class com/github/skydoves/crayfish/geometry/CropTransform {
+	public static final field $stable I
+	public static final field Companion Lcom/github/skydoves/crayfish/geometry/CropTransform$Companion;
+	public fun <init> ()V
+	public fun <init> (FLcom/github/skydoves/crayfish/geometry/FloatPoint;FZZ)V
+	public synthetic fun <init> (FLcom/github/skydoves/crayfish/geometry/FloatPoint;FZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()F
+	public final fun component2 ()Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+	public final fun component3 ()F
+	public final fun component4 ()Z
+	public final fun component5 ()Z
+	public final fun copy (FLcom/github/skydoves/crayfish/geometry/FloatPoint;FZZ)Lcom/github/skydoves/crayfish/geometry/CropTransform;
+	public static synthetic fun copy$default (Lcom/github/skydoves/crayfish/geometry/CropTransform;FLcom/github/skydoves/crayfish/geometry/FloatPoint;FZZILjava/lang/Object;)Lcom/github/skydoves/crayfish/geometry/CropTransform;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFlipHorizontal ()Z
+	public final fun getFlipVertical ()Z
+	public final fun getOffset ()Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+	public final fun getRotationDegrees ()F
+	public final fun getScale ()F
+	public final fun getSignedScaleX ()F
+	public final fun getSignedScaleY ()F
+	public fun hashCode ()I
+	public final fun isValid ()Z
+	public final fun mapCorners (Lcom/github/skydoves/crayfish/geometry/FloatRect;Lcom/github/skydoves/crayfish/geometry/FloatPoint;)Ljava/util/List;
+	public final fun mapPoint (Lcom/github/skydoves/crayfish/geometry/FloatPoint;Lcom/github/skydoves/crayfish/geometry/FloatPoint;)Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+	public final fun mapRect (Lcom/github/skydoves/crayfish/geometry/FloatRect;Lcom/github/skydoves/crayfish/geometry/FloatPoint;)Lcom/github/skydoves/crayfish/geometry/FloatRect;
+	public final fun sanitized ()Lcom/github/skydoves/crayfish/geometry/CropTransform;
+	public final fun scaledAround (FLcom/github/skydoves/crayfish/geometry/FloatPoint;Lcom/github/skydoves/crayfish/geometry/FloatPoint;)Lcom/github/skydoves/crayfish/geometry/CropTransform;
+	public fun toString ()Ljava/lang/String;
+	public final fun unmapPoint (Lcom/github/skydoves/crayfish/geometry/FloatPoint;Lcom/github/skydoves/crayfish/geometry/FloatPoint;)Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+}
+
+public final class com/github/skydoves/crayfish/geometry/CropTransform$Companion {
+	public final fun getIdentity ()Lcom/github/skydoves/crayfish/geometry/CropTransform;
+}
+
+public final class com/github/skydoves/crayfish/geometry/FloatPoint {
+	public static final field $stable I
+	public static final field Companion Lcom/github/skydoves/crayfish/geometry/FloatPoint$Companion;
+	public fun <init> (FF)V
+	public final fun component1 ()F
+	public final fun component2 ()F
+	public final fun copy (FF)Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+	public static synthetic fun copy$default (Lcom/github/skydoves/crayfish/geometry/FloatPoint;FFILjava/lang/Object;)Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getX ()F
+	public final fun getY ()F
+	public fun hashCode ()I
+	public final fun isCloseTo (Lcom/github/skydoves/crayfish/geometry/FloatPoint;F)Z
+	public final fun isFinite ()Z
+	public final fun minus (Lcom/github/skydoves/crayfish/geometry/FloatPoint;)Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+	public final fun plus (Lcom/github/skydoves/crayfish/geometry/FloatPoint;)Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+	public final fun sanitized ()Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+	public final fun times (F)Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/geometry/FloatPoint$Companion {
+	public final fun getZero ()Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+}
+
+public final class com/github/skydoves/crayfish/geometry/FloatRect {
+	public static final field $stable I
+	public static final field Companion Lcom/github/skydoves/crayfish/geometry/FloatRect$Companion;
+	public fun <init> (FFFF)V
+	public final fun component1 ()F
+	public final fun component2 ()F
+	public final fun component3 ()F
+	public final fun component4 ()F
+	public final fun contains (Lcom/github/skydoves/crayfish/geometry/FloatPoint;)Z
+	public final fun contains (Lcom/github/skydoves/crayfish/geometry/FloatRect;)Z
+	public final fun copy (FFFF)Lcom/github/skydoves/crayfish/geometry/FloatRect;
+	public static synthetic fun copy$default (Lcom/github/skydoves/crayfish/geometry/FloatRect;FFFFILjava/lang/Object;)Lcom/github/skydoves/crayfish/geometry/FloatRect;
+	public final fun corners ()Ljava/util/List;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBottom ()F
+	public final fun getCenter ()Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+	public final fun getHeight ()F
+	public final fun getLeft ()F
+	public final fun getRight ()F
+	public final fun getSize ()Lcom/github/skydoves/crayfish/geometry/FloatSize;
+	public final fun getTop ()F
+	public final fun getWidth ()F
+	public fun hashCode ()I
+	public final fun inflate (F)Lcom/github/skydoves/crayfish/geometry/FloatRect;
+	public final fun isEmpty ()Z
+	public final fun isFinite ()Z
+	public fun toString ()Ljava/lang/String;
+	public final fun translate (Lcom/github/skydoves/crayfish/geometry/FloatPoint;)Lcom/github/skydoves/crayfish/geometry/FloatRect;
+}
+
+public final class com/github/skydoves/crayfish/geometry/FloatRect$Companion {
+	public final fun bounding (Ljava/util/List;)Lcom/github/skydoves/crayfish/geometry/FloatRect;
+	public final fun fromCenter (Lcom/github/skydoves/crayfish/geometry/FloatPoint;Lcom/github/skydoves/crayfish/geometry/FloatSize;)Lcom/github/skydoves/crayfish/geometry/FloatRect;
+	public final fun getZero ()Lcom/github/skydoves/crayfish/geometry/FloatRect;
+	public final fun of (Lcom/github/skydoves/crayfish/geometry/FloatSize;)Lcom/github/skydoves/crayfish/geometry/FloatRect;
+}
+
+public final class com/github/skydoves/crayfish/geometry/FloatRectKt {
+	public static final fun fitInside (Lcom/github/skydoves/crayfish/geometry/FloatSize;Lcom/github/skydoves/crayfish/geometry/FloatRect;)Lcom/github/skydoves/crayfish/geometry/FloatRect;
+}
+
+public final class com/github/skydoves/crayfish/geometry/FloatSize {
+	public static final field $stable I
+	public static final field Companion Lcom/github/skydoves/crayfish/geometry/FloatSize$Companion;
+	public fun <init> (FF)V
+	public final fun component1 ()F
+	public final fun component2 ()F
+	public final fun copy (FF)Lcom/github/skydoves/crayfish/geometry/FloatSize;
+	public static synthetic fun copy$default (Lcom/github/skydoves/crayfish/geometry/FloatSize;FFILjava/lang/Object;)Lcom/github/skydoves/crayfish/geometry/FloatSize;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCenter ()Lcom/github/skydoves/crayfish/geometry/FloatPoint;
+	public final fun getHeight ()F
+	public final fun getWidth ()F
+	public fun hashCode ()I
+	public final fun isEmpty ()Z
+	public final fun isFinite ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/geometry/FloatSize$Companion {
+	public final fun getZero ()Lcom/github/skydoves/crayfish/geometry/FloatSize;
+}
+
+public final class com/github/skydoves/crayfish/geometry/FloatSizeKt {
+	public static final fun toFloatSize (Lcom/github/skydoves/crayfish/decode/ImageSize;)Lcom/github/skydoves/crayfish/geometry/FloatSize;
+}
+
+public final class com/github/skydoves/crayfish/geometry/RotationSnap {
+	public static final field $stable I
+	public static final field DEFAULT_THRESHOLD_DEGREES F
+	public static final field INSTANCE Lcom/github/skydoves/crayfish/geometry/RotationSnap;
+	public final fun isSnapping (FF)Z
+	public static synthetic fun isSnapping$default (Lcom/github/skydoves/crayfish/geometry/RotationSnap;FFILjava/lang/Object;)Z
+	public final fun normalize (F)F
+	public final fun snap (FF)F
+	public static synthetic fun snap$default (Lcom/github/skydoves/crayfish/geometry/RotationSnap;FFILjava/lang/Object;)F
+}
+
+public abstract interface class com/github/skydoves/crayfish/ui/AspectRatio {
+	public static final field Companion Lcom/github/skydoves/crayfish/ui/AspectRatio$Companion;
+}
+
+public final class com/github/skydoves/crayfish/ui/AspectRatio$Companion {
+	public final fun getLandscape4x3 ()Lcom/github/skydoves/crayfish/ui/AspectRatio;
+	public final fun getPortrait3x4 ()Lcom/github/skydoves/crayfish/ui/AspectRatio;
+	public final fun getPortrait9x16 ()Lcom/github/skydoves/crayfish/ui/AspectRatio;
+	public final fun getSquare ()Lcom/github/skydoves/crayfish/ui/AspectRatio;
+	public final fun getWidescreen16x9 ()Lcom/github/skydoves/crayfish/ui/AspectRatio;
+}
+
+public final class com/github/skydoves/crayfish/ui/AspectRatio$Fixed : com/github/skydoves/crayfish/ui/AspectRatio {
+	public static final field $stable I
+	public fun <init> (F)V
+	public final fun component1 ()F
+	public final fun copy (F)Lcom/github/skydoves/crayfish/ui/AspectRatio$Fixed;
+	public static synthetic fun copy$default (Lcom/github/skydoves/crayfish/ui/AspectRatio$Fixed;FILjava/lang/Object;)Lcom/github/skydoves/crayfish/ui/AspectRatio$Fixed;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getRatio ()F
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/ui/AspectRatio$Free : com/github/skydoves/crayfish/ui/AspectRatio {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/github/skydoves/crayfish/ui/AspectRatio$Free;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/ui/ComposableSingletons$ImageCropperDialogKt {
+	public static final field INSTANCE Lcom/github/skydoves/crayfish/ui/ComposableSingletons$ImageCropperDialogKt;
+	public fun <init> ()V
+	public final fun getLambda$884576210$CrayfishDemo_crayfish ()Lkotlin/jvm/functions/Function4;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropAccessibility {
+	public static final field $stable I
+	public static final field Companion Lcom/github/skydoves/crayfish/ui/CropAccessibility$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (FLjava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (FLjava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-D9Ej5fM ()F
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lkotlin/jvm/functions/Function1;
+	public final fun component4 ()Lkotlin/jvm/functions/Function2;
+	public final fun copy-kHDZbjc (FLjava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;)Lcom/github/skydoves/crayfish/ui/CropAccessibility;
+	public static synthetic fun copy-kHDZbjc$default (Lcom/github/skydoves/crayfish/ui/CropAccessibility;FLjava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)Lcom/github/skydoves/crayfish/ui/CropAccessibility;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContentDescription ()Ljava/lang/String;
+	public final fun getDescribe ()Lkotlin/jvm/functions/Function2;
+	public final fun getLabel ()Lkotlin/jvm/functions/Function1;
+	public final fun getStep-D9Ej5fM ()F
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropAccessibility$Companion {
+	public final fun getDefault ()Lcom/github/skydoves/crayfish/ui/CropAccessibility;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropAccessibilityAction : java/lang/Enum {
+	public static final field GrowBottom Lcom/github/skydoves/crayfish/ui/CropAccessibilityAction;
+	public static final field GrowLeft Lcom/github/skydoves/crayfish/ui/CropAccessibilityAction;
+	public static final field GrowRight Lcom/github/skydoves/crayfish/ui/CropAccessibilityAction;
+	public static final field GrowTop Lcom/github/skydoves/crayfish/ui/CropAccessibilityAction;
+	public static final field MoveDown Lcom/github/skydoves/crayfish/ui/CropAccessibilityAction;
+	public static final field MoveLeft Lcom/github/skydoves/crayfish/ui/CropAccessibilityAction;
+	public static final field MoveRight Lcom/github/skydoves/crayfish/ui/CropAccessibilityAction;
+	public static final field MoveUp Lcom/github/skydoves/crayfish/ui/CropAccessibilityAction;
+	public static final field Reset Lcom/github/skydoves/crayfish/ui/CropAccessibilityAction;
+	public static final field ShrinkBottom Lcom/github/skydoves/crayfish/ui/CropAccessibilityAction;
+	public static final field ShrinkLeft Lcom/github/skydoves/crayfish/ui/CropAccessibilityAction;
+	public static final field ShrinkRight Lcom/github/skydoves/crayfish/ui/CropAccessibilityAction;
+	public static final field ShrinkTop Lcom/github/skydoves/crayfish/ui/CropAccessibilityAction;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/github/skydoves/crayfish/ui/CropAccessibilityAction;
+	public static fun values ()[Lcom/github/skydoves/crayfish/ui/CropAccessibilityAction;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropAccessibilityKt {
+	public static final fun defaultCropActionLabel (Lcom/github/skydoves/crayfish/ui/CropAccessibilityAction;)Ljava/lang/String;
+	public static final fun defaultCropDescription (Lcom/github/skydoves/crayfish/geometry/FloatRect;Lcom/github/skydoves/crayfish/geometry/FloatSize;)Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropGestures {
+	public static final field $stable I
+	public static final field Companion Lcom/github/skydoves/crayfish/ui/CropGestures$Companion;
+	public fun <init> ()V
+	public fun <init> (ZZZ)V
+	public synthetic fun <init> (ZZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Z
+	public final fun component2 ()Z
+	public final fun component3 ()Z
+	public final fun copy (ZZZ)Lcom/github/skydoves/crayfish/ui/CropGestures;
+	public static synthetic fun copy$default (Lcom/github/skydoves/crayfish/ui/CropGestures;ZZZILjava/lang/Object;)Lcom/github/skydoves/crayfish/ui/CropGestures;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getPan ()Z
+	public final fun getRotate ()Z
+	public final fun getZoom ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropGestures$Companion {
+	public final fun getAll ()Lcom/github/skydoves/crayfish/ui/CropGestures;
+	public final fun getDefault ()Lcom/github/skydoves/crayfish/ui/CropGestures;
+	public final fun getZoomable ()Lcom/github/skydoves/crayfish/ui/CropGestures;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropGridMode : java/lang/Enum {
+	public static final field Always Lcom/github/skydoves/crayfish/ui/CropGridMode;
+	public static final field Never Lcom/github/skydoves/crayfish/ui/CropGridMode;
+	public static final field OnTouch Lcom/github/skydoves/crayfish/ui/CropGridMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/github/skydoves/crayfish/ui/CropGridMode;
+	public static fun values ()[Lcom/github/skydoves/crayfish/ui/CropGridMode;
+}
+
+public abstract interface class com/github/skydoves/crayfish/ui/CropImage {
+}
+
+public final class com/github/skydoves/crayfish/ui/CropImage$Cancelled : com/github/skydoves/crayfish/ui/CropImage {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/github/skydoves/crayfish/ui/CropImage$Cancelled;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropImage$Failure : com/github/skydoves/crayfish/ui/CropImage {
+	public static final field $stable I
+	public fun <init> (Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;Ljava/lang/Throwable;)V
+	public synthetic fun <init> (Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getCause ()Ljava/lang/Throwable;
+	public final fun getReason ()Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropImage$Success : com/github/skydoves/crayfish/ui/CropImage {
+	public static final field $stable I
+	public fun <init> (Landroidx/compose/ui/graphics/ImageBitmap;Lcom/github/skydoves/crayfish/decode/ImageSize;Lcom/github/skydoves/crayfish/decode/ImageRegion;)V
+	public final fun getImage ()Landroidx/compose/ui/graphics/ImageBitmap;
+	public final fun getPainter ()Landroidx/compose/ui/graphics/painter/Painter;
+	public final fun getRegion ()Lcom/github/skydoves/crayfish/decode/ImageRegion;
+	public final fun getSize ()Lcom/github/skydoves/crayfish/decode/ImageSize;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropImageBitmapKt {
+	public static final fun cropTo (Landroidx/compose/ui/graphics/ImageBitmap;Lcom/github/skydoves/crayfish/decode/ImageRegion;)Landroidx/compose/ui/graphics/ImageBitmap;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropOverlayKt {
+	public static final fun CropOverlay (Lcom/github/skydoves/crayfish/ui/CropState;Landroidx/compose/ui/Modifier;Lcom/github/skydoves/crayfish/ui/CropStyle;Lcom/github/skydoves/crayfish/ui/CropShape;Lcom/github/skydoves/crayfish/ui/CropAccessibility;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/github/skydoves/crayfish/ui/CropRecipe {
+	public static final field $stable I
+	public static final field Companion Lcom/github/skydoves/crayfish/ui/CropRecipe$Companion;
+	public fun <init> (Lcom/github/skydoves/crayfish/geometry/CropTransform;Lcom/github/skydoves/crayfish/geometry/FloatRect;Lcom/github/skydoves/crayfish/ui/AspectRatio;)V
+	public final fun encodeToString ()Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAspectRatio ()Lcom/github/skydoves/crayfish/ui/AspectRatio;
+	public final fun getNormalizedCropRect ()Lcom/github/skydoves/crayfish/geometry/FloatRect;
+	public final fun getTransform ()Lcom/github/skydoves/crayfish/geometry/CropTransform;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropRecipe$Companion {
+	public final fun decodeFromString (Ljava/lang/String;)Lcom/github/skydoves/crayfish/ui/CropRecipe;
+}
+
+public abstract interface class com/github/skydoves/crayfish/ui/CropResult {
+}
+
+public final class com/github/skydoves/crayfish/ui/CropResult$Cancelled : com/github/skydoves/crayfish/ui/CropResult {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/github/skydoves/crayfish/ui/CropResult$Cancelled;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropResult$Failure : com/github/skydoves/crayfish/ui/CropResult {
+	public static final field $stable I
+	public fun <init> (Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;Ljava/lang/Throwable;)V
+	public synthetic fun <init> (Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getCause ()Ljava/lang/Throwable;
+	public final fun getReason ()Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropResult$Failure$Reason : java/lang/Enum {
+	public static final field AlreadyCropping Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;
+	public static final field DecodeFailed Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;
+	public static final field EmptyRegion Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;
+	public static final field EncodeFailed Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;
+	public static final field EncodeUnsupported Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;
+	public static final field SourceUnreadable Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;
+	public static fun values ()[Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropResult$Success : com/github/skydoves/crayfish/ui/CropResult {
+	public static final field $stable I
+	public fun <init> ([BLcom/github/skydoves/crayfish/decode/ImageSize;Lcom/github/skydoves/crayfish/decode/ImageRegion;)V
+	public final fun getBytes ()[B
+	public final fun getRegion ()Lcom/github/skydoves/crayfish/decode/ImageRegion;
+	public final fun getSize ()Lcom/github/skydoves/crayfish/decode/ImageSize;
+}
+
+public abstract interface class com/github/skydoves/crayfish/ui/CropShape {
+}
+
+public final class com/github/skydoves/crayfish/ui/CropShape$Circle : com/github/skydoves/crayfish/ui/CropShape {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/github/skydoves/crayfish/ui/CropShape$Circle;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropShape$Custom : com/github/skydoves/crayfish/ui/CropShape {
+	public static final field $stable I
+	public fun <init> (Lkotlin/jvm/functions/Function2;)V
+	public final fun component1 ()Lkotlin/jvm/functions/Function2;
+	public final fun copy (Lkotlin/jvm/functions/Function2;)Lcom/github/skydoves/crayfish/ui/CropShape$Custom;
+	public static synthetic fun copy$default (Lcom/github/skydoves/crayfish/ui/CropShape$Custom;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)Lcom/github/skydoves/crayfish/ui/CropShape$Custom;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBuild ()Lkotlin/jvm/functions/Function2;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropShape$Rectangle : com/github/skydoves/crayfish/ui/CropShape {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/github/skydoves/crayfish/ui/CropShape$Rectangle;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropShape$RoundedRectangle : com/github/skydoves/crayfish/ui/CropShape {
+	public static final field $stable I
+	public synthetic fun <init> (FLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-D9Ej5fM ()F
+	public final fun copy-0680j_4 (F)Lcom/github/skydoves/crayfish/ui/CropShape$RoundedRectangle;
+	public static synthetic fun copy-0680j_4$default (Lcom/github/skydoves/crayfish/ui/CropShape$RoundedRectangle;FILjava/lang/Object;)Lcom/github/skydoves/crayfish/ui/CropShape$RoundedRectangle;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCornerRadius-D9Ej5fM ()F
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/github/skydoves/crayfish/ui/CropState {
+	public abstract fun crop (Lcom/github/skydoves/crayfish/encode/EncodeOptions;Lcom/github/skydoves/crayfish/decode/DecodeBudget;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun crop$default (Lcom/github/skydoves/crayfish/ui/CropState;Lcom/github/skydoves/crayfish/encode/EncodeOptions;Lcom/github/skydoves/crayfish/decode/DecodeBudget;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun cropToImage (Lcom/github/skydoves/crayfish/decode/DecodeBudget;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun cropToImage$default (Lcom/github/skydoves/crayfish/ui/CropState;Lcom/github/skydoves/crayfish/decode/DecodeBudget;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun getAspectRatio ()Lcom/github/skydoves/crayfish/ui/AspectRatio;
+	public abstract fun getCoordinateSpace ()Lcom/github/skydoves/crayfish/geometry/CoordinateSpace;
+	public abstract fun getCropRect ()Lcom/github/skydoves/crayfish/geometry/FloatRect;
+	public abstract fun getImageSize ()Lcom/github/skydoves/crayfish/decode/ImageSize;
+	public abstract fun getRecipe ()Lcom/github/skydoves/crayfish/ui/CropRecipe;
+	public abstract fun getShape ()Lcom/github/skydoves/crayfish/ui/CropShape;
+	public abstract fun getSource ()Lcom/github/skydoves/crayfish/decode/CropSource;
+	public abstract fun getStatus ()Lcom/github/skydoves/crayfish/ui/CropStatus;
+	public abstract fun getTransform ()Lcom/github/skydoves/crayfish/geometry/CropTransform;
+	public abstract fun getViewportSize ()Lcom/github/skydoves/crayfish/geometry/FloatSize;
+	public abstract fun isInteracting ()Z
+	public abstract fun reset ()V
+	public abstract fun rotateBy (F)V
+	public abstract fun rotateTo (F)V
+	public abstract fun rotateToNearestQuarterTurn ()V
+	public abstract fun setAspectRatio (Lcom/github/skydoves/crayfish/ui/AspectRatio;)V
+	public abstract fun setShape (Lcom/github/skydoves/crayfish/ui/CropShape;)V
+	public abstract fun toggleFlipHorizontal ()V
+	public abstract fun toggleFlipVertical ()V
+}
+
+public final class com/github/skydoves/crayfish/ui/CropState$DefaultImpls {
+	public static synthetic fun crop$default (Lcom/github/skydoves/crayfish/ui/CropState;Lcom/github/skydoves/crayfish/encode/EncodeOptions;Lcom/github/skydoves/crayfish/decode/DecodeBudget;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun cropToImage$default (Lcom/github/skydoves/crayfish/ui/CropState;Lcom/github/skydoves/crayfish/decode/DecodeBudget;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropStateKt {
+	public static final fun rememberCropState (Lcom/github/skydoves/crayfish/decode/CropSource;Lcom/github/skydoves/crayfish/ui/AspectRatio;Lcom/github/skydoves/crayfish/ui/CropRecipe;Landroidx/compose/runtime/Composer;II)Lcom/github/skydoves/crayfish/ui/CropState;
+}
+
+public abstract interface class com/github/skydoves/crayfish/ui/CropStatus {
+}
+
+public final class com/github/skydoves/crayfish/ui/CropStatus$Failed : com/github/skydoves/crayfish/ui/CropStatus {
+	public static final field $stable I
+	public fun <init> (Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;Ljava/lang/Throwable;)V
+	public synthetic fun <init> (Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;
+	public final fun component2 ()Ljava/lang/Throwable;
+	public final fun copy (Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;Ljava/lang/Throwable;)Lcom/github/skydoves/crayfish/ui/CropStatus$Failed;
+	public static synthetic fun copy$default (Lcom/github/skydoves/crayfish/ui/CropStatus$Failed;Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;Ljava/lang/Throwable;ILjava/lang/Object;)Lcom/github/skydoves/crayfish/ui/CropStatus$Failed;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCause ()Ljava/lang/Throwable;
+	public final fun getReason ()Lcom/github/skydoves/crayfish/ui/CropResult$Failure$Reason;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropStatus$Loading : com/github/skydoves/crayfish/ui/CropStatus {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/github/skydoves/crayfish/ui/CropStatus$Loading;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropStatus$Ready : com/github/skydoves/crayfish/ui/CropStatus {
+	public static final field $stable I
+	public fun <init> (Lcom/github/skydoves/crayfish/decode/ImageSize;Lcom/github/skydoves/crayfish/exif/ImageOrientation;)V
+	public final fun component1 ()Lcom/github/skydoves/crayfish/decode/ImageSize;
+	public final fun component2 ()Lcom/github/skydoves/crayfish/exif/ImageOrientation;
+	public final fun copy (Lcom/github/skydoves/crayfish/decode/ImageSize;Lcom/github/skydoves/crayfish/exif/ImageOrientation;)Lcom/github/skydoves/crayfish/ui/CropStatus$Ready;
+	public static synthetic fun copy$default (Lcom/github/skydoves/crayfish/ui/CropStatus$Ready;Lcom/github/skydoves/crayfish/decode/ImageSize;Lcom/github/skydoves/crayfish/exif/ImageOrientation;ILjava/lang/Object;)Lcom/github/skydoves/crayfish/ui/CropStatus$Ready;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getImageSize ()Lcom/github/skydoves/crayfish/decode/ImageSize;
+	public final fun getOrientation ()Lcom/github/skydoves/crayfish/exif/ImageOrientation;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropStyle {
+	public static final field $stable I
+	public static final field Companion Lcom/github/skydoves/crayfish/ui/CropStyle$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (JJFJFLcom/github/skydoves/crayfish/ui/CropGridMode;JFFFFILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (JJFJFLcom/github/skydoves/crayfish/ui/CropGridMode;JFFFFLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-0d7_KjU ()J
+	public final fun component10-D9Ej5fM ()F
+	public final fun component11-D9Ej5fM ()F
+	public final fun component2-0d7_KjU ()J
+	public final fun component3-D9Ej5fM ()F
+	public final fun component4-0d7_KjU ()J
+	public final fun component5-D9Ej5fM ()F
+	public final fun component6 ()Lcom/github/skydoves/crayfish/ui/CropGridMode;
+	public final fun component7-0d7_KjU ()J
+	public final fun component8-D9Ej5fM ()F
+	public final fun component9-D9Ej5fM ()F
+	public final fun copy-UjB_VIA (JJFJFLcom/github/skydoves/crayfish/ui/CropGridMode;JFFFF)Lcom/github/skydoves/crayfish/ui/CropStyle;
+	public static synthetic fun copy-UjB_VIA$default (Lcom/github/skydoves/crayfish/ui/CropStyle;JJFJFLcom/github/skydoves/crayfish/ui/CropGridMode;JFFFFILjava/lang/Object;)Lcom/github/skydoves/crayfish/ui/CropStyle;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFrameColor-0d7_KjU ()J
+	public final fun getFrameWidth-D9Ej5fM ()F
+	public final fun getGridColor-0d7_KjU ()J
+	public final fun getGridMode ()Lcom/github/skydoves/crayfish/ui/CropGridMode;
+	public final fun getGridWidth-D9Ej5fM ()F
+	public final fun getHandleColor-0d7_KjU ()J
+	public final fun getHandleLength-D9Ej5fM ()F
+	public final fun getHandleThickness-D9Ej5fM ()F
+	public final fun getHandleTouchRadius-D9Ej5fM ()F
+	public final fun getMinimumCropSize-D9Ej5fM ()F
+	public final fun getScrimColor-0d7_KjU ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropStyle$Companion {
+	public final fun getDefault ()Lcom/github/skydoves/crayfish/ui/CropStyle;
+}
+
+public final class com/github/skydoves/crayfish/ui/CropperKt {
+	public static final fun Cropper (Lcom/github/skydoves/crayfish/ui/CropState;Landroidx/compose/ui/Modifier;Lcom/github/skydoves/crayfish/ui/CropStyle;Lcom/github/skydoves/crayfish/ui/CropGestures;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+
+public abstract interface class com/github/skydoves/crayfish/ui/ImageCropper {
+	public abstract fun cancel ()V
+	public abstract fun crop (Lcom/github/skydoves/crayfish/decode/CropSource;Lcom/github/skydoves/crayfish/encode/EncodeOptions;Lcom/github/skydoves/crayfish/ui/AspectRatio;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun crop$default (Lcom/github/skydoves/crayfish/ui/ImageCropper;Lcom/github/skydoves/crayfish/decode/CropSource;Lcom/github/skydoves/crayfish/encode/EncodeOptions;Lcom/github/skydoves/crayfish/ui/AspectRatio;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun cropToImage (Lcom/github/skydoves/crayfish/decode/CropSource;Lcom/github/skydoves/crayfish/ui/AspectRatio;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun cropToImage$default (Lcom/github/skydoves/crayfish/ui/ImageCropper;Lcom/github/skydoves/crayfish/decode/CropSource;Lcom/github/skydoves/crayfish/ui/AspectRatio;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun getPending ()Lcom/github/skydoves/crayfish/ui/CropState;
+}
+
+public final class com/github/skydoves/crayfish/ui/ImageCropper$DefaultImpls {
+	public static synthetic fun crop$default (Lcom/github/skydoves/crayfish/ui/ImageCropper;Lcom/github/skydoves/crayfish/decode/CropSource;Lcom/github/skydoves/crayfish/encode/EncodeOptions;Lcom/github/skydoves/crayfish/ui/AspectRatio;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun cropToImage$default (Lcom/github/skydoves/crayfish/ui/ImageCropper;Lcom/github/skydoves/crayfish/decode/CropSource;Lcom/github/skydoves/crayfish/ui/AspectRatio;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class com/github/skydoves/crayfish/ui/ImageCropperDialogKt {
+	public static final fun DefaultCropControls (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Landroidx/compose/runtime/Composer;II)V
+	public static final fun ImageCropperDialog (Lcom/github/skydoves/crayfish/ui/ImageCropper;Landroidx/compose/ui/Modifier;Lcom/github/skydoves/crayfish/ui/CropStyle;Lcom/github/skydoves/crayfish/ui/CropGestures;Lcom/github/skydoves/crayfish/ui/CropShape;Lcom/github/skydoves/crayfish/ui/CropAccessibility;Landroidx/compose/ui/window/DialogProperties;Lkotlin/jvm/functions/Function4;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/github/skydoves/crayfish/ui/ImageCropperKt {
+	public static final fun rememberImageCropper (Landroidx/compose/runtime/Composer;I)Lcom/github/skydoves/crayfish/ui/ImageCropper;
+}
+
+public final class com/github/skydoves/crayfish/ui/PainterCropSourceKt {
+	public static final fun rememberCropSource (Landroidx/compose/ui/graphics/ImageBitmap;Ljava/lang/String;Landroidx/compose/runtime/Composer;I)Lcom/github/skydoves/crayfish/decode/CropSource;
+	public static final fun rememberCropSource-3tKcejY (Landroidx/compose/ui/graphics/painter/Painter;Ljava/lang/String;Landroidx/compose/ui/unit/IntSize;Landroidx/compose/runtime/Composer;II)Lcom/github/skydoves/crayfish/decode/CropSource;
+}
+

@@ -1,0 +1,94 @@
+name: Publish Docs
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7
+        with:
+          python-version: 3.x
+      - uses: actions/setup-java@v6.0.1
+        with:
+          distribution: 'zulu'
+          java-version: 21
+      - name: Cache Gradle and wrapper
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      # The demo is built into the site rather than pushed to gh-pages by a second job.
+      # `mkdocs gh-deploy --force` replaces that branch with a commit whose tree is exactly
+      # `site/`, so anything another job had pushed there would be gone on the next push to main.
+      - name: Build the web demo
+        run: |
+          chmod +x ./gradlew
+          ./gradlew :wasmApp:wasmJsBrowserDistribution --stacktrace
+
+      - name: Copy the web demo into the docs
+        run: |
+          mkdir -p docs/demo
+          cp -R wasmApp/build/dist/wasmJs/productionExecutable/. docs/demo/
+          # The site is the only place this page is served from, so an empty copy is a broken link
+          # nobody would notice until they clicked it.
+          test -f docs/demo/index.html
+
+      # The Overview page is the README, and the README points at art/ and previews/, which sit
+      # outside docs/. Without this the site renders the logo and all three demo GIFs as broken
+      # images, and `mkdocs build --strict` does not notice: strict mode checks links between
+      # pages, not whether an <img> resolves to a file.
+      - name: Copy the media the Overview page references
+        run: |
+          mkdir -p docs/art docs/previews
+          cp art/logo.png docs/art/
+          cp previews/*.gif docs/previews/
+
+      - run: echo "cache_id=$(date -u '+%V')" >> $GITHUB_ENV
+      - uses: actions/cache@v6
+        with:
+          key: mkdocs-material-${{ env.cache_id }}
+          path: .cache
+          restore-keys: |
+            mkdocs-material-
+      - run: pip install mkdocs-material
+
+      # Build before deploying, and check that every image the pages reference actually landed in
+      # the site. This is the gate mkdocs does not have: a missing image is a silent 404 that only
+      # a reader finds.
+      - name: Build the site and check its images resolve
+        run: |
+          mkdocs build --strict -d site
+          python3 - <<'EOF'
+          import pathlib, re, sys
+          site = pathlib.Path("site")
+          missing = []
+          for page in site.rglob("*.html"):
+              here = page.parent
+              for src in re.findall(r'<img[^>]+src="([^"]+)"', page.read_text(errors="ignore")):
+                  if src.startswith(("http://", "https://", "data:", "//")):
+                      continue
+                  target = (site / src.lstrip("/")) if src.startswith("/") else (here / src)
+                  if not target.exists():
+                      missing.append(f"{page.relative_to(site)} -> {src}")
+          print(f"checked {sum(1 for _ in site.rglob('*.html'))} pages")
+          if missing:
+              print("images that do not resolve:")
+              print("\n".join("  " + m for m in missing))
+              sys.exit(1)
+          print("every local image resolves")
+          EOF
+
+      - run: mkdocs gh-deploy --force

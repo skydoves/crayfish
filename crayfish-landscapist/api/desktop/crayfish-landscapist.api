@@ -1,0 +1,7 @@
+public final class com/github/skydoves/crayfish/landscapist/CropTransformation : com/skydoves/landscapist/core/transformation/Transformation {
+	public static final field $stable I
+	public fun <init> (Lcom/github/skydoves/crayfish/decode/ImageRegion;)V
+	public fun getKey ()Ljava/lang/String;
+	public fun transform (Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+

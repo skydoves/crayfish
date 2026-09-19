@@ -1,0 +1,38 @@
+# Kotlin
+.kotlin
+
+# Gradle files
+.gradle/
+build/
+.cxx/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Intellij
+*.iml
+/.idea/*
+
+# DS_Store
+*.DS_Store
+**/DS_Store
+
+# Temporary API docs
+docs/api
+
+# The wasm demo, built into the docs site by .github/workflows/publish-docs.yml
+docs/demo
+
+# Xcode
+iosApp/**/xcuserdata/
+iosApp/**/*.xcworkspace/xcuserdata/
+
+# Agent worktrees
+.claude/worktrees/
+
+# Copied into docs/ by the Publish Docs workflow, never committed: the logo and preview GIFs the
+# Overview page points at from outside docs/. The wasm bundle's docs/demo is already ignored above.
+docs/art/
+docs/previews/
+site/
+.cache/

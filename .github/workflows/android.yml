@@ -1,0 +1,117 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ '*' ]
+
+jobs:
+  lint:
+    name: Spotless check
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-java@v6.0.1
+        with:
+          distribution: 'zulu'
+          java-version: 21
+      - name: spotless
+        run: ./gradlew spotlessCheck
+
+  api_check:
+    name: API check
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-java@v6.0.1
+        with:
+          distribution: 'zulu'
+          java-version: 21
+      # apiCheck says the committed dumps match the code. apiCoverage says every published type in
+      # them is named by at least one test. Neither implies the other, so both run.
+      - name: API check
+        run: ./gradlew apiCheck apiCoverage
+
+  build:
+    name: Build and gates
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-java@v6.0.1
+        with:
+          distribution: 'zulu'
+          java-version: 21
+      - name: Cache Gradle and wrapper
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - name: Make Gradle executable
+        run: chmod +x ./gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew --scan --stacktrace assemble
+
+      # Both read the built artifacts, so they run after assemble rather than beside it.
+      # verifyNoNativeCode is the 16 KB page size claim, and verifyBaselineProfile is the claim
+      # that the AAR ships a profile holding only this library's classes. A README sentence cannot
+      # fail; these can.
+      - name: Artifact gates
+        run: ./gradlew --stacktrace :crayfish:verifyNoNativeCode :crayfish:verifyBaselineProfile
+
+      # Not part of `assemble`, deliberately, so the ordinary build does not pay for webpack. It is
+      # named here because publish-docs.yml deploys whatever this produces, and without a pull
+      # request check a broken demo would first show up as a broken page on the site.
+      - name: Build the web demo
+        run: ./gradlew --scan --stacktrace :wasmApp:wasmJsBrowserDistribution
+
+  test:
+    name: Tests
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-java@v6.0.1
+        with:
+          distribution: 'zulu'
+          java-version: 21
+      - name: Cache Gradle and wrapper
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - name: Make Gradle executable
+        run: chmod +x ./gradlew
+
+      # The shared code runs on four targets and behaves differently on each: a decoded image is a
+      # Skia bitmap here, a browser ImageBitmap there. "It compiles for that target" and "it works
+      # on that target" are different claims, so every target that can run without a device does.
+      #
+      # Android is missing on purpose. Its tests are instrumentation tests that need a device, and
+      # they are the ones that check native heap growth and recycled bitmaps, neither of which a
+      # host JVM has. They run on hardware, not here.
+      - name: JVM tests
+        run: |
+          ./gradlew --scan --stacktrace \
+              :crayfish:desktopTest :crayfish-landscapist:desktopTest :crayfish-coil:desktopTest
+
+      - name: Native tests
+        run: ./gradlew --scan --stacktrace :crayfish:macosArm64Test :crayfish:iosSimulatorArm64Test
+
+      - name: Wasm tests
+        run: ./gradlew --scan --stacktrace :crayfish:wasmJsBrowserTest
+
+      - name: Upload test reports
+        if: failure()
+        uses: actions/upload-artifact@v5
+        with:
+          name: test-reports
+          path: '**/build/reports/tests/**'

@@ -1,0 +1,63 @@
+# Run `xcodegen generate` in this directory to produce `CrayfishDemo.xcodeproj` and `Info.plist`.
+#
+# This file is the source of truth rather than the `.pbxproj` it generates: a `.pbxproj` is a
+# merge-conflict generator nobody reads, and every setting worth reviewing is legible here.
+name: CrayfishDemo
+options:
+  bundleIdPrefix: com.github.skydoves.crayfishdemo
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+targets:
+  CrayfishDemo:
+    type: application
+    platform: iOS
+    sources:
+      - path: iosApp
+    info:
+      path: iosApp/Info.plist
+      properties:
+        CFBundleDisplayName: Crayfish Demo
+        CFBundleShortVersionString: "1.0.0"
+        CFBundleVersion: "1"
+        UILaunchScreen: {}
+        # Without this iOS caps the app at 60Hz on a ProMotion display, which makes a cropper's
+        # drag gestures look like the library is dropping frames when it is not.
+        CADisableMinimumFrameDurationOnPhone: true
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        # FileKit opens the photo library to pick an image to crop.
+        NSPhotoLibraryUsageDescription: Crayfish Demo reads a photo so you can crop it.
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.github.skydoves.crayfishdemo
+        # Compose Multiplatform 1.12.0 publishes no iosX64 artifacts, so `:samples-shared` has no
+        # Intel simulator target and `embedAndSignAppleFrameworkForXcode` refuses the slice.
+        # Without this a plain `generic/platform=iOS Simulator` build fails on an arch nobody wants.
+        "EXCLUDED_ARCHS[sdk=iphonesimulator*]": x86_64
+        FRAMEWORK_SEARCH_PATHS:
+          - $(inherited)
+          - $(SRCROOT)/../samples-shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)
+        OTHER_LDFLAGS:
+          - $(inherited)
+          - -framework
+          - shared
+        # The pre-build script below shells out to Gradle, which the script sandbox forbids.
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+    preBuildScripts:
+      - name: Compile Kotlin
+        basedOnDependencyAnalysis: false
+        script: |
+          if [ "YES" = "$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED" ]; then
+            echo "Skipping Gradle build task invocation"
+            exit 0
+          fi
+          cd "$SRCROOT/.."
+          ./gradlew :samples-shared:embedAndSignAppleFrameworkForXcode

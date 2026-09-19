@@ -1,0 +1,52 @@
+site_name: Crayfish
+site_description: 'A Compose Multiplatform image cropper with gestures, free angle rotation, Exif orientation, and large image support.'
+site_author: 'Jaewoong (skydoves)'
+site_url: 'https://github.com/skydoves/crayfish'
+edit_uri: 'tree/main/docs/'
+remote_branch: gh-pages
+
+docs_dir: docs
+
+nav:
+  - 'Overview': index.md
+  # An absolute url rather than a path into docs/demo, which only exists after CI has
+  # built the wasm bundle into it. A relative entry would break `mkdocs serve` locally.
+  - 'Web demo': https://skydoves.github.io/crayfish/demo/
+  - 'Large images and memory': memory.md
+  - 'Orientation and Exif': orientation.md
+  - 'Accessibility': accessibility.md
+  - 'Performance': performance.md
+
+repo_name: 'Crayfish'
+repo_url: 'https://github.com/skydoves/crayfish'
+
+theme:
+  name: 'material'
+  language: 'en'
+  icon:
+    logo: material/crop
+  palette:
+    primary: 'teal'
+    accent: 'teal'
+    scheme: slate
+  font:
+    text: 'Roboto'
+    code: 'JetBrains Mono'
+  features:
+    - content.tabs.link
+    - content.code.copy
+    - content.code.annotate
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - codehilite:
+      guess_lang: false
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.betterem
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details

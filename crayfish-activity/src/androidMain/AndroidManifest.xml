@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Designed and developed by 2026 skydoves (Jaewoong Eum)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <application>
+
+    <!--
+         Not exported. This is launched by the host app through CropImageContract and by nothing
+         else; exporting it would let any app on the device start a cropper inside this process.
+    -->
+    <activity
+      android:name="com.github.skydoves.crayfish.activity.CropImageActivity"
+      android:exported="false"
+      android:theme="@style/Theme.Crayfish.Cropper" />
+
+    <!--
+         The library's own provider, so a caller gets a working default instead of a note in the
+         README telling them to declare one. The authority is namespaced under the host's own
+         applicationId, which keeps two apps on one device from colliding.
+    -->
+    <provider
+      android:name="androidx.core.content.FileProvider"
+      android:authorities="${applicationId}.crayfish.fileprovider"
+      android:exported="false"
+      android:grantUriPermissions="true">
+      <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/crayfish_file_paths" />
+    </provider>
+  </application>
+</manifest>

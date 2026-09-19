@@ -1,0 +1,7 @@
+public final class com/github/skydoves/crayfish/coil/CropTransformation : coil3/transform/Transformation {
+	public static final field $stable I
+	public fun <init> (Lcom/github/skydoves/crayfish/decode/ImageRegion;)V
+	public fun getCacheKey ()Ljava/lang/String;
+	public fun transform (Lorg/jetbrains/skia/Bitmap;Lcoil3/size/Size;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+

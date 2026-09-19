@@ -1,0 +1,20 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, macosArm64, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <CrayfishDemo:crayfish-coil>
+final class com.github.skydoves.crayfish.coil/CropTransformation : coil3.transform/Transformation { // com.github.skydoves.crayfish.coil/CropTransformation|null[0]
+    constructor <init>(com.github.skydoves.crayfish.decode/ImageRegion) // com.github.skydoves.crayfish.coil/CropTransformation.<init>|<init>(com.github.skydoves.crayfish.decode.ImageRegion){}[0]
+
+    final val cacheKey // com.github.skydoves.crayfish.coil/CropTransformation.cacheKey|{}cacheKey[0]
+        final fun <get-cacheKey>(): kotlin/String // com.github.skydoves.crayfish.coil/CropTransformation.cacheKey.<get-cacheKey>|<get-cacheKey>(){}[0]
+
+    final suspend fun transform(org.jetbrains.skia/Bitmap, coil3.size/Size): org.jetbrains.skia/Bitmap // com.github.skydoves.crayfish.coil/CropTransformation.transform|transform(org.jetbrains.skia.Bitmap;coil3.size.Size){}[0]
+}
+
+final val com.github.skydoves.crayfish.coil/com_github_skydoves_crayfish_coil_CropTransformation$stableprop // com.github.skydoves.crayfish.coil/com_github_skydoves_crayfish_coil_CropTransformation$stableprop|#static{}com_github_skydoves_crayfish_coil_CropTransformation$stableprop[0]
+
+final fun com.github.skydoves.crayfish.coil/com_github_skydoves_crayfish_coil_CropTransformation$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.coil/com_github_skydoves_crayfish_coil_CropTransformation$stableprop_getter|com_github_skydoves_crayfish_coil_CropTransformation$stableprop_getter(){}[0]

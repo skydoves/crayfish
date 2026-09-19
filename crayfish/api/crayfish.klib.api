@@ -1,0 +1,1018 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, macosArm64, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <CrayfishDemo:crayfish>
+final enum class com.github.skydoves.crayfish.decode/ImageFormat : kotlin/Enum<com.github.skydoves.crayfish.decode/ImageFormat> { // com.github.skydoves.crayfish.decode/ImageFormat|null[0]
+    enum entry AVIF // com.github.skydoves.crayfish.decode/ImageFormat.AVIF|null[0]
+    enum entry GIF // com.github.skydoves.crayfish.decode/ImageFormat.GIF|null[0]
+    enum entry HEIF // com.github.skydoves.crayfish.decode/ImageFormat.HEIF|null[0]
+    enum entry JPEG // com.github.skydoves.crayfish.decode/ImageFormat.JPEG|null[0]
+    enum entry PNG // com.github.skydoves.crayfish.decode/ImageFormat.PNG|null[0]
+    enum entry RAW // com.github.skydoves.crayfish.decode/ImageFormat.RAW|null[0]
+    enum entry WEBP // com.github.skydoves.crayfish.decode/ImageFormat.WEBP|null[0]
+
+    final val entries // com.github.skydoves.crayfish.decode/ImageFormat.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.github.skydoves.crayfish.decode/ImageFormat> // com.github.skydoves.crayfish.decode/ImageFormat.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val supportsRegionDecoding // com.github.skydoves.crayfish.decode/ImageFormat.supportsRegionDecoding|{}supportsRegionDecoding[0]
+        final fun <get-supportsRegionDecoding>(): kotlin/Boolean // com.github.skydoves.crayfish.decode/ImageFormat.supportsRegionDecoding.<get-supportsRegionDecoding>|<get-supportsRegionDecoding>(){}[0]
+
+    final fun valueOf(kotlin/String): com.github.skydoves.crayfish.decode/ImageFormat // com.github.skydoves.crayfish.decode/ImageFormat.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.github.skydoves.crayfish.decode/ImageFormat> // com.github.skydoves.crayfish.decode/ImageFormat.values|values#static(){}[0]
+}
+
+final enum class com.github.skydoves.crayfish.encode/EncodedFormat : kotlin/Enum<com.github.skydoves.crayfish.encode/EncodedFormat> { // com.github.skydoves.crayfish.encode/EncodedFormat|null[0]
+    enum entry JPEG // com.github.skydoves.crayfish.encode/EncodedFormat.JPEG|null[0]
+    enum entry PNG // com.github.skydoves.crayfish.encode/EncodedFormat.PNG|null[0]
+    enum entry WEBP_LOSSLESS // com.github.skydoves.crayfish.encode/EncodedFormat.WEBP_LOSSLESS|null[0]
+    enum entry WEBP_LOSSY // com.github.skydoves.crayfish.encode/EncodedFormat.WEBP_LOSSY|null[0]
+
+    final val entries // com.github.skydoves.crayfish.encode/EncodedFormat.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.github.skydoves.crayfish.encode/EncodedFormat> // com.github.skydoves.crayfish.encode/EncodedFormat.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val supportsAlpha // com.github.skydoves.crayfish.encode/EncodedFormat.supportsAlpha|{}supportsAlpha[0]
+        final fun <get-supportsAlpha>(): kotlin/Boolean // com.github.skydoves.crayfish.encode/EncodedFormat.supportsAlpha.<get-supportsAlpha>|<get-supportsAlpha>(){}[0]
+
+    final fun valueOf(kotlin/String): com.github.skydoves.crayfish.encode/EncodedFormat // com.github.skydoves.crayfish.encode/EncodedFormat.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.github.skydoves.crayfish.encode/EncodedFormat> // com.github.skydoves.crayfish.encode/EncodedFormat.values|values#static(){}[0]
+}
+
+final enum class com.github.skydoves.crayfish.exif/ImageOrientation : kotlin/Enum<com.github.skydoves.crayfish.exif/ImageOrientation> { // com.github.skydoves.crayfish.exif/ImageOrientation|null[0]
+    enum entry FLIP_HORIZONTAL // com.github.skydoves.crayfish.exif/ImageOrientation.FLIP_HORIZONTAL|null[0]
+    enum entry FLIP_VERTICAL // com.github.skydoves.crayfish.exif/ImageOrientation.FLIP_VERTICAL|null[0]
+    enum entry NORMAL // com.github.skydoves.crayfish.exif/ImageOrientation.NORMAL|null[0]
+    enum entry ROTATE_180 // com.github.skydoves.crayfish.exif/ImageOrientation.ROTATE_180|null[0]
+    enum entry ROTATE_270 // com.github.skydoves.crayfish.exif/ImageOrientation.ROTATE_270|null[0]
+    enum entry ROTATE_90 // com.github.skydoves.crayfish.exif/ImageOrientation.ROTATE_90|null[0]
+    enum entry TRANSPOSE // com.github.skydoves.crayfish.exif/ImageOrientation.TRANSPOSE|null[0]
+    enum entry TRANSVERSE // com.github.skydoves.crayfish.exif/ImageOrientation.TRANSVERSE|null[0]
+
+    final val entries // com.github.skydoves.crayfish.exif/ImageOrientation.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.github.skydoves.crayfish.exif/ImageOrientation> // com.github.skydoves.crayfish.exif/ImageOrientation.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val exifValue // com.github.skydoves.crayfish.exif/ImageOrientation.exifValue|{}exifValue[0]
+        final fun <get-exifValue>(): kotlin/Int // com.github.skydoves.crayfish.exif/ImageOrientation.exifValue.<get-exifValue>|<get-exifValue>(){}[0]
+    final val isMirrored // com.github.skydoves.crayfish.exif/ImageOrientation.isMirrored|{}isMirrored[0]
+        final fun <get-isMirrored>(): kotlin/Boolean // com.github.skydoves.crayfish.exif/ImageOrientation.isMirrored.<get-isMirrored>|<get-isMirrored>(){}[0]
+    final val rotationDegrees // com.github.skydoves.crayfish.exif/ImageOrientation.rotationDegrees|{}rotationDegrees[0]
+        final fun <get-rotationDegrees>(): kotlin/Int // com.github.skydoves.crayfish.exif/ImageOrientation.rotationDegrees.<get-rotationDegrees>|<get-rotationDegrees>(){}[0]
+    final val transposesDimensions // com.github.skydoves.crayfish.exif/ImageOrientation.transposesDimensions|{}transposesDimensions[0]
+        final fun <get-transposesDimensions>(): kotlin/Boolean // com.github.skydoves.crayfish.exif/ImageOrientation.transposesDimensions.<get-transposesDimensions>|<get-transposesDimensions>(){}[0]
+
+    final fun applyTo(kotlin/IntArray, com.github.skydoves.crayfish.decode/ImageSize): kotlin/IntArray // com.github.skydoves.crayfish.exif/ImageOrientation.applyTo|applyTo(kotlin.IntArray;com.github.skydoves.crayfish.decode.ImageSize){}[0]
+    final fun transformSize(com.github.skydoves.crayfish.decode/ImageSize): com.github.skydoves.crayfish.decode/ImageSize // com.github.skydoves.crayfish.exif/ImageOrientation.transformSize|transformSize(com.github.skydoves.crayfish.decode.ImageSize){}[0]
+    final fun valueOf(kotlin/String): com.github.skydoves.crayfish.exif/ImageOrientation // com.github.skydoves.crayfish.exif/ImageOrientation.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.github.skydoves.crayfish.exif/ImageOrientation> // com.github.skydoves.crayfish.exif/ImageOrientation.values|values#static(){}[0]
+
+    final object Companion { // com.github.skydoves.crayfish.exif/ImageOrientation.Companion|null[0]
+        final fun fromExifValue(kotlin/Int): com.github.skydoves.crayfish.exif/ImageOrientation // com.github.skydoves.crayfish.exif/ImageOrientation.Companion.fromExifValue|fromExifValue(kotlin.Int){}[0]
+    }
+}
+
+final enum class com.github.skydoves.crayfish.ui/CropAccessibilityAction : kotlin/Enum<com.github.skydoves.crayfish.ui/CropAccessibilityAction> { // com.github.skydoves.crayfish.ui/CropAccessibilityAction|null[0]
+    enum entry GrowBottom // com.github.skydoves.crayfish.ui/CropAccessibilityAction.GrowBottom|null[0]
+    enum entry GrowLeft // com.github.skydoves.crayfish.ui/CropAccessibilityAction.GrowLeft|null[0]
+    enum entry GrowRight // com.github.skydoves.crayfish.ui/CropAccessibilityAction.GrowRight|null[0]
+    enum entry GrowTop // com.github.skydoves.crayfish.ui/CropAccessibilityAction.GrowTop|null[0]
+    enum entry MoveDown // com.github.skydoves.crayfish.ui/CropAccessibilityAction.MoveDown|null[0]
+    enum entry MoveLeft // com.github.skydoves.crayfish.ui/CropAccessibilityAction.MoveLeft|null[0]
+    enum entry MoveRight // com.github.skydoves.crayfish.ui/CropAccessibilityAction.MoveRight|null[0]
+    enum entry MoveUp // com.github.skydoves.crayfish.ui/CropAccessibilityAction.MoveUp|null[0]
+    enum entry Reset // com.github.skydoves.crayfish.ui/CropAccessibilityAction.Reset|null[0]
+    enum entry ShrinkBottom // com.github.skydoves.crayfish.ui/CropAccessibilityAction.ShrinkBottom|null[0]
+    enum entry ShrinkLeft // com.github.skydoves.crayfish.ui/CropAccessibilityAction.ShrinkLeft|null[0]
+    enum entry ShrinkRight // com.github.skydoves.crayfish.ui/CropAccessibilityAction.ShrinkRight|null[0]
+    enum entry ShrinkTop // com.github.skydoves.crayfish.ui/CropAccessibilityAction.ShrinkTop|null[0]
+
+    final val entries // com.github.skydoves.crayfish.ui/CropAccessibilityAction.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.github.skydoves.crayfish.ui/CropAccessibilityAction> // com.github.skydoves.crayfish.ui/CropAccessibilityAction.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.github.skydoves.crayfish.ui/CropAccessibilityAction // com.github.skydoves.crayfish.ui/CropAccessibilityAction.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.github.skydoves.crayfish.ui/CropAccessibilityAction> // com.github.skydoves.crayfish.ui/CropAccessibilityAction.values|values#static(){}[0]
+}
+
+final enum class com.github.skydoves.crayfish.ui/CropGridMode : kotlin/Enum<com.github.skydoves.crayfish.ui/CropGridMode> { // com.github.skydoves.crayfish.ui/CropGridMode|null[0]
+    enum entry Always // com.github.skydoves.crayfish.ui/CropGridMode.Always|null[0]
+    enum entry Never // com.github.skydoves.crayfish.ui/CropGridMode.Never|null[0]
+    enum entry OnTouch // com.github.skydoves.crayfish.ui/CropGridMode.OnTouch|null[0]
+
+    final val entries // com.github.skydoves.crayfish.ui/CropGridMode.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.github.skydoves.crayfish.ui/CropGridMode> // com.github.skydoves.crayfish.ui/CropGridMode.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.github.skydoves.crayfish.ui/CropGridMode // com.github.skydoves.crayfish.ui/CropGridMode.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.github.skydoves.crayfish.ui/CropGridMode> // com.github.skydoves.crayfish.ui/CropGridMode.values|values#static(){}[0]
+}
+
+abstract interface com.github.skydoves.crayfish.decode/RegionDecoder : kotlin/AutoCloseable { // com.github.skydoves.crayfish.decode/RegionDecoder|null[0]
+    abstract val appliedOrientation // com.github.skydoves.crayfish.decode/RegionDecoder.appliedOrientation|{}appliedOrientation[0]
+        abstract fun <get-appliedOrientation>(): com.github.skydoves.crayfish.exif/ImageOrientation // com.github.skydoves.crayfish.decode/RegionDecoder.appliedOrientation.<get-appliedOrientation>|<get-appliedOrientation>(){}[0]
+    abstract val format // com.github.skydoves.crayfish.decode/RegionDecoder.format|{}format[0]
+        abstract fun <get-format>(): com.github.skydoves.crayfish.decode/ImageFormat // com.github.skydoves.crayfish.decode/RegionDecoder.format.<get-format>|<get-format>(){}[0]
+    abstract val imageSize // com.github.skydoves.crayfish.decode/RegionDecoder.imageSize|{}imageSize[0]
+        abstract fun <get-imageSize>(): com.github.skydoves.crayfish.decode/ImageSize // com.github.skydoves.crayfish.decode/RegionDecoder.imageSize.<get-imageSize>|<get-imageSize>(){}[0]
+
+    abstract suspend fun decodeRegion(com.github.skydoves.crayfish.decode/ImageRegion, kotlin/Int): com.github.skydoves.crayfish.decode/DecodedRegion? // com.github.skydoves.crayfish.decode/RegionDecoder.decodeRegion|decodeRegion(com.github.skydoves.crayfish.decode.ImageRegion;kotlin.Int){}[0]
+}
+
+sealed interface com.github.skydoves.crayfish.decode/CropSource { // com.github.skydoves.crayfish.decode/CropSource|null[0]
+    abstract val cacheKey // com.github.skydoves.crayfish.decode/CropSource.cacheKey|{}cacheKey[0]
+        abstract fun <get-cacheKey>(): kotlin/String // com.github.skydoves.crayfish.decode/CropSource.cacheKey.<get-cacheKey>|<get-cacheKey>(){}[0]
+
+    final class Bytes : com.github.skydoves.crayfish.decode/CropSource { // com.github.skydoves.crayfish.decode/CropSource.Bytes|null[0]
+        constructor <init>(kotlin/ByteArray, kotlin/String) // com.github.skydoves.crayfish.decode/CropSource.Bytes.<init>|<init>(kotlin.ByteArray;kotlin.String){}[0]
+
+        final val bytes // com.github.skydoves.crayfish.decode/CropSource.Bytes.bytes|{}bytes[0]
+            final fun <get-bytes>(): kotlin/ByteArray // com.github.skydoves.crayfish.decode/CropSource.Bytes.bytes.<get-bytes>|<get-bytes>(){}[0]
+        final val cacheKey // com.github.skydoves.crayfish.decode/CropSource.Bytes.cacheKey|{}cacheKey[0]
+            final fun <get-cacheKey>(): kotlin/String // com.github.skydoves.crayfish.decode/CropSource.Bytes.cacheKey.<get-cacheKey>|<get-cacheKey>(){}[0]
+    }
+
+    final class FilePath : com.github.skydoves.crayfish.decode/CropSource { // com.github.skydoves.crayfish.decode/CropSource.FilePath|null[0]
+        constructor <init>(kotlin/String) // com.github.skydoves.crayfish.decode/CropSource.FilePath.<init>|<init>(kotlin.String){}[0]
+
+        final val cacheKey // com.github.skydoves.crayfish.decode/CropSource.FilePath.cacheKey|{}cacheKey[0]
+            final fun <get-cacheKey>(): kotlin/String // com.github.skydoves.crayfish.decode/CropSource.FilePath.cacheKey.<get-cacheKey>|<get-cacheKey>(){}[0]
+        final val path // com.github.skydoves.crayfish.decode/CropSource.FilePath.path|{}path[0]
+            final fun <get-path>(): kotlin/String // com.github.skydoves.crayfish.decode/CropSource.FilePath.path.<get-path>|<get-path>(){}[0]
+    }
+
+    final class Image : com.github.skydoves.crayfish.decode/CropSource { // com.github.skydoves.crayfish.decode/CropSource.Image|null[0]
+        constructor <init>(androidx.compose.ui.graphics/ImageBitmap, kotlin/String) // com.github.skydoves.crayfish.decode/CropSource.Image.<init>|<init>(androidx.compose.ui.graphics.ImageBitmap;kotlin.String){}[0]
+
+        final val bitmap // com.github.skydoves.crayfish.decode/CropSource.Image.bitmap|{}bitmap[0]
+            final fun <get-bitmap>(): androidx.compose.ui.graphics/ImageBitmap // com.github.skydoves.crayfish.decode/CropSource.Image.bitmap.<get-bitmap>|<get-bitmap>(){}[0]
+        final val cacheKey // com.github.skydoves.crayfish.decode/CropSource.Image.cacheKey|{}cacheKey[0]
+            final fun <get-cacheKey>(): kotlin/String // com.github.skydoves.crayfish.decode/CropSource.Image.cacheKey.<get-cacheKey>|<get-cacheKey>(){}[0]
+    }
+
+    final class Loader : com.github.skydoves.crayfish.decode/CropSource { // com.github.skydoves.crayfish.decode/CropSource.Loader|null[0]
+        constructor <init>(kotlin/String, kotlin.coroutines/SuspendFunction0<kotlin/ByteArray?>) // com.github.skydoves.crayfish.decode/CropSource.Loader.<init>|<init>(kotlin.String;kotlin.coroutines.SuspendFunction0<kotlin.ByteArray?>){}[0]
+
+        final val cacheKey // com.github.skydoves.crayfish.decode/CropSource.Loader.cacheKey|{}cacheKey[0]
+            final fun <get-cacheKey>(): kotlin/String // com.github.skydoves.crayfish.decode/CropSource.Loader.cacheKey.<get-cacheKey>|<get-cacheKey>(){}[0]
+        final val load // com.github.skydoves.crayfish.decode/CropSource.Loader.load|{}load[0]
+            final fun <get-load>(): kotlin.coroutines/SuspendFunction0<kotlin/ByteArray?> // com.github.skydoves.crayfish.decode/CropSource.Loader.load.<get-load>|<get-load>(){}[0]
+    }
+}
+
+sealed interface com.github.skydoves.crayfish.ui/AspectRatio { // com.github.skydoves.crayfish.ui/AspectRatio|null[0]
+    final class Fixed : com.github.skydoves.crayfish.ui/AspectRatio { // com.github.skydoves.crayfish.ui/AspectRatio.Fixed|null[0]
+        constructor <init>(kotlin/Float) // com.github.skydoves.crayfish.ui/AspectRatio.Fixed.<init>|<init>(kotlin.Float){}[0]
+
+        final val ratio // com.github.skydoves.crayfish.ui/AspectRatio.Fixed.ratio|{}ratio[0]
+            final fun <get-ratio>(): kotlin/Float // com.github.skydoves.crayfish.ui/AspectRatio.Fixed.ratio.<get-ratio>|<get-ratio>(){}[0]
+
+        final fun component1(): kotlin/Float // com.github.skydoves.crayfish.ui/AspectRatio.Fixed.component1|component1(){}[0]
+        final fun copy(kotlin/Float = ...): com.github.skydoves.crayfish.ui/AspectRatio.Fixed // com.github.skydoves.crayfish.ui/AspectRatio.Fixed.copy|copy(kotlin.Float){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.ui/AspectRatio.Fixed.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.ui/AspectRatio.Fixed.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.github.skydoves.crayfish.ui/AspectRatio.Fixed.toString|toString(){}[0]
+    }
+
+    final object Companion { // com.github.skydoves.crayfish.ui/AspectRatio.Companion|null[0]
+        final val Landscape4x3 // com.github.skydoves.crayfish.ui/AspectRatio.Companion.Landscape4x3|{}Landscape4x3[0]
+            final fun <get-Landscape4x3>(): com.github.skydoves.crayfish.ui/AspectRatio // com.github.skydoves.crayfish.ui/AspectRatio.Companion.Landscape4x3.<get-Landscape4x3>|<get-Landscape4x3>(){}[0]
+        final val Portrait3x4 // com.github.skydoves.crayfish.ui/AspectRatio.Companion.Portrait3x4|{}Portrait3x4[0]
+            final fun <get-Portrait3x4>(): com.github.skydoves.crayfish.ui/AspectRatio // com.github.skydoves.crayfish.ui/AspectRatio.Companion.Portrait3x4.<get-Portrait3x4>|<get-Portrait3x4>(){}[0]
+        final val Portrait9x16 // com.github.skydoves.crayfish.ui/AspectRatio.Companion.Portrait9x16|{}Portrait9x16[0]
+            final fun <get-Portrait9x16>(): com.github.skydoves.crayfish.ui/AspectRatio // com.github.skydoves.crayfish.ui/AspectRatio.Companion.Portrait9x16.<get-Portrait9x16>|<get-Portrait9x16>(){}[0]
+        final val Square // com.github.skydoves.crayfish.ui/AspectRatio.Companion.Square|{}Square[0]
+            final fun <get-Square>(): com.github.skydoves.crayfish.ui/AspectRatio // com.github.skydoves.crayfish.ui/AspectRatio.Companion.Square.<get-Square>|<get-Square>(){}[0]
+        final val Widescreen16x9 // com.github.skydoves.crayfish.ui/AspectRatio.Companion.Widescreen16x9|{}Widescreen16x9[0]
+            final fun <get-Widescreen16x9>(): com.github.skydoves.crayfish.ui/AspectRatio // com.github.skydoves.crayfish.ui/AspectRatio.Companion.Widescreen16x9.<get-Widescreen16x9>|<get-Widescreen16x9>(){}[0]
+    }
+
+    final object Free : com.github.skydoves.crayfish.ui/AspectRatio { // com.github.skydoves.crayfish.ui/AspectRatio.Free|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.ui/AspectRatio.Free.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.ui/AspectRatio.Free.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.github.skydoves.crayfish.ui/AspectRatio.Free.toString|toString(){}[0]
+    }
+}
+
+sealed interface com.github.skydoves.crayfish.ui/CropImage { // com.github.skydoves.crayfish.ui/CropImage|null[0]
+    final class Failure : com.github.skydoves.crayfish.ui/CropImage { // com.github.skydoves.crayfish.ui/CropImage.Failure|null[0]
+        constructor <init>(com.github.skydoves.crayfish.ui/CropResult.Failure.Reason, kotlin/Throwable? = ...) // com.github.skydoves.crayfish.ui/CropImage.Failure.<init>|<init>(com.github.skydoves.crayfish.ui.CropResult.Failure.Reason;kotlin.Throwable?){}[0]
+
+        final val cause // com.github.skydoves.crayfish.ui/CropImage.Failure.cause|{}cause[0]
+            final fun <get-cause>(): kotlin/Throwable? // com.github.skydoves.crayfish.ui/CropImage.Failure.cause.<get-cause>|<get-cause>(){}[0]
+        final val reason // com.github.skydoves.crayfish.ui/CropImage.Failure.reason|{}reason[0]
+            final fun <get-reason>(): com.github.skydoves.crayfish.ui/CropResult.Failure.Reason // com.github.skydoves.crayfish.ui/CropImage.Failure.reason.<get-reason>|<get-reason>(){}[0]
+    }
+
+    final class Success : com.github.skydoves.crayfish.ui/CropImage { // com.github.skydoves.crayfish.ui/CropImage.Success|null[0]
+        constructor <init>(androidx.compose.ui.graphics/ImageBitmap, com.github.skydoves.crayfish.decode/ImageSize, com.github.skydoves.crayfish.decode/ImageRegion) // com.github.skydoves.crayfish.ui/CropImage.Success.<init>|<init>(androidx.compose.ui.graphics.ImageBitmap;com.github.skydoves.crayfish.decode.ImageSize;com.github.skydoves.crayfish.decode.ImageRegion){}[0]
+
+        final val image // com.github.skydoves.crayfish.ui/CropImage.Success.image|{}image[0]
+            final fun <get-image>(): androidx.compose.ui.graphics/ImageBitmap // com.github.skydoves.crayfish.ui/CropImage.Success.image.<get-image>|<get-image>(){}[0]
+        final val painter // com.github.skydoves.crayfish.ui/CropImage.Success.painter|{}painter[0]
+            final fun <get-painter>(): androidx.compose.ui.graphics.painter/Painter // com.github.skydoves.crayfish.ui/CropImage.Success.painter.<get-painter>|<get-painter>(){}[0]
+        final val region // com.github.skydoves.crayfish.ui/CropImage.Success.region|{}region[0]
+            final fun <get-region>(): com.github.skydoves.crayfish.decode/ImageRegion // com.github.skydoves.crayfish.ui/CropImage.Success.region.<get-region>|<get-region>(){}[0]
+        final val size // com.github.skydoves.crayfish.ui/CropImage.Success.size|{}size[0]
+            final fun <get-size>(): com.github.skydoves.crayfish.decode/ImageSize // com.github.skydoves.crayfish.ui/CropImage.Success.size.<get-size>|<get-size>(){}[0]
+    }
+
+    final object Cancelled : com.github.skydoves.crayfish.ui/CropImage { // com.github.skydoves.crayfish.ui/CropImage.Cancelled|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropImage.Cancelled.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.ui/CropImage.Cancelled.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.github.skydoves.crayfish.ui/CropImage.Cancelled.toString|toString(){}[0]
+    }
+}
+
+sealed interface com.github.skydoves.crayfish.ui/CropResult { // com.github.skydoves.crayfish.ui/CropResult|null[0]
+    final class Failure : com.github.skydoves.crayfish.ui/CropResult { // com.github.skydoves.crayfish.ui/CropResult.Failure|null[0]
+        constructor <init>(com.github.skydoves.crayfish.ui/CropResult.Failure.Reason, kotlin/Throwable? = ...) // com.github.skydoves.crayfish.ui/CropResult.Failure.<init>|<init>(com.github.skydoves.crayfish.ui.CropResult.Failure.Reason;kotlin.Throwable?){}[0]
+
+        final val cause // com.github.skydoves.crayfish.ui/CropResult.Failure.cause|{}cause[0]
+            final fun <get-cause>(): kotlin/Throwable? // com.github.skydoves.crayfish.ui/CropResult.Failure.cause.<get-cause>|<get-cause>(){}[0]
+        final val reason // com.github.skydoves.crayfish.ui/CropResult.Failure.reason|{}reason[0]
+            final fun <get-reason>(): com.github.skydoves.crayfish.ui/CropResult.Failure.Reason // com.github.skydoves.crayfish.ui/CropResult.Failure.reason.<get-reason>|<get-reason>(){}[0]
+
+        final enum class Reason : kotlin/Enum<com.github.skydoves.crayfish.ui/CropResult.Failure.Reason> { // com.github.skydoves.crayfish.ui/CropResult.Failure.Reason|null[0]
+            enum entry AlreadyCropping // com.github.skydoves.crayfish.ui/CropResult.Failure.Reason.AlreadyCropping|null[0]
+            enum entry DecodeFailed // com.github.skydoves.crayfish.ui/CropResult.Failure.Reason.DecodeFailed|null[0]
+            enum entry EmptyRegion // com.github.skydoves.crayfish.ui/CropResult.Failure.Reason.EmptyRegion|null[0]
+            enum entry EncodeFailed // com.github.skydoves.crayfish.ui/CropResult.Failure.Reason.EncodeFailed|null[0]
+            enum entry EncodeUnsupported // com.github.skydoves.crayfish.ui/CropResult.Failure.Reason.EncodeUnsupported|null[0]
+            enum entry SourceUnreadable // com.github.skydoves.crayfish.ui/CropResult.Failure.Reason.SourceUnreadable|null[0]
+
+            final val entries // com.github.skydoves.crayfish.ui/CropResult.Failure.Reason.entries|#static{}entries[0]
+                final fun <get-entries>(): kotlin.enums/EnumEntries<com.github.skydoves.crayfish.ui/CropResult.Failure.Reason> // com.github.skydoves.crayfish.ui/CropResult.Failure.Reason.entries.<get-entries>|<get-entries>#static(){}[0]
+
+            final fun valueOf(kotlin/String): com.github.skydoves.crayfish.ui/CropResult.Failure.Reason // com.github.skydoves.crayfish.ui/CropResult.Failure.Reason.valueOf|valueOf#static(kotlin.String){}[0]
+            final fun values(): kotlin/Array<com.github.skydoves.crayfish.ui/CropResult.Failure.Reason> // com.github.skydoves.crayfish.ui/CropResult.Failure.Reason.values|values#static(){}[0]
+        }
+    }
+
+    final class Success : com.github.skydoves.crayfish.ui/CropResult { // com.github.skydoves.crayfish.ui/CropResult.Success|null[0]
+        constructor <init>(kotlin/ByteArray, com.github.skydoves.crayfish.decode/ImageSize, com.github.skydoves.crayfish.decode/ImageRegion) // com.github.skydoves.crayfish.ui/CropResult.Success.<init>|<init>(kotlin.ByteArray;com.github.skydoves.crayfish.decode.ImageSize;com.github.skydoves.crayfish.decode.ImageRegion){}[0]
+
+        final val bytes // com.github.skydoves.crayfish.ui/CropResult.Success.bytes|{}bytes[0]
+            final fun <get-bytes>(): kotlin/ByteArray // com.github.skydoves.crayfish.ui/CropResult.Success.bytes.<get-bytes>|<get-bytes>(){}[0]
+        final val region // com.github.skydoves.crayfish.ui/CropResult.Success.region|{}region[0]
+            final fun <get-region>(): com.github.skydoves.crayfish.decode/ImageRegion // com.github.skydoves.crayfish.ui/CropResult.Success.region.<get-region>|<get-region>(){}[0]
+        final val size // com.github.skydoves.crayfish.ui/CropResult.Success.size|{}size[0]
+            final fun <get-size>(): com.github.skydoves.crayfish.decode/ImageSize // com.github.skydoves.crayfish.ui/CropResult.Success.size.<get-size>|<get-size>(){}[0]
+    }
+
+    final object Cancelled : com.github.skydoves.crayfish.ui/CropResult { // com.github.skydoves.crayfish.ui/CropResult.Cancelled|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropResult.Cancelled.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.ui/CropResult.Cancelled.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.github.skydoves.crayfish.ui/CropResult.Cancelled.toString|toString(){}[0]
+    }
+}
+
+sealed interface com.github.skydoves.crayfish.ui/CropShape { // com.github.skydoves.crayfish.ui/CropShape|null[0]
+    final class Custom : com.github.skydoves.crayfish.ui/CropShape { // com.github.skydoves.crayfish.ui/CropShape.Custom|null[0]
+        constructor <init>(kotlin/Function2<kotlin/Float, kotlin/Float, androidx.compose.ui.graphics/Path>) // com.github.skydoves.crayfish.ui/CropShape.Custom.<init>|<init>(kotlin.Function2<kotlin.Float,kotlin.Float,androidx.compose.ui.graphics.Path>){}[0]
+
+        final val build // com.github.skydoves.crayfish.ui/CropShape.Custom.build|{}build[0]
+            final fun <get-build>(): kotlin/Function2<kotlin/Float, kotlin/Float, androidx.compose.ui.graphics/Path> // com.github.skydoves.crayfish.ui/CropShape.Custom.build.<get-build>|<get-build>(){}[0]
+
+        final fun component1(): kotlin/Function2<kotlin/Float, kotlin/Float, androidx.compose.ui.graphics/Path> // com.github.skydoves.crayfish.ui/CropShape.Custom.component1|component1(){}[0]
+        final fun copy(kotlin/Function2<kotlin/Float, kotlin/Float, androidx.compose.ui.graphics/Path> = ...): com.github.skydoves.crayfish.ui/CropShape.Custom // com.github.skydoves.crayfish.ui/CropShape.Custom.copy|copy(kotlin.Function2<kotlin.Float,kotlin.Float,androidx.compose.ui.graphics.Path>){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropShape.Custom.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.ui/CropShape.Custom.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.github.skydoves.crayfish.ui/CropShape.Custom.toString|toString(){}[0]
+    }
+
+    final class RoundedRectangle : com.github.skydoves.crayfish.ui/CropShape { // com.github.skydoves.crayfish.ui/CropShape.RoundedRectangle|null[0]
+        constructor <init>(androidx.compose.ui.unit/Dp) // com.github.skydoves.crayfish.ui/CropShape.RoundedRectangle.<init>|<init>(androidx.compose.ui.unit.Dp){}[0]
+
+        final val cornerRadius // com.github.skydoves.crayfish.ui/CropShape.RoundedRectangle.cornerRadius|{}cornerRadius[0]
+            final fun <get-cornerRadius>(): androidx.compose.ui.unit/Dp // com.github.skydoves.crayfish.ui/CropShape.RoundedRectangle.cornerRadius.<get-cornerRadius>|<get-cornerRadius>(){}[0]
+
+        final fun component1(): androidx.compose.ui.unit/Dp // com.github.skydoves.crayfish.ui/CropShape.RoundedRectangle.component1|component1(){}[0]
+        final fun copy(androidx.compose.ui.unit/Dp = ...): com.github.skydoves.crayfish.ui/CropShape.RoundedRectangle // com.github.skydoves.crayfish.ui/CropShape.RoundedRectangle.copy|copy(androidx.compose.ui.unit.Dp){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropShape.RoundedRectangle.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.ui/CropShape.RoundedRectangle.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.github.skydoves.crayfish.ui/CropShape.RoundedRectangle.toString|toString(){}[0]
+    }
+
+    final object Circle : com.github.skydoves.crayfish.ui/CropShape { // com.github.skydoves.crayfish.ui/CropShape.Circle|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropShape.Circle.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.ui/CropShape.Circle.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.github.skydoves.crayfish.ui/CropShape.Circle.toString|toString(){}[0]
+    }
+
+    final object Rectangle : com.github.skydoves.crayfish.ui/CropShape { // com.github.skydoves.crayfish.ui/CropShape.Rectangle|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropShape.Rectangle.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.ui/CropShape.Rectangle.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.github.skydoves.crayfish.ui/CropShape.Rectangle.toString|toString(){}[0]
+    }
+}
+
+sealed interface com.github.skydoves.crayfish.ui/CropState { // com.github.skydoves.crayfish.ui/CropState|null[0]
+    abstract val coordinateSpace // com.github.skydoves.crayfish.ui/CropState.coordinateSpace|{}coordinateSpace[0]
+        abstract fun <get-coordinateSpace>(): com.github.skydoves.crayfish.geometry/CoordinateSpace // com.github.skydoves.crayfish.ui/CropState.coordinateSpace.<get-coordinateSpace>|<get-coordinateSpace>(){}[0]
+    abstract val cropRect // com.github.skydoves.crayfish.ui/CropState.cropRect|{}cropRect[0]
+        abstract fun <get-cropRect>(): com.github.skydoves.crayfish.geometry/FloatRect // com.github.skydoves.crayfish.ui/CropState.cropRect.<get-cropRect>|<get-cropRect>(){}[0]
+    abstract val imageSize // com.github.skydoves.crayfish.ui/CropState.imageSize|{}imageSize[0]
+        abstract fun <get-imageSize>(): com.github.skydoves.crayfish.decode/ImageSize // com.github.skydoves.crayfish.ui/CropState.imageSize.<get-imageSize>|<get-imageSize>(){}[0]
+    abstract val isInteracting // com.github.skydoves.crayfish.ui/CropState.isInteracting|{}isInteracting[0]
+        abstract fun <get-isInteracting>(): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropState.isInteracting.<get-isInteracting>|<get-isInteracting>(){}[0]
+    abstract val recipe // com.github.skydoves.crayfish.ui/CropState.recipe|{}recipe[0]
+        abstract fun <get-recipe>(): com.github.skydoves.crayfish.ui/CropRecipe // com.github.skydoves.crayfish.ui/CropState.recipe.<get-recipe>|<get-recipe>(){}[0]
+    abstract val source // com.github.skydoves.crayfish.ui/CropState.source|{}source[0]
+        abstract fun <get-source>(): com.github.skydoves.crayfish.decode/CropSource // com.github.skydoves.crayfish.ui/CropState.source.<get-source>|<get-source>(){}[0]
+    abstract val status // com.github.skydoves.crayfish.ui/CropState.status|{}status[0]
+        abstract fun <get-status>(): com.github.skydoves.crayfish.ui/CropStatus // com.github.skydoves.crayfish.ui/CropState.status.<get-status>|<get-status>(){}[0]
+    abstract val transform // com.github.skydoves.crayfish.ui/CropState.transform|{}transform[0]
+        abstract fun <get-transform>(): com.github.skydoves.crayfish.geometry/CropTransform // com.github.skydoves.crayfish.ui/CropState.transform.<get-transform>|<get-transform>(){}[0]
+    abstract val viewportSize // com.github.skydoves.crayfish.ui/CropState.viewportSize|{}viewportSize[0]
+        abstract fun <get-viewportSize>(): com.github.skydoves.crayfish.geometry/FloatSize // com.github.skydoves.crayfish.ui/CropState.viewportSize.<get-viewportSize>|<get-viewportSize>(){}[0]
+
+    abstract var aspectRatio // com.github.skydoves.crayfish.ui/CropState.aspectRatio|{}aspectRatio[0]
+        abstract fun <get-aspectRatio>(): com.github.skydoves.crayfish.ui/AspectRatio // com.github.skydoves.crayfish.ui/CropState.aspectRatio.<get-aspectRatio>|<get-aspectRatio>(){}[0]
+        abstract fun <set-aspectRatio>(com.github.skydoves.crayfish.ui/AspectRatio) // com.github.skydoves.crayfish.ui/CropState.aspectRatio.<set-aspectRatio>|<set-aspectRatio>(com.github.skydoves.crayfish.ui.AspectRatio){}[0]
+    abstract var shape // com.github.skydoves.crayfish.ui/CropState.shape|{}shape[0]
+        abstract fun <get-shape>(): com.github.skydoves.crayfish.ui/CropShape // com.github.skydoves.crayfish.ui/CropState.shape.<get-shape>|<get-shape>(){}[0]
+        abstract fun <set-shape>(com.github.skydoves.crayfish.ui/CropShape) // com.github.skydoves.crayfish.ui/CropState.shape.<set-shape>|<set-shape>(com.github.skydoves.crayfish.ui.CropShape){}[0]
+
+    abstract fun reset() // com.github.skydoves.crayfish.ui/CropState.reset|reset(){}[0]
+    abstract fun rotateBy(kotlin/Float) // com.github.skydoves.crayfish.ui/CropState.rotateBy|rotateBy(kotlin.Float){}[0]
+    abstract fun rotateTo(kotlin/Float) // com.github.skydoves.crayfish.ui/CropState.rotateTo|rotateTo(kotlin.Float){}[0]
+    abstract fun rotateToNearestQuarterTurn() // com.github.skydoves.crayfish.ui/CropState.rotateToNearestQuarterTurn|rotateToNearestQuarterTurn(){}[0]
+    abstract fun toggleFlipHorizontal() // com.github.skydoves.crayfish.ui/CropState.toggleFlipHorizontal|toggleFlipHorizontal(){}[0]
+    abstract fun toggleFlipVertical() // com.github.skydoves.crayfish.ui/CropState.toggleFlipVertical|toggleFlipVertical(){}[0]
+    abstract suspend fun crop(com.github.skydoves.crayfish.encode/EncodeOptions = ..., com.github.skydoves.crayfish.decode/DecodeBudget = ...): com.github.skydoves.crayfish.ui/CropResult // com.github.skydoves.crayfish.ui/CropState.crop|crop(com.github.skydoves.crayfish.encode.EncodeOptions;com.github.skydoves.crayfish.decode.DecodeBudget){}[0]
+    abstract suspend fun cropToImage(com.github.skydoves.crayfish.decode/DecodeBudget = ...): com.github.skydoves.crayfish.ui/CropImage // com.github.skydoves.crayfish.ui/CropState.cropToImage|cropToImage(com.github.skydoves.crayfish.decode.DecodeBudget){}[0]
+}
+
+sealed interface com.github.skydoves.crayfish.ui/CropStatus { // com.github.skydoves.crayfish.ui/CropStatus|null[0]
+    final class Failed : com.github.skydoves.crayfish.ui/CropStatus { // com.github.skydoves.crayfish.ui/CropStatus.Failed|null[0]
+        constructor <init>(com.github.skydoves.crayfish.ui/CropResult.Failure.Reason, kotlin/Throwable? = ...) // com.github.skydoves.crayfish.ui/CropStatus.Failed.<init>|<init>(com.github.skydoves.crayfish.ui.CropResult.Failure.Reason;kotlin.Throwable?){}[0]
+
+        final val cause // com.github.skydoves.crayfish.ui/CropStatus.Failed.cause|{}cause[0]
+            final fun <get-cause>(): kotlin/Throwable? // com.github.skydoves.crayfish.ui/CropStatus.Failed.cause.<get-cause>|<get-cause>(){}[0]
+        final val reason // com.github.skydoves.crayfish.ui/CropStatus.Failed.reason|{}reason[0]
+            final fun <get-reason>(): com.github.skydoves.crayfish.ui/CropResult.Failure.Reason // com.github.skydoves.crayfish.ui/CropStatus.Failed.reason.<get-reason>|<get-reason>(){}[0]
+
+        final fun component1(): com.github.skydoves.crayfish.ui/CropResult.Failure.Reason // com.github.skydoves.crayfish.ui/CropStatus.Failed.component1|component1(){}[0]
+        final fun component2(): kotlin/Throwable? // com.github.skydoves.crayfish.ui/CropStatus.Failed.component2|component2(){}[0]
+        final fun copy(com.github.skydoves.crayfish.ui/CropResult.Failure.Reason = ..., kotlin/Throwable? = ...): com.github.skydoves.crayfish.ui/CropStatus.Failed // com.github.skydoves.crayfish.ui/CropStatus.Failed.copy|copy(com.github.skydoves.crayfish.ui.CropResult.Failure.Reason;kotlin.Throwable?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropStatus.Failed.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.ui/CropStatus.Failed.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.github.skydoves.crayfish.ui/CropStatus.Failed.toString|toString(){}[0]
+    }
+
+    final class Ready : com.github.skydoves.crayfish.ui/CropStatus { // com.github.skydoves.crayfish.ui/CropStatus.Ready|null[0]
+        constructor <init>(com.github.skydoves.crayfish.decode/ImageSize, com.github.skydoves.crayfish.exif/ImageOrientation) // com.github.skydoves.crayfish.ui/CropStatus.Ready.<init>|<init>(com.github.skydoves.crayfish.decode.ImageSize;com.github.skydoves.crayfish.exif.ImageOrientation){}[0]
+
+        final val imageSize // com.github.skydoves.crayfish.ui/CropStatus.Ready.imageSize|{}imageSize[0]
+            final fun <get-imageSize>(): com.github.skydoves.crayfish.decode/ImageSize // com.github.skydoves.crayfish.ui/CropStatus.Ready.imageSize.<get-imageSize>|<get-imageSize>(){}[0]
+        final val orientation // com.github.skydoves.crayfish.ui/CropStatus.Ready.orientation|{}orientation[0]
+            final fun <get-orientation>(): com.github.skydoves.crayfish.exif/ImageOrientation // com.github.skydoves.crayfish.ui/CropStatus.Ready.orientation.<get-orientation>|<get-orientation>(){}[0]
+
+        final fun component1(): com.github.skydoves.crayfish.decode/ImageSize // com.github.skydoves.crayfish.ui/CropStatus.Ready.component1|component1(){}[0]
+        final fun component2(): com.github.skydoves.crayfish.exif/ImageOrientation // com.github.skydoves.crayfish.ui/CropStatus.Ready.component2|component2(){}[0]
+        final fun copy(com.github.skydoves.crayfish.decode/ImageSize = ..., com.github.skydoves.crayfish.exif/ImageOrientation = ...): com.github.skydoves.crayfish.ui/CropStatus.Ready // com.github.skydoves.crayfish.ui/CropStatus.Ready.copy|copy(com.github.skydoves.crayfish.decode.ImageSize;com.github.skydoves.crayfish.exif.ImageOrientation){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropStatus.Ready.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.ui/CropStatus.Ready.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.github.skydoves.crayfish.ui/CropStatus.Ready.toString|toString(){}[0]
+    }
+
+    final object Loading : com.github.skydoves.crayfish.ui/CropStatus { // com.github.skydoves.crayfish.ui/CropStatus.Loading|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropStatus.Loading.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.ui/CropStatus.Loading.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.github.skydoves.crayfish.ui/CropStatus.Loading.toString|toString(){}[0]
+    }
+}
+
+sealed interface com.github.skydoves.crayfish.ui/ImageCropper { // com.github.skydoves.crayfish.ui/ImageCropper|null[0]
+    abstract val pending // com.github.skydoves.crayfish.ui/ImageCropper.pending|{}pending[0]
+        abstract fun <get-pending>(): com.github.skydoves.crayfish.ui/CropState? // com.github.skydoves.crayfish.ui/ImageCropper.pending.<get-pending>|<get-pending>(){}[0]
+
+    abstract fun cancel() // com.github.skydoves.crayfish.ui/ImageCropper.cancel|cancel(){}[0]
+    abstract suspend fun crop(com.github.skydoves.crayfish.decode/CropSource, com.github.skydoves.crayfish.encode/EncodeOptions = ..., com.github.skydoves.crayfish.ui/AspectRatio = ...): com.github.skydoves.crayfish.ui/CropResult // com.github.skydoves.crayfish.ui/ImageCropper.crop|crop(com.github.skydoves.crayfish.decode.CropSource;com.github.skydoves.crayfish.encode.EncodeOptions;com.github.skydoves.crayfish.ui.AspectRatio){}[0]
+    abstract suspend fun cropToImage(com.github.skydoves.crayfish.decode/CropSource, com.github.skydoves.crayfish.ui/AspectRatio = ...): com.github.skydoves.crayfish.ui/CropImage // com.github.skydoves.crayfish.ui/ImageCropper.cropToImage|cropToImage(com.github.skydoves.crayfish.decode.CropSource;com.github.skydoves.crayfish.ui.AspectRatio){}[0]
+}
+
+final class com.github.skydoves.crayfish.decode/DecodeBudget { // com.github.skydoves.crayfish.decode/DecodeBudget|null[0]
+    constructor <init>(kotlin/Long, kotlin/Int) // com.github.skydoves.crayfish.decode/DecodeBudget.<init>|<init>(kotlin.Long;kotlin.Int){}[0]
+
+    final val maxByteCount // com.github.skydoves.crayfish.decode/DecodeBudget.maxByteCount|{}maxByteCount[0]
+        final fun <get-maxByteCount>(): kotlin/Long // com.github.skydoves.crayfish.decode/DecodeBudget.maxByteCount.<get-maxByteCount>|<get-maxByteCount>(){}[0]
+    final val maxDimension // com.github.skydoves.crayfish.decode/DecodeBudget.maxDimension|{}maxDimension[0]
+        final fun <get-maxDimension>(): kotlin/Int // com.github.skydoves.crayfish.decode/DecodeBudget.maxDimension.<get-maxDimension>|<get-maxDimension>(){}[0]
+
+    final fun component1(): kotlin/Long // com.github.skydoves.crayfish.decode/DecodeBudget.component1|component1(){}[0]
+    final fun component2(): kotlin/Int // com.github.skydoves.crayfish.decode/DecodeBudget.component2|component2(){}[0]
+    final fun copy(kotlin/Long = ..., kotlin/Int = ...): com.github.skydoves.crayfish.decode/DecodeBudget // com.github.skydoves.crayfish.decode/DecodeBudget.copy|copy(kotlin.Long;kotlin.Int){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.decode/DecodeBudget.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.decode/DecodeBudget.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.github.skydoves.crayfish.decode/DecodeBudget.toString|toString(){}[0]
+
+    final object Companion { // com.github.skydoves.crayfish.decode/DecodeBudget.Companion|null[0]
+        final val ForDisplay // com.github.skydoves.crayfish.decode/DecodeBudget.Companion.ForDisplay|{}ForDisplay[0]
+            final fun <get-ForDisplay>(): com.github.skydoves.crayfish.decode/DecodeBudget // com.github.skydoves.crayfish.decode/DecodeBudget.Companion.ForDisplay.<get-ForDisplay>|<get-ForDisplay>(){}[0]
+        final val ForOutput // com.github.skydoves.crayfish.decode/DecodeBudget.Companion.ForOutput|{}ForOutput[0]
+            final fun <get-ForOutput>(): com.github.skydoves.crayfish.decode/DecodeBudget // com.github.skydoves.crayfish.decode/DecodeBudget.Companion.ForOutput.<get-ForOutput>|<get-ForOutput>(){}[0]
+    }
+}
+
+final class com.github.skydoves.crayfish.decode/DecodedRegion : kotlin/AutoCloseable { // com.github.skydoves.crayfish.decode/DecodedRegion|null[0]
+    constructor <init>(com.github.skydoves.crayfish.decode/PlatformImage, com.github.skydoves.crayfish.decode/ImageRegion, kotlin/Int) // com.github.skydoves.crayfish.decode/DecodedRegion.<init>|<init>(com.github.skydoves.crayfish.decode.PlatformImage;com.github.skydoves.crayfish.decode.ImageRegion;kotlin.Int){}[0]
+
+    final val height // com.github.skydoves.crayfish.decode/DecodedRegion.height|{}height[0]
+        final fun <get-height>(): kotlin/Int // com.github.skydoves.crayfish.decode/DecodedRegion.height.<get-height>|<get-height>(){}[0]
+    final val image // com.github.skydoves.crayfish.decode/DecodedRegion.image|{}image[0]
+        final fun <get-image>(): com.github.skydoves.crayfish.decode/PlatformImage // com.github.skydoves.crayfish.decode/DecodedRegion.image.<get-image>|<get-image>(){}[0]
+    final val region // com.github.skydoves.crayfish.decode/DecodedRegion.region|{}region[0]
+        final fun <get-region>(): com.github.skydoves.crayfish.decode/ImageRegion // com.github.skydoves.crayfish.decode/DecodedRegion.region.<get-region>|<get-region>(){}[0]
+    final val sampleSize // com.github.skydoves.crayfish.decode/DecodedRegion.sampleSize|{}sampleSize[0]
+        final fun <get-sampleSize>(): kotlin/Int // com.github.skydoves.crayfish.decode/DecodedRegion.sampleSize.<get-sampleSize>|<get-sampleSize>(){}[0]
+    final val width // com.github.skydoves.crayfish.decode/DecodedRegion.width|{}width[0]
+        final fun <get-width>(): kotlin/Int // com.github.skydoves.crayfish.decode/DecodedRegion.width.<get-width>|<get-width>(){}[0]
+
+    final fun close() // com.github.skydoves.crayfish.decode/DecodedRegion.close|close(){}[0]
+}
+
+final class com.github.skydoves.crayfish.decode/ImageProbeResult { // com.github.skydoves.crayfish.decode/ImageProbeResult|null[0]
+    constructor <init>(com.github.skydoves.crayfish.decode/ImageFormat, com.github.skydoves.crayfish.decode/ImageSize?) // com.github.skydoves.crayfish.decode/ImageProbeResult.<init>|<init>(com.github.skydoves.crayfish.decode.ImageFormat;com.github.skydoves.crayfish.decode.ImageSize?){}[0]
+
+    final val format // com.github.skydoves.crayfish.decode/ImageProbeResult.format|{}format[0]
+        final fun <get-format>(): com.github.skydoves.crayfish.decode/ImageFormat // com.github.skydoves.crayfish.decode/ImageProbeResult.format.<get-format>|<get-format>(){}[0]
+    final val size // com.github.skydoves.crayfish.decode/ImageProbeResult.size|{}size[0]
+        final fun <get-size>(): com.github.skydoves.crayfish.decode/ImageSize? // com.github.skydoves.crayfish.decode/ImageProbeResult.size.<get-size>|<get-size>(){}[0]
+
+    final fun component1(): com.github.skydoves.crayfish.decode/ImageFormat // com.github.skydoves.crayfish.decode/ImageProbeResult.component1|component1(){}[0]
+    final fun component2(): com.github.skydoves.crayfish.decode/ImageSize? // com.github.skydoves.crayfish.decode/ImageProbeResult.component2|component2(){}[0]
+    final fun copy(com.github.skydoves.crayfish.decode/ImageFormat = ..., com.github.skydoves.crayfish.decode/ImageSize? = ...): com.github.skydoves.crayfish.decode/ImageProbeResult // com.github.skydoves.crayfish.decode/ImageProbeResult.copy|copy(com.github.skydoves.crayfish.decode.ImageFormat;com.github.skydoves.crayfish.decode.ImageSize?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.decode/ImageProbeResult.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageProbeResult.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.github.skydoves.crayfish.decode/ImageProbeResult.toString|toString(){}[0]
+}
+
+final class com.github.skydoves.crayfish.decode/ImageRegion { // com.github.skydoves.crayfish.decode/ImageRegion|null[0]
+    constructor <init>(kotlin/Int, kotlin/Int, kotlin/Int, kotlin/Int) // com.github.skydoves.crayfish.decode/ImageRegion.<init>|<init>(kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+
+    final val bottom // com.github.skydoves.crayfish.decode/ImageRegion.bottom|{}bottom[0]
+        final fun <get-bottom>(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageRegion.bottom.<get-bottom>|<get-bottom>(){}[0]
+    final val height // com.github.skydoves.crayfish.decode/ImageRegion.height|{}height[0]
+        final fun <get-height>(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageRegion.height.<get-height>|<get-height>(){}[0]
+    final val isEmpty // com.github.skydoves.crayfish.decode/ImageRegion.isEmpty|{}isEmpty[0]
+        final fun <get-isEmpty>(): kotlin/Boolean // com.github.skydoves.crayfish.decode/ImageRegion.isEmpty.<get-isEmpty>|<get-isEmpty>(){}[0]
+    final val left // com.github.skydoves.crayfish.decode/ImageRegion.left|{}left[0]
+        final fun <get-left>(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageRegion.left.<get-left>|<get-left>(){}[0]
+    final val right // com.github.skydoves.crayfish.decode/ImageRegion.right|{}right[0]
+        final fun <get-right>(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageRegion.right.<get-right>|<get-right>(){}[0]
+    final val size // com.github.skydoves.crayfish.decode/ImageRegion.size|{}size[0]
+        final fun <get-size>(): com.github.skydoves.crayfish.decode/ImageSize // com.github.skydoves.crayfish.decode/ImageRegion.size.<get-size>|<get-size>(){}[0]
+    final val top // com.github.skydoves.crayfish.decode/ImageRegion.top|{}top[0]
+        final fun <get-top>(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageRegion.top.<get-top>|<get-top>(){}[0]
+    final val width // com.github.skydoves.crayfish.decode/ImageRegion.width|{}width[0]
+        final fun <get-width>(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageRegion.width.<get-width>|<get-width>(){}[0]
+
+    final fun component1(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageRegion.component1|component1(){}[0]
+    final fun component2(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageRegion.component2|component2(){}[0]
+    final fun component3(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageRegion.component3|component3(){}[0]
+    final fun component4(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageRegion.component4|component4(){}[0]
+    final fun copy(kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...): com.github.skydoves.crayfish.decode/ImageRegion // com.github.skydoves.crayfish.decode/ImageRegion.copy|copy(kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.decode/ImageRegion.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageRegion.hashCode|hashCode(){}[0]
+    final fun intersect(com.github.skydoves.crayfish.decode/ImageRegion): com.github.skydoves.crayfish.decode/ImageRegion? // com.github.skydoves.crayfish.decode/ImageRegion.intersect|intersect(com.github.skydoves.crayfish.decode.ImageRegion){}[0]
+    final fun toString(): kotlin/String // com.github.skydoves.crayfish.decode/ImageRegion.toString|toString(){}[0]
+
+    final object Companion { // com.github.skydoves.crayfish.decode/ImageRegion.Companion|null[0]
+        final fun of(com.github.skydoves.crayfish.decode/ImageSize): com.github.skydoves.crayfish.decode/ImageRegion // com.github.skydoves.crayfish.decode/ImageRegion.Companion.of|of(com.github.skydoves.crayfish.decode.ImageSize){}[0]
+    }
+}
+
+final class com.github.skydoves.crayfish.decode/ImageSize { // com.github.skydoves.crayfish.decode/ImageSize|null[0]
+    constructor <init>(kotlin/Int, kotlin/Int) // com.github.skydoves.crayfish.decode/ImageSize.<init>|<init>(kotlin.Int;kotlin.Int){}[0]
+
+    final val argb8888ByteCount // com.github.skydoves.crayfish.decode/ImageSize.argb8888ByteCount|{}argb8888ByteCount[0]
+        final fun <get-argb8888ByteCount>(): kotlin/Long // com.github.skydoves.crayfish.decode/ImageSize.argb8888ByteCount.<get-argb8888ByteCount>|<get-argb8888ByteCount>(){}[0]
+    final val height // com.github.skydoves.crayfish.decode/ImageSize.height|{}height[0]
+        final fun <get-height>(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageSize.height.<get-height>|<get-height>(){}[0]
+    final val pixelCount // com.github.skydoves.crayfish.decode/ImageSize.pixelCount|{}pixelCount[0]
+        final fun <get-pixelCount>(): kotlin/Long // com.github.skydoves.crayfish.decode/ImageSize.pixelCount.<get-pixelCount>|<get-pixelCount>(){}[0]
+    final val width // com.github.skydoves.crayfish.decode/ImageSize.width|{}width[0]
+        final fun <get-width>(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageSize.width.<get-width>|<get-width>(){}[0]
+
+    final fun component1(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageSize.component1|component1(){}[0]
+    final fun component2(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageSize.component2|component2(){}[0]
+    final fun copy(kotlin/Int = ..., kotlin/Int = ...): com.github.skydoves.crayfish.decode/ImageSize // com.github.skydoves.crayfish.decode/ImageSize.copy|copy(kotlin.Int;kotlin.Int){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.decode/ImageSize.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageSize.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.github.skydoves.crayfish.decode/ImageSize.toString|toString(){}[0]
+
+    final object Companion { // com.github.skydoves.crayfish.decode/ImageSize.Companion|null[0]
+        final val Zero // com.github.skydoves.crayfish.decode/ImageSize.Companion.Zero|{}Zero[0]
+            final fun <get-Zero>(): com.github.skydoves.crayfish.decode/ImageSize // com.github.skydoves.crayfish.decode/ImageSize.Companion.Zero.<get-Zero>|<get-Zero>(){}[0]
+    }
+}
+
+final class com.github.skydoves.crayfish.decode/PlatformImage : kotlin/AutoCloseable { // com.github.skydoves.crayfish.decode/PlatformImage|null[0]
+    constructor <init>(org.jetbrains.skia/Bitmap) // com.github.skydoves.crayfish.decode/PlatformImage.<init>|<init>(org.jetbrains.skia.Bitmap){}[0]
+
+    final val bitmap // com.github.skydoves.crayfish.decode/PlatformImage.bitmap|{}bitmap[0]
+        final fun <get-bitmap>(): org.jetbrains.skia/Bitmap // com.github.skydoves.crayfish.decode/PlatformImage.bitmap.<get-bitmap>|<get-bitmap>(){}[0]
+    final val height // com.github.skydoves.crayfish.decode/PlatformImage.height|{}height[0]
+        final fun <get-height>(): kotlin/Int // com.github.skydoves.crayfish.decode/PlatformImage.height.<get-height>|<get-height>(){}[0]
+    final val isClosed // com.github.skydoves.crayfish.decode/PlatformImage.isClosed|{}isClosed[0]
+        final fun <get-isClosed>(): kotlin/Boolean // com.github.skydoves.crayfish.decode/PlatformImage.isClosed.<get-isClosed>|<get-isClosed>(){}[0]
+    final val width // com.github.skydoves.crayfish.decode/PlatformImage.width|{}width[0]
+        final fun <get-width>(): kotlin/Int // com.github.skydoves.crayfish.decode/PlatformImage.width.<get-width>|<get-width>(){}[0]
+
+    final fun close() // com.github.skydoves.crayfish.decode/PlatformImage.close|close(){}[0]
+    final fun readArgbPixels(): kotlin/IntArray? // com.github.skydoves.crayfish.decode/PlatformImage.readArgbPixels|readArgbPixels(){}[0]
+}
+
+final class com.github.skydoves.crayfish.encode/EncodeOptions { // com.github.skydoves.crayfish.encode/EncodeOptions|null[0]
+    constructor <init>(com.github.skydoves.crayfish.encode/EncodedFormat, kotlin/Int = ..., kotlin/Int = ...) // com.github.skydoves.crayfish.encode/EncodeOptions.<init>|<init>(com.github.skydoves.crayfish.encode.EncodedFormat;kotlin.Int;kotlin.Int){}[0]
+
+    final val format // com.github.skydoves.crayfish.encode/EncodeOptions.format|{}format[0]
+        final fun <get-format>(): com.github.skydoves.crayfish.encode/EncodedFormat // com.github.skydoves.crayfish.encode/EncodeOptions.format.<get-format>|<get-format>(){}[0]
+    final val losslessEffort // com.github.skydoves.crayfish.encode/EncodeOptions.losslessEffort|{}losslessEffort[0]
+        final fun <get-losslessEffort>(): kotlin/Int // com.github.skydoves.crayfish.encode/EncodeOptions.losslessEffort.<get-losslessEffort>|<get-losslessEffort>(){}[0]
+    final val lossyQuality // com.github.skydoves.crayfish.encode/EncodeOptions.lossyQuality|{}lossyQuality[0]
+        final fun <get-lossyQuality>(): kotlin/Int // com.github.skydoves.crayfish.encode/EncodeOptions.lossyQuality.<get-lossyQuality>|<get-lossyQuality>(){}[0]
+    final val platformQuality // com.github.skydoves.crayfish.encode/EncodeOptions.platformQuality|{}platformQuality[0]
+        final fun <get-platformQuality>(): kotlin/Int // com.github.skydoves.crayfish.encode/EncodeOptions.platformQuality.<get-platformQuality>|<get-platformQuality>(){}[0]
+
+    final fun component1(): com.github.skydoves.crayfish.encode/EncodedFormat // com.github.skydoves.crayfish.encode/EncodeOptions.component1|component1(){}[0]
+    final fun component2(): kotlin/Int // com.github.skydoves.crayfish.encode/EncodeOptions.component2|component2(){}[0]
+    final fun component3(): kotlin/Int // com.github.skydoves.crayfish.encode/EncodeOptions.component3|component3(){}[0]
+    final fun copy(com.github.skydoves.crayfish.encode/EncodedFormat = ..., kotlin/Int = ..., kotlin/Int = ...): com.github.skydoves.crayfish.encode/EncodeOptions // com.github.skydoves.crayfish.encode/EncodeOptions.copy|copy(com.github.skydoves.crayfish.encode.EncodedFormat;kotlin.Int;kotlin.Int){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.encode/EncodeOptions.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.encode/EncodeOptions.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.github.skydoves.crayfish.encode/EncodeOptions.toString|toString(){}[0]
+}
+
+final class com.github.skydoves.crayfish.geometry/CoordinateSpace { // com.github.skydoves.crayfish.geometry/CoordinateSpace|null[0]
+    constructor <init>(com.github.skydoves.crayfish.decode/ImageSize, com.github.skydoves.crayfish.geometry/FloatRect, com.github.skydoves.crayfish.geometry/CropTransform) // com.github.skydoves.crayfish.geometry/CoordinateSpace.<init>|<init>(com.github.skydoves.crayfish.decode.ImageSize;com.github.skydoves.crayfish.geometry.FloatRect;com.github.skydoves.crayfish.geometry.CropTransform){}[0]
+
+    final val contentBounds // com.github.skydoves.crayfish.geometry/CoordinateSpace.contentBounds|{}contentBounds[0]
+        final fun <get-contentBounds>(): com.github.skydoves.crayfish.geometry/FloatRect // com.github.skydoves.crayfish.geometry/CoordinateSpace.contentBounds.<get-contentBounds>|<get-contentBounds>(){}[0]
+    final val imageSize // com.github.skydoves.crayfish.geometry/CoordinateSpace.imageSize|{}imageSize[0]
+        final fun <get-imageSize>(): com.github.skydoves.crayfish.decode/ImageSize // com.github.skydoves.crayfish.geometry/CoordinateSpace.imageSize.<get-imageSize>|<get-imageSize>(){}[0]
+    final val isValid // com.github.skydoves.crayfish.geometry/CoordinateSpace.isValid|{}isValid[0]
+        final fun <get-isValid>(): kotlin/Boolean // com.github.skydoves.crayfish.geometry/CoordinateSpace.isValid.<get-isValid>|<get-isValid>(){}[0]
+    final val pivot // com.github.skydoves.crayfish.geometry/CoordinateSpace.pivot|{}pivot[0]
+        final fun <get-pivot>(): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/CoordinateSpace.pivot.<get-pivot>|<get-pivot>(){}[0]
+    final val transform // com.github.skydoves.crayfish.geometry/CoordinateSpace.transform|{}transform[0]
+        final fun <get-transform>(): com.github.skydoves.crayfish.geometry/CropTransform // com.github.skydoves.crayfish.geometry/CoordinateSpace.transform.<get-transform>|<get-transform>(){}[0]
+
+    final fun component1(): com.github.skydoves.crayfish.decode/ImageSize // com.github.skydoves.crayfish.geometry/CoordinateSpace.component1|component1(){}[0]
+    final fun component2(): com.github.skydoves.crayfish.geometry/FloatRect // com.github.skydoves.crayfish.geometry/CoordinateSpace.component2|component2(){}[0]
+    final fun component3(): com.github.skydoves.crayfish.geometry/CropTransform // com.github.skydoves.crayfish.geometry/CoordinateSpace.component3|component3(){}[0]
+    final fun copy(com.github.skydoves.crayfish.decode/ImageSize = ..., com.github.skydoves.crayfish.geometry/FloatRect = ..., com.github.skydoves.crayfish.geometry/CropTransform = ...): com.github.skydoves.crayfish.geometry/CoordinateSpace // com.github.skydoves.crayfish.geometry/CoordinateSpace.copy|copy(com.github.skydoves.crayfish.decode.ImageSize;com.github.skydoves.crayfish.geometry.FloatRect;com.github.skydoves.crayfish.geometry.CropTransform){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.geometry/CoordinateSpace.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.geometry/CoordinateSpace.hashCode|hashCode(){}[0]
+    final fun imageToViewport(com.github.skydoves.crayfish.geometry/FloatPoint): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/CoordinateSpace.imageToViewport|imageToViewport(com.github.skydoves.crayfish.geometry.FloatPoint){}[0]
+    final fun toImageRegion(com.github.skydoves.crayfish.geometry/FloatRect): com.github.skydoves.crayfish.decode/ImageRegion? // com.github.skydoves.crayfish.geometry/CoordinateSpace.toImageRegion|toImageRegion(com.github.skydoves.crayfish.geometry.FloatRect){}[0]
+    final fun toString(): kotlin/String // com.github.skydoves.crayfish.geometry/CoordinateSpace.toString|toString(){}[0]
+    final fun viewportToImage(com.github.skydoves.crayfish.geometry/FloatPoint): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/CoordinateSpace.viewportToImage|viewportToImage(com.github.skydoves.crayfish.geometry.FloatPoint){}[0]
+    final fun viewportToImage(com.github.skydoves.crayfish.geometry/FloatRect): com.github.skydoves.crayfish.geometry/FloatRect // com.github.skydoves.crayfish.geometry/CoordinateSpace.viewportToImage|viewportToImage(com.github.skydoves.crayfish.geometry.FloatRect){}[0]
+
+    final object Companion { // com.github.skydoves.crayfish.geometry/CoordinateSpace.Companion|null[0]
+        final fun fitting(com.github.skydoves.crayfish.decode/ImageSize, com.github.skydoves.crayfish.geometry/FloatSize, com.github.skydoves.crayfish.geometry/CropTransform = ...): com.github.skydoves.crayfish.geometry/CoordinateSpace // com.github.skydoves.crayfish.geometry/CoordinateSpace.Companion.fitting|fitting(com.github.skydoves.crayfish.decode.ImageSize;com.github.skydoves.crayfish.geometry.FloatSize;com.github.skydoves.crayfish.geometry.CropTransform){}[0]
+    }
+}
+
+final class com.github.skydoves.crayfish.geometry/CoverageCorrection { // com.github.skydoves.crayfish.geometry/CoverageCorrection|null[0]
+    constructor <init>(com.github.skydoves.crayfish.geometry/CropTransform, kotlin/Boolean, kotlin/Boolean) // com.github.skydoves.crayfish.geometry/CoverageCorrection.<init>|<init>(com.github.skydoves.crayfish.geometry.CropTransform;kotlin.Boolean;kotlin.Boolean){}[0]
+
+    final val scaled // com.github.skydoves.crayfish.geometry/CoverageCorrection.scaled|{}scaled[0]
+        final fun <get-scaled>(): kotlin/Boolean // com.github.skydoves.crayfish.geometry/CoverageCorrection.scaled.<get-scaled>|<get-scaled>(){}[0]
+    final val transform // com.github.skydoves.crayfish.geometry/CoverageCorrection.transform|{}transform[0]
+        final fun <get-transform>(): com.github.skydoves.crayfish.geometry/CropTransform // com.github.skydoves.crayfish.geometry/CoverageCorrection.transform.<get-transform>|<get-transform>(){}[0]
+    final val translated // com.github.skydoves.crayfish.geometry/CoverageCorrection.translated|{}translated[0]
+        final fun <get-translated>(): kotlin/Boolean // com.github.skydoves.crayfish.geometry/CoverageCorrection.translated.<get-translated>|<get-translated>(){}[0]
+
+    final fun component1(): com.github.skydoves.crayfish.geometry/CropTransform // com.github.skydoves.crayfish.geometry/CoverageCorrection.component1|component1(){}[0]
+    final fun component2(): kotlin/Boolean // com.github.skydoves.crayfish.geometry/CoverageCorrection.component2|component2(){}[0]
+    final fun component3(): kotlin/Boolean // com.github.skydoves.crayfish.geometry/CoverageCorrection.component3|component3(){}[0]
+    final fun copy(com.github.skydoves.crayfish.geometry/CropTransform = ..., kotlin/Boolean = ..., kotlin/Boolean = ...): com.github.skydoves.crayfish.geometry/CoverageCorrection // com.github.skydoves.crayfish.geometry/CoverageCorrection.copy|copy(com.github.skydoves.crayfish.geometry.CropTransform;kotlin.Boolean;kotlin.Boolean){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.geometry/CoverageCorrection.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.geometry/CoverageCorrection.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.github.skydoves.crayfish.geometry/CoverageCorrection.toString|toString(){}[0]
+}
+
+final class com.github.skydoves.crayfish.geometry/CropTransform { // com.github.skydoves.crayfish.geometry/CropTransform|null[0]
+    constructor <init>(kotlin/Float = ..., com.github.skydoves.crayfish.geometry/FloatPoint = ..., kotlin/Float = ..., kotlin/Boolean = ..., kotlin/Boolean = ...) // com.github.skydoves.crayfish.geometry/CropTransform.<init>|<init>(kotlin.Float;com.github.skydoves.crayfish.geometry.FloatPoint;kotlin.Float;kotlin.Boolean;kotlin.Boolean){}[0]
+
+    final val flipHorizontal // com.github.skydoves.crayfish.geometry/CropTransform.flipHorizontal|{}flipHorizontal[0]
+        final fun <get-flipHorizontal>(): kotlin/Boolean // com.github.skydoves.crayfish.geometry/CropTransform.flipHorizontal.<get-flipHorizontal>|<get-flipHorizontal>(){}[0]
+    final val flipVertical // com.github.skydoves.crayfish.geometry/CropTransform.flipVertical|{}flipVertical[0]
+        final fun <get-flipVertical>(): kotlin/Boolean // com.github.skydoves.crayfish.geometry/CropTransform.flipVertical.<get-flipVertical>|<get-flipVertical>(){}[0]
+    final val isValid // com.github.skydoves.crayfish.geometry/CropTransform.isValid|{}isValid[0]
+        final fun <get-isValid>(): kotlin/Boolean // com.github.skydoves.crayfish.geometry/CropTransform.isValid.<get-isValid>|<get-isValid>(){}[0]
+    final val offset // com.github.skydoves.crayfish.geometry/CropTransform.offset|{}offset[0]
+        final fun <get-offset>(): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/CropTransform.offset.<get-offset>|<get-offset>(){}[0]
+    final val rotationDegrees // com.github.skydoves.crayfish.geometry/CropTransform.rotationDegrees|{}rotationDegrees[0]
+        final fun <get-rotationDegrees>(): kotlin/Float // com.github.skydoves.crayfish.geometry/CropTransform.rotationDegrees.<get-rotationDegrees>|<get-rotationDegrees>(){}[0]
+    final val scale // com.github.skydoves.crayfish.geometry/CropTransform.scale|{}scale[0]
+        final fun <get-scale>(): kotlin/Float // com.github.skydoves.crayfish.geometry/CropTransform.scale.<get-scale>|<get-scale>(){}[0]
+    final val signedScaleX // com.github.skydoves.crayfish.geometry/CropTransform.signedScaleX|{}signedScaleX[0]
+        final fun <get-signedScaleX>(): kotlin/Float // com.github.skydoves.crayfish.geometry/CropTransform.signedScaleX.<get-signedScaleX>|<get-signedScaleX>(){}[0]
+    final val signedScaleY // com.github.skydoves.crayfish.geometry/CropTransform.signedScaleY|{}signedScaleY[0]
+        final fun <get-signedScaleY>(): kotlin/Float // com.github.skydoves.crayfish.geometry/CropTransform.signedScaleY.<get-signedScaleY>|<get-signedScaleY>(){}[0]
+
+    final fun component1(): kotlin/Float // com.github.skydoves.crayfish.geometry/CropTransform.component1|component1(){}[0]
+    final fun component2(): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/CropTransform.component2|component2(){}[0]
+    final fun component3(): kotlin/Float // com.github.skydoves.crayfish.geometry/CropTransform.component3|component3(){}[0]
+    final fun component4(): kotlin/Boolean // com.github.skydoves.crayfish.geometry/CropTransform.component4|component4(){}[0]
+    final fun component5(): kotlin/Boolean // com.github.skydoves.crayfish.geometry/CropTransform.component5|component5(){}[0]
+    final fun copy(kotlin/Float = ..., com.github.skydoves.crayfish.geometry/FloatPoint = ..., kotlin/Float = ..., kotlin/Boolean = ..., kotlin/Boolean = ...): com.github.skydoves.crayfish.geometry/CropTransform // com.github.skydoves.crayfish.geometry/CropTransform.copy|copy(kotlin.Float;com.github.skydoves.crayfish.geometry.FloatPoint;kotlin.Float;kotlin.Boolean;kotlin.Boolean){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.geometry/CropTransform.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.geometry/CropTransform.hashCode|hashCode(){}[0]
+    final fun mapCorners(com.github.skydoves.crayfish.geometry/FloatRect, com.github.skydoves.crayfish.geometry/FloatPoint): kotlin.collections/List<com.github.skydoves.crayfish.geometry/FloatPoint> // com.github.skydoves.crayfish.geometry/CropTransform.mapCorners|mapCorners(com.github.skydoves.crayfish.geometry.FloatRect;com.github.skydoves.crayfish.geometry.FloatPoint){}[0]
+    final fun mapPoint(com.github.skydoves.crayfish.geometry/FloatPoint, com.github.skydoves.crayfish.geometry/FloatPoint): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/CropTransform.mapPoint|mapPoint(com.github.skydoves.crayfish.geometry.FloatPoint;com.github.skydoves.crayfish.geometry.FloatPoint){}[0]
+    final fun mapRect(com.github.skydoves.crayfish.geometry/FloatRect, com.github.skydoves.crayfish.geometry/FloatPoint): com.github.skydoves.crayfish.geometry/FloatRect // com.github.skydoves.crayfish.geometry/CropTransform.mapRect|mapRect(com.github.skydoves.crayfish.geometry.FloatRect;com.github.skydoves.crayfish.geometry.FloatPoint){}[0]
+    final fun sanitized(): com.github.skydoves.crayfish.geometry/CropTransform // com.github.skydoves.crayfish.geometry/CropTransform.sanitized|sanitized(){}[0]
+    final fun scaledAround(kotlin/Float, com.github.skydoves.crayfish.geometry/FloatPoint, com.github.skydoves.crayfish.geometry/FloatPoint): com.github.skydoves.crayfish.geometry/CropTransform // com.github.skydoves.crayfish.geometry/CropTransform.scaledAround|scaledAround(kotlin.Float;com.github.skydoves.crayfish.geometry.FloatPoint;com.github.skydoves.crayfish.geometry.FloatPoint){}[0]
+    final fun toString(): kotlin/String // com.github.skydoves.crayfish.geometry/CropTransform.toString|toString(){}[0]
+    final fun unmapPoint(com.github.skydoves.crayfish.geometry/FloatPoint, com.github.skydoves.crayfish.geometry/FloatPoint): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/CropTransform.unmapPoint|unmapPoint(com.github.skydoves.crayfish.geometry.FloatPoint;com.github.skydoves.crayfish.geometry.FloatPoint){}[0]
+
+    final object Companion { // com.github.skydoves.crayfish.geometry/CropTransform.Companion|null[0]
+        final val Identity // com.github.skydoves.crayfish.geometry/CropTransform.Companion.Identity|{}Identity[0]
+            final fun <get-Identity>(): com.github.skydoves.crayfish.geometry/CropTransform // com.github.skydoves.crayfish.geometry/CropTransform.Companion.Identity.<get-Identity>|<get-Identity>(){}[0]
+    }
+}
+
+final class com.github.skydoves.crayfish.geometry/FloatPoint { // com.github.skydoves.crayfish.geometry/FloatPoint|null[0]
+    constructor <init>(kotlin/Float, kotlin/Float) // com.github.skydoves.crayfish.geometry/FloatPoint.<init>|<init>(kotlin.Float;kotlin.Float){}[0]
+
+    final val isFinite // com.github.skydoves.crayfish.geometry/FloatPoint.isFinite|{}isFinite[0]
+        final fun <get-isFinite>(): kotlin/Boolean // com.github.skydoves.crayfish.geometry/FloatPoint.isFinite.<get-isFinite>|<get-isFinite>(){}[0]
+    final val x // com.github.skydoves.crayfish.geometry/FloatPoint.x|{}x[0]
+        final fun <get-x>(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatPoint.x.<get-x>|<get-x>(){}[0]
+    final val y // com.github.skydoves.crayfish.geometry/FloatPoint.y|{}y[0]
+        final fun <get-y>(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatPoint.y.<get-y>|<get-y>(){}[0]
+
+    final fun component1(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatPoint.component1|component1(){}[0]
+    final fun component2(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatPoint.component2|component2(){}[0]
+    final fun copy(kotlin/Float = ..., kotlin/Float = ...): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/FloatPoint.copy|copy(kotlin.Float;kotlin.Float){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.geometry/FloatPoint.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.geometry/FloatPoint.hashCode|hashCode(){}[0]
+    final fun isCloseTo(com.github.skydoves.crayfish.geometry/FloatPoint, kotlin/Float): kotlin/Boolean // com.github.skydoves.crayfish.geometry/FloatPoint.isCloseTo|isCloseTo(com.github.skydoves.crayfish.geometry.FloatPoint;kotlin.Float){}[0]
+    final fun minus(com.github.skydoves.crayfish.geometry/FloatPoint): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/FloatPoint.minus|minus(com.github.skydoves.crayfish.geometry.FloatPoint){}[0]
+    final fun plus(com.github.skydoves.crayfish.geometry/FloatPoint): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/FloatPoint.plus|plus(com.github.skydoves.crayfish.geometry.FloatPoint){}[0]
+    final fun sanitized(): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/FloatPoint.sanitized|sanitized(){}[0]
+    final fun times(kotlin/Float): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/FloatPoint.times|times(kotlin.Float){}[0]
+    final fun toString(): kotlin/String // com.github.skydoves.crayfish.geometry/FloatPoint.toString|toString(){}[0]
+
+    final object Companion { // com.github.skydoves.crayfish.geometry/FloatPoint.Companion|null[0]
+        final val Zero // com.github.skydoves.crayfish.geometry/FloatPoint.Companion.Zero|{}Zero[0]
+            final fun <get-Zero>(): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/FloatPoint.Companion.Zero.<get-Zero>|<get-Zero>(){}[0]
+    }
+}
+
+final class com.github.skydoves.crayfish.geometry/FloatRect { // com.github.skydoves.crayfish.geometry/FloatRect|null[0]
+    constructor <init>(kotlin/Float, kotlin/Float, kotlin/Float, kotlin/Float) // com.github.skydoves.crayfish.geometry/FloatRect.<init>|<init>(kotlin.Float;kotlin.Float;kotlin.Float;kotlin.Float){}[0]
+
+    final val bottom // com.github.skydoves.crayfish.geometry/FloatRect.bottom|{}bottom[0]
+        final fun <get-bottom>(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatRect.bottom.<get-bottom>|<get-bottom>(){}[0]
+    final val center // com.github.skydoves.crayfish.geometry/FloatRect.center|{}center[0]
+        final fun <get-center>(): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/FloatRect.center.<get-center>|<get-center>(){}[0]
+    final val height // com.github.skydoves.crayfish.geometry/FloatRect.height|{}height[0]
+        final fun <get-height>(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatRect.height.<get-height>|<get-height>(){}[0]
+    final val isEmpty // com.github.skydoves.crayfish.geometry/FloatRect.isEmpty|{}isEmpty[0]
+        final fun <get-isEmpty>(): kotlin/Boolean // com.github.skydoves.crayfish.geometry/FloatRect.isEmpty.<get-isEmpty>|<get-isEmpty>(){}[0]
+    final val isFinite // com.github.skydoves.crayfish.geometry/FloatRect.isFinite|{}isFinite[0]
+        final fun <get-isFinite>(): kotlin/Boolean // com.github.skydoves.crayfish.geometry/FloatRect.isFinite.<get-isFinite>|<get-isFinite>(){}[0]
+    final val left // com.github.skydoves.crayfish.geometry/FloatRect.left|{}left[0]
+        final fun <get-left>(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatRect.left.<get-left>|<get-left>(){}[0]
+    final val right // com.github.skydoves.crayfish.geometry/FloatRect.right|{}right[0]
+        final fun <get-right>(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatRect.right.<get-right>|<get-right>(){}[0]
+    final val size // com.github.skydoves.crayfish.geometry/FloatRect.size|{}size[0]
+        final fun <get-size>(): com.github.skydoves.crayfish.geometry/FloatSize // com.github.skydoves.crayfish.geometry/FloatRect.size.<get-size>|<get-size>(){}[0]
+    final val top // com.github.skydoves.crayfish.geometry/FloatRect.top|{}top[0]
+        final fun <get-top>(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatRect.top.<get-top>|<get-top>(){}[0]
+    final val width // com.github.skydoves.crayfish.geometry/FloatRect.width|{}width[0]
+        final fun <get-width>(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatRect.width.<get-width>|<get-width>(){}[0]
+
+    final fun component1(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatRect.component1|component1(){}[0]
+    final fun component2(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatRect.component2|component2(){}[0]
+    final fun component3(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatRect.component3|component3(){}[0]
+    final fun component4(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatRect.component4|component4(){}[0]
+    final fun contains(com.github.skydoves.crayfish.geometry/FloatPoint): kotlin/Boolean // com.github.skydoves.crayfish.geometry/FloatRect.contains|contains(com.github.skydoves.crayfish.geometry.FloatPoint){}[0]
+    final fun contains(com.github.skydoves.crayfish.geometry/FloatRect): kotlin/Boolean // com.github.skydoves.crayfish.geometry/FloatRect.contains|contains(com.github.skydoves.crayfish.geometry.FloatRect){}[0]
+    final fun copy(kotlin/Float = ..., kotlin/Float = ..., kotlin/Float = ..., kotlin/Float = ...): com.github.skydoves.crayfish.geometry/FloatRect // com.github.skydoves.crayfish.geometry/FloatRect.copy|copy(kotlin.Float;kotlin.Float;kotlin.Float;kotlin.Float){}[0]
+    final fun corners(): kotlin.collections/List<com.github.skydoves.crayfish.geometry/FloatPoint> // com.github.skydoves.crayfish.geometry/FloatRect.corners|corners(){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.geometry/FloatRect.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.geometry/FloatRect.hashCode|hashCode(){}[0]
+    final fun inflate(kotlin/Float): com.github.skydoves.crayfish.geometry/FloatRect // com.github.skydoves.crayfish.geometry/FloatRect.inflate|inflate(kotlin.Float){}[0]
+    final fun toString(): kotlin/String // com.github.skydoves.crayfish.geometry/FloatRect.toString|toString(){}[0]
+    final fun translate(com.github.skydoves.crayfish.geometry/FloatPoint): com.github.skydoves.crayfish.geometry/FloatRect // com.github.skydoves.crayfish.geometry/FloatRect.translate|translate(com.github.skydoves.crayfish.geometry.FloatPoint){}[0]
+
+    final object Companion { // com.github.skydoves.crayfish.geometry/FloatRect.Companion|null[0]
+        final val Zero // com.github.skydoves.crayfish.geometry/FloatRect.Companion.Zero|{}Zero[0]
+            final fun <get-Zero>(): com.github.skydoves.crayfish.geometry/FloatRect // com.github.skydoves.crayfish.geometry/FloatRect.Companion.Zero.<get-Zero>|<get-Zero>(){}[0]
+
+        final fun bounding(kotlin.collections/List<com.github.skydoves.crayfish.geometry/FloatPoint>): com.github.skydoves.crayfish.geometry/FloatRect // com.github.skydoves.crayfish.geometry/FloatRect.Companion.bounding|bounding(kotlin.collections.List<com.github.skydoves.crayfish.geometry.FloatPoint>){}[0]
+        final fun fromCenter(com.github.skydoves.crayfish.geometry/FloatPoint, com.github.skydoves.crayfish.geometry/FloatSize): com.github.skydoves.crayfish.geometry/FloatRect // com.github.skydoves.crayfish.geometry/FloatRect.Companion.fromCenter|fromCenter(com.github.skydoves.crayfish.geometry.FloatPoint;com.github.skydoves.crayfish.geometry.FloatSize){}[0]
+        final fun of(com.github.skydoves.crayfish.geometry/FloatSize): com.github.skydoves.crayfish.geometry/FloatRect // com.github.skydoves.crayfish.geometry/FloatRect.Companion.of|of(com.github.skydoves.crayfish.geometry.FloatSize){}[0]
+    }
+}
+
+final class com.github.skydoves.crayfish.geometry/FloatSize { // com.github.skydoves.crayfish.geometry/FloatSize|null[0]
+    constructor <init>(kotlin/Float, kotlin/Float) // com.github.skydoves.crayfish.geometry/FloatSize.<init>|<init>(kotlin.Float;kotlin.Float){}[0]
+
+    final val center // com.github.skydoves.crayfish.geometry/FloatSize.center|{}center[0]
+        final fun <get-center>(): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/FloatSize.center.<get-center>|<get-center>(){}[0]
+    final val height // com.github.skydoves.crayfish.geometry/FloatSize.height|{}height[0]
+        final fun <get-height>(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatSize.height.<get-height>|<get-height>(){}[0]
+    final val isEmpty // com.github.skydoves.crayfish.geometry/FloatSize.isEmpty|{}isEmpty[0]
+        final fun <get-isEmpty>(): kotlin/Boolean // com.github.skydoves.crayfish.geometry/FloatSize.isEmpty.<get-isEmpty>|<get-isEmpty>(){}[0]
+    final val isFinite // com.github.skydoves.crayfish.geometry/FloatSize.isFinite|{}isFinite[0]
+        final fun <get-isFinite>(): kotlin/Boolean // com.github.skydoves.crayfish.geometry/FloatSize.isFinite.<get-isFinite>|<get-isFinite>(){}[0]
+    final val width // com.github.skydoves.crayfish.geometry/FloatSize.width|{}width[0]
+        final fun <get-width>(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatSize.width.<get-width>|<get-width>(){}[0]
+
+    final fun component1(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatSize.component1|component1(){}[0]
+    final fun component2(): kotlin/Float // com.github.skydoves.crayfish.geometry/FloatSize.component2|component2(){}[0]
+    final fun copy(kotlin/Float = ..., kotlin/Float = ...): com.github.skydoves.crayfish.geometry/FloatSize // com.github.skydoves.crayfish.geometry/FloatSize.copy|copy(kotlin.Float;kotlin.Float){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.geometry/FloatSize.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.geometry/FloatSize.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.github.skydoves.crayfish.geometry/FloatSize.toString|toString(){}[0]
+
+    final object Companion { // com.github.skydoves.crayfish.geometry/FloatSize.Companion|null[0]
+        final val Zero // com.github.skydoves.crayfish.geometry/FloatSize.Companion.Zero|{}Zero[0]
+            final fun <get-Zero>(): com.github.skydoves.crayfish.geometry/FloatSize // com.github.skydoves.crayfish.geometry/FloatSize.Companion.Zero.<get-Zero>|<get-Zero>(){}[0]
+    }
+}
+
+final class com.github.skydoves.crayfish.ui/CropAccessibility { // com.github.skydoves.crayfish.ui/CropAccessibility|null[0]
+    constructor <init>(androidx.compose.ui.unit/Dp = ..., kotlin/String = ..., kotlin/Function1<com.github.skydoves.crayfish.ui/CropAccessibilityAction, kotlin/String> = ..., kotlin/Function2<com.github.skydoves.crayfish.geometry/FloatRect, com.github.skydoves.crayfish.geometry/FloatSize, kotlin/String> = ...) // com.github.skydoves.crayfish.ui/CropAccessibility.<init>|<init>(androidx.compose.ui.unit.Dp;kotlin.String;kotlin.Function1<com.github.skydoves.crayfish.ui.CropAccessibilityAction,kotlin.String>;kotlin.Function2<com.github.skydoves.crayfish.geometry.FloatRect,com.github.skydoves.crayfish.geometry.FloatSize,kotlin.String>){}[0]
+
+    final val contentDescription // com.github.skydoves.crayfish.ui/CropAccessibility.contentDescription|{}contentDescription[0]
+        final fun <get-contentDescription>(): kotlin/String // com.github.skydoves.crayfish.ui/CropAccessibility.contentDescription.<get-contentDescription>|<get-contentDescription>(){}[0]
+    final val describe // com.github.skydoves.crayfish.ui/CropAccessibility.describe|{}describe[0]
+        final fun <get-describe>(): kotlin/Function2<com.github.skydoves.crayfish.geometry/FloatRect, com.github.skydoves.crayfish.geometry/FloatSize, kotlin/String> // com.github.skydoves.crayfish.ui/CropAccessibility.describe.<get-describe>|<get-describe>(){}[0]
+    final val label // com.github.skydoves.crayfish.ui/CropAccessibility.label|{}label[0]
+        final fun <get-label>(): kotlin/Function1<com.github.skydoves.crayfish.ui/CropAccessibilityAction, kotlin/String> // com.github.skydoves.crayfish.ui/CropAccessibility.label.<get-label>|<get-label>(){}[0]
+    final val step // com.github.skydoves.crayfish.ui/CropAccessibility.step|{}step[0]
+        final fun <get-step>(): androidx.compose.ui.unit/Dp // com.github.skydoves.crayfish.ui/CropAccessibility.step.<get-step>|<get-step>(){}[0]
+
+    final fun component1(): androidx.compose.ui.unit/Dp // com.github.skydoves.crayfish.ui/CropAccessibility.component1|component1(){}[0]
+    final fun component2(): kotlin/String // com.github.skydoves.crayfish.ui/CropAccessibility.component2|component2(){}[0]
+    final fun component3(): kotlin/Function1<com.github.skydoves.crayfish.ui/CropAccessibilityAction, kotlin/String> // com.github.skydoves.crayfish.ui/CropAccessibility.component3|component3(){}[0]
+    final fun component4(): kotlin/Function2<com.github.skydoves.crayfish.geometry/FloatRect, com.github.skydoves.crayfish.geometry/FloatSize, kotlin/String> // com.github.skydoves.crayfish.ui/CropAccessibility.component4|component4(){}[0]
+    final fun copy(androidx.compose.ui.unit/Dp = ..., kotlin/String = ..., kotlin/Function1<com.github.skydoves.crayfish.ui/CropAccessibilityAction, kotlin/String> = ..., kotlin/Function2<com.github.skydoves.crayfish.geometry/FloatRect, com.github.skydoves.crayfish.geometry/FloatSize, kotlin/String> = ...): com.github.skydoves.crayfish.ui/CropAccessibility // com.github.skydoves.crayfish.ui/CropAccessibility.copy|copy(androidx.compose.ui.unit.Dp;kotlin.String;kotlin.Function1<com.github.skydoves.crayfish.ui.CropAccessibilityAction,kotlin.String>;kotlin.Function2<com.github.skydoves.crayfish.geometry.FloatRect,com.github.skydoves.crayfish.geometry.FloatSize,kotlin.String>){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropAccessibility.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.ui/CropAccessibility.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.github.skydoves.crayfish.ui/CropAccessibility.toString|toString(){}[0]
+
+    final object Companion { // com.github.skydoves.crayfish.ui/CropAccessibility.Companion|null[0]
+        final val Default // com.github.skydoves.crayfish.ui/CropAccessibility.Companion.Default|{}Default[0]
+            final fun <get-Default>(): com.github.skydoves.crayfish.ui/CropAccessibility // com.github.skydoves.crayfish.ui/CropAccessibility.Companion.Default.<get-Default>|<get-Default>(){}[0]
+    }
+}
+
+final class com.github.skydoves.crayfish.ui/CropGestures { // com.github.skydoves.crayfish.ui/CropGestures|null[0]
+    constructor <init>(kotlin/Boolean = ..., kotlin/Boolean = ..., kotlin/Boolean = ...) // com.github.skydoves.crayfish.ui/CropGestures.<init>|<init>(kotlin.Boolean;kotlin.Boolean;kotlin.Boolean){}[0]
+
+    final val pan // com.github.skydoves.crayfish.ui/CropGestures.pan|{}pan[0]
+        final fun <get-pan>(): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropGestures.pan.<get-pan>|<get-pan>(){}[0]
+    final val rotate // com.github.skydoves.crayfish.ui/CropGestures.rotate|{}rotate[0]
+        final fun <get-rotate>(): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropGestures.rotate.<get-rotate>|<get-rotate>(){}[0]
+    final val zoom // com.github.skydoves.crayfish.ui/CropGestures.zoom|{}zoom[0]
+        final fun <get-zoom>(): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropGestures.zoom.<get-zoom>|<get-zoom>(){}[0]
+
+    final fun component1(): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropGestures.component1|component1(){}[0]
+    final fun component2(): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropGestures.component2|component2(){}[0]
+    final fun component3(): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropGestures.component3|component3(){}[0]
+    final fun copy(kotlin/Boolean = ..., kotlin/Boolean = ..., kotlin/Boolean = ...): com.github.skydoves.crayfish.ui/CropGestures // com.github.skydoves.crayfish.ui/CropGestures.copy|copy(kotlin.Boolean;kotlin.Boolean;kotlin.Boolean){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropGestures.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.ui/CropGestures.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.github.skydoves.crayfish.ui/CropGestures.toString|toString(){}[0]
+
+    final object Companion { // com.github.skydoves.crayfish.ui/CropGestures.Companion|null[0]
+        final val All // com.github.skydoves.crayfish.ui/CropGestures.Companion.All|{}All[0]
+            final fun <get-All>(): com.github.skydoves.crayfish.ui/CropGestures // com.github.skydoves.crayfish.ui/CropGestures.Companion.All.<get-All>|<get-All>(){}[0]
+        final val Default // com.github.skydoves.crayfish.ui/CropGestures.Companion.Default|{}Default[0]
+            final fun <get-Default>(): com.github.skydoves.crayfish.ui/CropGestures // com.github.skydoves.crayfish.ui/CropGestures.Companion.Default.<get-Default>|<get-Default>(){}[0]
+        final val Zoomable // com.github.skydoves.crayfish.ui/CropGestures.Companion.Zoomable|{}Zoomable[0]
+            final fun <get-Zoomable>(): com.github.skydoves.crayfish.ui/CropGestures // com.github.skydoves.crayfish.ui/CropGestures.Companion.Zoomable.<get-Zoomable>|<get-Zoomable>(){}[0]
+    }
+}
+
+final class com.github.skydoves.crayfish.ui/CropRecipe { // com.github.skydoves.crayfish.ui/CropRecipe|null[0]
+    constructor <init>(com.github.skydoves.crayfish.geometry/CropTransform, com.github.skydoves.crayfish.geometry/FloatRect, com.github.skydoves.crayfish.ui/AspectRatio) // com.github.skydoves.crayfish.ui/CropRecipe.<init>|<init>(com.github.skydoves.crayfish.geometry.CropTransform;com.github.skydoves.crayfish.geometry.FloatRect;com.github.skydoves.crayfish.ui.AspectRatio){}[0]
+
+    final val aspectRatio // com.github.skydoves.crayfish.ui/CropRecipe.aspectRatio|{}aspectRatio[0]
+        final fun <get-aspectRatio>(): com.github.skydoves.crayfish.ui/AspectRatio // com.github.skydoves.crayfish.ui/CropRecipe.aspectRatio.<get-aspectRatio>|<get-aspectRatio>(){}[0]
+    final val normalizedCropRect // com.github.skydoves.crayfish.ui/CropRecipe.normalizedCropRect|{}normalizedCropRect[0]
+        final fun <get-normalizedCropRect>(): com.github.skydoves.crayfish.geometry/FloatRect // com.github.skydoves.crayfish.ui/CropRecipe.normalizedCropRect.<get-normalizedCropRect>|<get-normalizedCropRect>(){}[0]
+    final val transform // com.github.skydoves.crayfish.ui/CropRecipe.transform|{}transform[0]
+        final fun <get-transform>(): com.github.skydoves.crayfish.geometry/CropTransform // com.github.skydoves.crayfish.ui/CropRecipe.transform.<get-transform>|<get-transform>(){}[0]
+
+    final fun encodeToString(): kotlin/String // com.github.skydoves.crayfish.ui/CropRecipe.encodeToString|encodeToString(){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropRecipe.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.ui/CropRecipe.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.github.skydoves.crayfish.ui/CropRecipe.toString|toString(){}[0]
+
+    final object Companion { // com.github.skydoves.crayfish.ui/CropRecipe.Companion|null[0]
+        final fun decodeFromString(kotlin/String?): com.github.skydoves.crayfish.ui/CropRecipe? // com.github.skydoves.crayfish.ui/CropRecipe.Companion.decodeFromString|decodeFromString(kotlin.String?){}[0]
+    }
+}
+
+final class com.github.skydoves.crayfish.ui/CropStyle { // com.github.skydoves.crayfish.ui/CropStyle|null[0]
+    constructor <init>(androidx.compose.ui.graphics/Color = ..., androidx.compose.ui.graphics/Color = ..., androidx.compose.ui.unit/Dp = ..., androidx.compose.ui.graphics/Color = ..., androidx.compose.ui.unit/Dp = ..., com.github.skydoves.crayfish.ui/CropGridMode = ..., androidx.compose.ui.graphics/Color = ..., androidx.compose.ui.unit/Dp = ..., androidx.compose.ui.unit/Dp = ..., androidx.compose.ui.unit/Dp = ..., androidx.compose.ui.unit/Dp = ...) // com.github.skydoves.crayfish.ui/CropStyle.<init>|<init>(androidx.compose.ui.graphics.Color;androidx.compose.ui.graphics.Color;androidx.compose.ui.unit.Dp;androidx.compose.ui.graphics.Color;androidx.compose.ui.unit.Dp;com.github.skydoves.crayfish.ui.CropGridMode;androidx.compose.ui.graphics.Color;androidx.compose.ui.unit.Dp;androidx.compose.ui.unit.Dp;androidx.compose.ui.unit.Dp;androidx.compose.ui.unit.Dp){}[0]
+
+    final val frameColor // com.github.skydoves.crayfish.ui/CropStyle.frameColor|{}frameColor[0]
+        final fun <get-frameColor>(): androidx.compose.ui.graphics/Color // com.github.skydoves.crayfish.ui/CropStyle.frameColor.<get-frameColor>|<get-frameColor>(){}[0]
+    final val frameWidth // com.github.skydoves.crayfish.ui/CropStyle.frameWidth|{}frameWidth[0]
+        final fun <get-frameWidth>(): androidx.compose.ui.unit/Dp // com.github.skydoves.crayfish.ui/CropStyle.frameWidth.<get-frameWidth>|<get-frameWidth>(){}[0]
+    final val gridColor // com.github.skydoves.crayfish.ui/CropStyle.gridColor|{}gridColor[0]
+        final fun <get-gridColor>(): androidx.compose.ui.graphics/Color // com.github.skydoves.crayfish.ui/CropStyle.gridColor.<get-gridColor>|<get-gridColor>(){}[0]
+    final val gridMode // com.github.skydoves.crayfish.ui/CropStyle.gridMode|{}gridMode[0]
+        final fun <get-gridMode>(): com.github.skydoves.crayfish.ui/CropGridMode // com.github.skydoves.crayfish.ui/CropStyle.gridMode.<get-gridMode>|<get-gridMode>(){}[0]
+    final val gridWidth // com.github.skydoves.crayfish.ui/CropStyle.gridWidth|{}gridWidth[0]
+        final fun <get-gridWidth>(): androidx.compose.ui.unit/Dp // com.github.skydoves.crayfish.ui/CropStyle.gridWidth.<get-gridWidth>|<get-gridWidth>(){}[0]
+    final val handleColor // com.github.skydoves.crayfish.ui/CropStyle.handleColor|{}handleColor[0]
+        final fun <get-handleColor>(): androidx.compose.ui.graphics/Color // com.github.skydoves.crayfish.ui/CropStyle.handleColor.<get-handleColor>|<get-handleColor>(){}[0]
+    final val handleLength // com.github.skydoves.crayfish.ui/CropStyle.handleLength|{}handleLength[0]
+        final fun <get-handleLength>(): androidx.compose.ui.unit/Dp // com.github.skydoves.crayfish.ui/CropStyle.handleLength.<get-handleLength>|<get-handleLength>(){}[0]
+    final val handleThickness // com.github.skydoves.crayfish.ui/CropStyle.handleThickness|{}handleThickness[0]
+        final fun <get-handleThickness>(): androidx.compose.ui.unit/Dp // com.github.skydoves.crayfish.ui/CropStyle.handleThickness.<get-handleThickness>|<get-handleThickness>(){}[0]
+    final val handleTouchRadius // com.github.skydoves.crayfish.ui/CropStyle.handleTouchRadius|{}handleTouchRadius[0]
+        final fun <get-handleTouchRadius>(): androidx.compose.ui.unit/Dp // com.github.skydoves.crayfish.ui/CropStyle.handleTouchRadius.<get-handleTouchRadius>|<get-handleTouchRadius>(){}[0]
+    final val minimumCropSize // com.github.skydoves.crayfish.ui/CropStyle.minimumCropSize|{}minimumCropSize[0]
+        final fun <get-minimumCropSize>(): androidx.compose.ui.unit/Dp // com.github.skydoves.crayfish.ui/CropStyle.minimumCropSize.<get-minimumCropSize>|<get-minimumCropSize>(){}[0]
+    final val scrimColor // com.github.skydoves.crayfish.ui/CropStyle.scrimColor|{}scrimColor[0]
+        final fun <get-scrimColor>(): androidx.compose.ui.graphics/Color // com.github.skydoves.crayfish.ui/CropStyle.scrimColor.<get-scrimColor>|<get-scrimColor>(){}[0]
+
+    final fun component1(): androidx.compose.ui.graphics/Color // com.github.skydoves.crayfish.ui/CropStyle.component1|component1(){}[0]
+    final fun component10(): androidx.compose.ui.unit/Dp // com.github.skydoves.crayfish.ui/CropStyle.component10|component10(){}[0]
+    final fun component11(): androidx.compose.ui.unit/Dp // com.github.skydoves.crayfish.ui/CropStyle.component11|component11(){}[0]
+    final fun component2(): androidx.compose.ui.graphics/Color // com.github.skydoves.crayfish.ui/CropStyle.component2|component2(){}[0]
+    final fun component3(): androidx.compose.ui.unit/Dp // com.github.skydoves.crayfish.ui/CropStyle.component3|component3(){}[0]
+    final fun component4(): androidx.compose.ui.graphics/Color // com.github.skydoves.crayfish.ui/CropStyle.component4|component4(){}[0]
+    final fun component5(): androidx.compose.ui.unit/Dp // com.github.skydoves.crayfish.ui/CropStyle.component5|component5(){}[0]
+    final fun component6(): com.github.skydoves.crayfish.ui/CropGridMode // com.github.skydoves.crayfish.ui/CropStyle.component6|component6(){}[0]
+    final fun component7(): androidx.compose.ui.graphics/Color // com.github.skydoves.crayfish.ui/CropStyle.component7|component7(){}[0]
+    final fun component8(): androidx.compose.ui.unit/Dp // com.github.skydoves.crayfish.ui/CropStyle.component8|component8(){}[0]
+    final fun component9(): androidx.compose.ui.unit/Dp // com.github.skydoves.crayfish.ui/CropStyle.component9|component9(){}[0]
+    final fun copy(androidx.compose.ui.graphics/Color = ..., androidx.compose.ui.graphics/Color = ..., androidx.compose.ui.unit/Dp = ..., androidx.compose.ui.graphics/Color = ..., androidx.compose.ui.unit/Dp = ..., com.github.skydoves.crayfish.ui/CropGridMode = ..., androidx.compose.ui.graphics/Color = ..., androidx.compose.ui.unit/Dp = ..., androidx.compose.ui.unit/Dp = ..., androidx.compose.ui.unit/Dp = ..., androidx.compose.ui.unit/Dp = ...): com.github.skydoves.crayfish.ui/CropStyle // com.github.skydoves.crayfish.ui/CropStyle.copy|copy(androidx.compose.ui.graphics.Color;androidx.compose.ui.graphics.Color;androidx.compose.ui.unit.Dp;androidx.compose.ui.graphics.Color;androidx.compose.ui.unit.Dp;com.github.skydoves.crayfish.ui.CropGridMode;androidx.compose.ui.graphics.Color;androidx.compose.ui.unit.Dp;androidx.compose.ui.unit.Dp;androidx.compose.ui.unit.Dp;androidx.compose.ui.unit.Dp){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.github.skydoves.crayfish.ui/CropStyle.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.github.skydoves.crayfish.ui/CropStyle.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.github.skydoves.crayfish.ui/CropStyle.toString|toString(){}[0]
+
+    final object Companion { // com.github.skydoves.crayfish.ui/CropStyle.Companion|null[0]
+        final val Default // com.github.skydoves.crayfish.ui/CropStyle.Companion.Default|{}Default[0]
+            final fun <get-Default>(): com.github.skydoves.crayfish.ui/CropStyle // com.github.skydoves.crayfish.ui/CropStyle.Companion.Default.<get-Default>|<get-Default>(){}[0]
+    }
+}
+
+final object com.github.skydoves.crayfish.decode/ImageProbe { // com.github.skydoves.crayfish.decode/ImageProbe|null[0]
+    final const val HEADER_BYTE_COUNT // com.github.skydoves.crayfish.decode/ImageProbe.HEADER_BYTE_COUNT|{}HEADER_BYTE_COUNT[0]
+        final fun <get-HEADER_BYTE_COUNT>(): kotlin/Int // com.github.skydoves.crayfish.decode/ImageProbe.HEADER_BYTE_COUNT.<get-HEADER_BYTE_COUNT>|<get-HEADER_BYTE_COUNT>(){}[0]
+
+    final fun probe(kotlin/ByteArray): com.github.skydoves.crayfish.decode/ImageProbeResult? // com.github.skydoves.crayfish.decode/ImageProbe.probe|probe(kotlin.ByteArray){}[0]
+}
+
+final object com.github.skydoves.crayfish.decode/SampleSize { // com.github.skydoves.crayfish.decode/SampleSize|null[0]
+    final const val MAX // com.github.skydoves.crayfish.decode/SampleSize.MAX|{}MAX[0]
+        final fun <get-MAX>(): kotlin/Int // com.github.skydoves.crayfish.decode/SampleSize.MAX.<get-MAX>|<get-MAX>(){}[0]
+
+    final fun (com.github.skydoves.crayfish.decode/DecodeBudget).admits(com.github.skydoves.crayfish.decode/ImageSize): kotlin/Boolean // com.github.skydoves.crayfish.decode/SampleSize.admits|admits@com.github.skydoves.crayfish.decode.DecodeBudget(com.github.skydoves.crayfish.decode.ImageSize){}[0]
+    final fun (com.github.skydoves.crayfish.decode/ImageSize).sampledBy(kotlin/Int): com.github.skydoves.crayfish.decode/ImageSize // com.github.skydoves.crayfish.decode/SampleSize.sampledBy|sampledBy@com.github.skydoves.crayfish.decode.ImageSize(kotlin.Int){}[0]
+    final fun forDecode(com.github.skydoves.crayfish.decode/ImageSize, com.github.skydoves.crayfish.decode/ImageSize, com.github.skydoves.crayfish.decode/DecodeBudget = ...): kotlin/Int // com.github.skydoves.crayfish.decode/SampleSize.forDecode|forDecode(com.github.skydoves.crayfish.decode.ImageSize;com.github.skydoves.crayfish.decode.ImageSize;com.github.skydoves.crayfish.decode.DecodeBudget){}[0]
+}
+
+final object com.github.skydoves.crayfish.exif/ExifReader { // com.github.skydoves.crayfish.exif/ExifReader|null[0]
+    final fun readOrientation(kotlin/ByteArray): com.github.skydoves.crayfish.exif/ImageOrientation // com.github.skydoves.crayfish.exif/ExifReader.readOrientation|readOrientation(kotlin.ByteArray){}[0]
+}
+
+final object com.github.skydoves.crayfish.geometry/CropBounds { // com.github.skydoves.crayfish.geometry/CropBounds|null[0]
+    final val CenterAlignment // com.github.skydoves.crayfish.geometry/CropBounds.CenterAlignment|{}CenterAlignment[0]
+        final fun <get-CenterAlignment>(): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/CropBounds.CenterAlignment.<get-CenterAlignment>|<get-CenterAlignment>(){}[0]
+
+    final fun coerceOffset(com.github.skydoves.crayfish.geometry/CropTransform, com.github.skydoves.crayfish.geometry/FloatRect, com.github.skydoves.crayfish.geometry/FloatRect, com.github.skydoves.crayfish.geometry/FloatPoint = ...): com.github.skydoves.crayfish.geometry/FloatPoint // com.github.skydoves.crayfish.geometry/CropBounds.coerceOffset|coerceOffset(com.github.skydoves.crayfish.geometry.CropTransform;com.github.skydoves.crayfish.geometry.FloatRect;com.github.skydoves.crayfish.geometry.FloatRect;com.github.skydoves.crayfish.geometry.FloatPoint){}[0]
+}
+
+final object com.github.skydoves.crayfish.geometry/CropCoverage { // com.github.skydoves.crayfish.geometry/CropCoverage|null[0]
+    final const val CORRECTION_SLACK // com.github.skydoves.crayfish.geometry/CropCoverage.CORRECTION_SLACK|{}CORRECTION_SLACK[0]
+        final fun <get-CORRECTION_SLACK>(): kotlin/Float // com.github.skydoves.crayfish.geometry/CropCoverage.CORRECTION_SLACK.<get-CORRECTION_SLACK>|<get-CORRECTION_SLACK>(){}[0]
+
+    final fun correct(com.github.skydoves.crayfish.geometry/CropTransform, com.github.skydoves.crayfish.geometry/FloatRect, com.github.skydoves.crayfish.geometry/FloatRect): com.github.skydoves.crayfish.geometry/CoverageCorrection // com.github.skydoves.crayfish.geometry/CropCoverage.correct|correct(com.github.skydoves.crayfish.geometry.CropTransform;com.github.skydoves.crayfish.geometry.FloatRect;com.github.skydoves.crayfish.geometry.FloatRect){}[0]
+    final fun covers(com.github.skydoves.crayfish.geometry/CropTransform, com.github.skydoves.crayfish.geometry/FloatRect, com.github.skydoves.crayfish.geometry/FloatRect, kotlin/Float = ...): kotlin/Boolean // com.github.skydoves.crayfish.geometry/CropCoverage.covers|covers(com.github.skydoves.crayfish.geometry.CropTransform;com.github.skydoves.crayfish.geometry.FloatRect;com.github.skydoves.crayfish.geometry.FloatRect;kotlin.Float){}[0]
+}
+
+final object com.github.skydoves.crayfish.geometry/RotationSnap { // com.github.skydoves.crayfish.geometry/RotationSnap|null[0]
+    final const val DEFAULT_THRESHOLD_DEGREES // com.github.skydoves.crayfish.geometry/RotationSnap.DEFAULT_THRESHOLD_DEGREES|{}DEFAULT_THRESHOLD_DEGREES[0]
+        final fun <get-DEFAULT_THRESHOLD_DEGREES>(): kotlin/Float // com.github.skydoves.crayfish.geometry/RotationSnap.DEFAULT_THRESHOLD_DEGREES.<get-DEFAULT_THRESHOLD_DEGREES>|<get-DEFAULT_THRESHOLD_DEGREES>(){}[0]
+
+    final fun isSnapping(kotlin/Float, kotlin/Float = ...): kotlin/Boolean // com.github.skydoves.crayfish.geometry/RotationSnap.isSnapping|isSnapping(kotlin.Float;kotlin.Float){}[0]
+    final fun normalize(kotlin/Float): kotlin/Float // com.github.skydoves.crayfish.geometry/RotationSnap.normalize|normalize(kotlin.Float){}[0]
+    final fun snap(kotlin/Float, kotlin/Float = ...): kotlin/Float // com.github.skydoves.crayfish.geometry/RotationSnap.snap|snap(kotlin.Float;kotlin.Float){}[0]
+}
+
+final val com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_CropSource_Bytes$stableprop // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_CropSource_Bytes$stableprop|#static{}com_github_skydoves_crayfish_decode_CropSource_Bytes$stableprop[0]
+final val com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_CropSource_FilePath$stableprop // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_CropSource_FilePath$stableprop|#static{}com_github_skydoves_crayfish_decode_CropSource_FilePath$stableprop[0]
+final val com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_CropSource_Image$stableprop // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_CropSource_Image$stableprop|#static{}com_github_skydoves_crayfish_decode_CropSource_Image$stableprop[0]
+final val com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_CropSource_Loader$stableprop // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_CropSource_Loader$stableprop|#static{}com_github_skydoves_crayfish_decode_CropSource_Loader$stableprop[0]
+final val com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_DecodeBudget$stableprop // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_DecodeBudget$stableprop|#static{}com_github_skydoves_crayfish_decode_DecodeBudget$stableprop[0]
+final val com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_DecodedRegion$stableprop // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_DecodedRegion$stableprop|#static{}com_github_skydoves_crayfish_decode_DecodedRegion$stableprop[0]
+final val com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_ImageProbe$stableprop // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_ImageProbe$stableprop|#static{}com_github_skydoves_crayfish_decode_ImageProbe$stableprop[0]
+final val com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_ImageProbeResult$stableprop // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_ImageProbeResult$stableprop|#static{}com_github_skydoves_crayfish_decode_ImageProbeResult$stableprop[0]
+final val com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_ImageRegion$stableprop // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_ImageRegion$stableprop|#static{}com_github_skydoves_crayfish_decode_ImageRegion$stableprop[0]
+final val com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_ImageSize$stableprop // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_ImageSize$stableprop|#static{}com_github_skydoves_crayfish_decode_ImageSize$stableprop[0]
+final val com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_PlatformImage$stableprop // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_PlatformImage$stableprop|#static{}com_github_skydoves_crayfish_decode_PlatformImage$stableprop[0]
+final val com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_SampleSize$stableprop // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_SampleSize$stableprop|#static{}com_github_skydoves_crayfish_decode_SampleSize$stableprop[0]
+final val com.github.skydoves.crayfish.encode/com_github_skydoves_crayfish_encode_EncodeOptions$stableprop // com.github.skydoves.crayfish.encode/com_github_skydoves_crayfish_encode_EncodeOptions$stableprop|#static{}com_github_skydoves_crayfish_encode_EncodeOptions$stableprop[0]
+final val com.github.skydoves.crayfish.exif/com_github_skydoves_crayfish_exif_ExifReader$stableprop // com.github.skydoves.crayfish.exif/com_github_skydoves_crayfish_exif_ExifReader$stableprop|#static{}com_github_skydoves_crayfish_exif_ExifReader$stableprop[0]
+final val com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CoordinateSpace$stableprop // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CoordinateSpace$stableprop|#static{}com_github_skydoves_crayfish_geometry_CoordinateSpace$stableprop[0]
+final val com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CoverageCorrection$stableprop // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CoverageCorrection$stableprop|#static{}com_github_skydoves_crayfish_geometry_CoverageCorrection$stableprop[0]
+final val com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CropBounds$stableprop // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CropBounds$stableprop|#static{}com_github_skydoves_crayfish_geometry_CropBounds$stableprop[0]
+final val com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CropCoverage$stableprop // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CropCoverage$stableprop|#static{}com_github_skydoves_crayfish_geometry_CropCoverage$stableprop[0]
+final val com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CropTransform$stableprop // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CropTransform$stableprop|#static{}com_github_skydoves_crayfish_geometry_CropTransform$stableprop[0]
+final val com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_FloatPoint$stableprop // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_FloatPoint$stableprop|#static{}com_github_skydoves_crayfish_geometry_FloatPoint$stableprop[0]
+final val com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_FloatRect$stableprop // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_FloatRect$stableprop|#static{}com_github_skydoves_crayfish_geometry_FloatRect$stableprop[0]
+final val com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_FloatSize$stableprop // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_FloatSize$stableprop|#static{}com_github_skydoves_crayfish_geometry_FloatSize$stableprop[0]
+final val com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_RotationSnap$stableprop // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_RotationSnap$stableprop|#static{}com_github_skydoves_crayfish_geometry_RotationSnap$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_AspectRatio_Fixed$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_AspectRatio_Fixed$stableprop|#static{}com_github_skydoves_crayfish_ui_AspectRatio_Fixed$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_AspectRatio_Free$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_AspectRatio_Free$stableprop|#static{}com_github_skydoves_crayfish_ui_AspectRatio_Free$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropAccessibility$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropAccessibility$stableprop|#static{}com_github_skydoves_crayfish_ui_CropAccessibility$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropGestures$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropGestures$stableprop|#static{}com_github_skydoves_crayfish_ui_CropGestures$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropImage_Cancelled$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropImage_Cancelled$stableprop|#static{}com_github_skydoves_crayfish_ui_CropImage_Cancelled$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropImage_Failure$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropImage_Failure$stableprop|#static{}com_github_skydoves_crayfish_ui_CropImage_Failure$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropImage_Success$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropImage_Success$stableprop|#static{}com_github_skydoves_crayfish_ui_CropImage_Success$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropOutcome_OfBytes$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropOutcome_OfBytes$stableprop|#static{}com_github_skydoves_crayfish_ui_CropOutcome_OfBytes$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropOutcome_OfImage$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropOutcome_OfImage$stableprop|#static{}com_github_skydoves_crayfish_ui_CropOutcome_OfImage$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropOutput_Bytes$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropOutput_Bytes$stableprop|#static{}com_github_skydoves_crayfish_ui_CropOutput_Bytes$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropOutput_Image$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropOutput_Image$stableprop|#static{}com_github_skydoves_crayfish_ui_CropOutput_Image$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropPixels_Ready$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropPixels_Ready$stableprop|#static{}com_github_skydoves_crayfish_ui_CropPixels_Ready$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropPixels_Refused$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropPixels_Refused$stableprop|#static{}com_github_skydoves_crayfish_ui_CropPixels_Refused$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropRecipe$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropRecipe$stableprop|#static{}com_github_skydoves_crayfish_ui_CropRecipe$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropResult_Cancelled$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropResult_Cancelled$stableprop|#static{}com_github_skydoves_crayfish_ui_CropResult_Cancelled$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropResult_Failure$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropResult_Failure$stableprop|#static{}com_github_skydoves_crayfish_ui_CropResult_Failure$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropResult_Success$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropResult_Success$stableprop|#static{}com_github_skydoves_crayfish_ui_CropResult_Success$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropShape_Circle$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropShape_Circle$stableprop|#static{}com_github_skydoves_crayfish_ui_CropShape_Circle$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropShape_Custom$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropShape_Custom$stableprop|#static{}com_github_skydoves_crayfish_ui_CropShape_Custom$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropShape_Rectangle$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropShape_Rectangle$stableprop|#static{}com_github_skydoves_crayfish_ui_CropShape_Rectangle$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropShape_RoundedRectangle$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropShape_RoundedRectangle$stableprop|#static{}com_github_skydoves_crayfish_ui_CropShape_RoundedRectangle$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropStatus_Failed$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropStatus_Failed$stableprop|#static{}com_github_skydoves_crayfish_ui_CropStatus_Failed$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropStatus_Loading$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropStatus_Loading$stableprop|#static{}com_github_skydoves_crayfish_ui_CropStatus_Loading$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropStatus_Ready$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropStatus_Ready$stableprop|#static{}com_github_skydoves_crayfish_ui_CropStatus_Ready$stableprop[0]
+final val com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropStyle$stableprop // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropStyle$stableprop|#static{}com_github_skydoves_crayfish_ui_CropStyle$stableprop[0]
+
+final fun (androidx.compose.ui.graphics/ImageBitmap).com.github.skydoves.crayfish.ui/cropTo(com.github.skydoves.crayfish.decode/ImageRegion): androidx.compose.ui.graphics/ImageBitmap? // com.github.skydoves.crayfish.ui/cropTo|cropTo@androidx.compose.ui.graphics.ImageBitmap(com.github.skydoves.crayfish.decode.ImageRegion){}[0]
+final fun (com.github.skydoves.crayfish.decode/ImageSize).com.github.skydoves.crayfish.geometry/toFloatSize(): com.github.skydoves.crayfish.geometry/FloatSize // com.github.skydoves.crayfish.geometry/toFloatSize|toFloatSize@com.github.skydoves.crayfish.decode.ImageSize(){}[0]
+final fun com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_CropSource_Bytes$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_CropSource_Bytes$stableprop_getter|com_github_skydoves_crayfish_decode_CropSource_Bytes$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_CropSource_FilePath$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_CropSource_FilePath$stableprop_getter|com_github_skydoves_crayfish_decode_CropSource_FilePath$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_CropSource_Image$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_CropSource_Image$stableprop_getter|com_github_skydoves_crayfish_decode_CropSource_Image$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_CropSource_Loader$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_CropSource_Loader$stableprop_getter|com_github_skydoves_crayfish_decode_CropSource_Loader$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_DecodeBudget$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_DecodeBudget$stableprop_getter|com_github_skydoves_crayfish_decode_DecodeBudget$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_DecodedRegion$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_DecodedRegion$stableprop_getter|com_github_skydoves_crayfish_decode_DecodedRegion$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_ImageProbe$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_ImageProbe$stableprop_getter|com_github_skydoves_crayfish_decode_ImageProbe$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_ImageProbeResult$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_ImageProbeResult$stableprop_getter|com_github_skydoves_crayfish_decode_ImageProbeResult$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_ImageRegion$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_ImageRegion$stableprop_getter|com_github_skydoves_crayfish_decode_ImageRegion$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_ImageSize$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_ImageSize$stableprop_getter|com_github_skydoves_crayfish_decode_ImageSize$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_PlatformImage$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_PlatformImage$stableprop_getter|com_github_skydoves_crayfish_decode_PlatformImage$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_SampleSize$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.decode/com_github_skydoves_crayfish_decode_SampleSize$stableprop_getter|com_github_skydoves_crayfish_decode_SampleSize$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.encode/com_github_skydoves_crayfish_encode_EncodeOptions$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.encode/com_github_skydoves_crayfish_encode_EncodeOptions$stableprop_getter|com_github_skydoves_crayfish_encode_EncodeOptions$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.exif/com_github_skydoves_crayfish_exif_ExifReader$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.exif/com_github_skydoves_crayfish_exif_ExifReader$stableprop_getter|com_github_skydoves_crayfish_exif_ExifReader$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CoordinateSpace$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CoordinateSpace$stableprop_getter|com_github_skydoves_crayfish_geometry_CoordinateSpace$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CoverageCorrection$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CoverageCorrection$stableprop_getter|com_github_skydoves_crayfish_geometry_CoverageCorrection$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CropBounds$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CropBounds$stableprop_getter|com_github_skydoves_crayfish_geometry_CropBounds$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CropCoverage$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CropCoverage$stableprop_getter|com_github_skydoves_crayfish_geometry_CropCoverage$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CropTransform$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_CropTransform$stableprop_getter|com_github_skydoves_crayfish_geometry_CropTransform$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_FloatPoint$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_FloatPoint$stableprop_getter|com_github_skydoves_crayfish_geometry_FloatPoint$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_FloatRect$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_FloatRect$stableprop_getter|com_github_skydoves_crayfish_geometry_FloatRect$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_FloatSize$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_FloatSize$stableprop_getter|com_github_skydoves_crayfish_geometry_FloatSize$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_RotationSnap$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.geometry/com_github_skydoves_crayfish_geometry_RotationSnap$stableprop_getter|com_github_skydoves_crayfish_geometry_RotationSnap$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.geometry/fitInside(com.github.skydoves.crayfish.geometry/FloatSize, com.github.skydoves.crayfish.geometry/FloatRect): com.github.skydoves.crayfish.geometry/FloatRect // com.github.skydoves.crayfish.geometry/fitInside|fitInside(com.github.skydoves.crayfish.geometry.FloatSize;com.github.skydoves.crayfish.geometry.FloatRect){}[0]
+final fun com.github.skydoves.crayfish.ui/CropOverlay(com.github.skydoves.crayfish.ui/CropState, androidx.compose.ui/Modifier?, com.github.skydoves.crayfish.ui/CropStyle?, com.github.skydoves.crayfish.ui/CropShape?, com.github.skydoves.crayfish.ui/CropAccessibility?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // com.github.skydoves.crayfish.ui/CropOverlay|CropOverlay(com.github.skydoves.crayfish.ui.CropState;androidx.compose.ui.Modifier?;com.github.skydoves.crayfish.ui.CropStyle?;com.github.skydoves.crayfish.ui.CropShape?;com.github.skydoves.crayfish.ui.CropAccessibility?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun com.github.skydoves.crayfish.ui/Cropper(com.github.skydoves.crayfish.ui/CropState, androidx.compose.ui/Modifier?, com.github.skydoves.crayfish.ui/CropStyle?, com.github.skydoves.crayfish.ui/CropGestures?, kotlin/Function3<com.github.skydoves.crayfish.ui/CropState, androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // com.github.skydoves.crayfish.ui/Cropper|Cropper(com.github.skydoves.crayfish.ui.CropState;androidx.compose.ui.Modifier?;com.github.skydoves.crayfish.ui.CropStyle?;com.github.skydoves.crayfish.ui.CropGestures?;kotlin.Function3<com.github.skydoves.crayfish.ui.CropState,androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun com.github.skydoves.crayfish.ui/DefaultCropControls(kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>, androidx.compose.ui/Modifier?, kotlin/String?, kotlin/String?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // com.github.skydoves.crayfish.ui/DefaultCropControls|DefaultCropControls(kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>;androidx.compose.ui.Modifier?;kotlin.String?;kotlin.String?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun com.github.skydoves.crayfish.ui/ImageCropperDialog(com.github.skydoves.crayfish.ui/ImageCropper, androidx.compose.ui/Modifier?, com.github.skydoves.crayfish.ui/CropStyle?, com.github.skydoves.crayfish.ui/CropGestures?, com.github.skydoves.crayfish.ui/CropShape?, com.github.skydoves.crayfish.ui/CropAccessibility?, androidx.compose.ui.window/DialogProperties?, kotlin/Function4<kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>, androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // com.github.skydoves.crayfish.ui/ImageCropperDialog|ImageCropperDialog(com.github.skydoves.crayfish.ui.ImageCropper;androidx.compose.ui.Modifier?;com.github.skydoves.crayfish.ui.CropStyle?;com.github.skydoves.crayfish.ui.CropGestures?;com.github.skydoves.crayfish.ui.CropShape?;com.github.skydoves.crayfish.ui.CropAccessibility?;androidx.compose.ui.window.DialogProperties?;kotlin.Function4<kotlin.Function0<kotlin.Unit>,kotlin.Function0<kotlin.Unit>,androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_AspectRatio_Fixed$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_AspectRatio_Fixed$stableprop_getter|com_github_skydoves_crayfish_ui_AspectRatio_Fixed$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_AspectRatio_Free$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_AspectRatio_Free$stableprop_getter|com_github_skydoves_crayfish_ui_AspectRatio_Free$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropAccessibility$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropAccessibility$stableprop_getter|com_github_skydoves_crayfish_ui_CropAccessibility$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropGestures$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropGestures$stableprop_getter|com_github_skydoves_crayfish_ui_CropGestures$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropImage_Cancelled$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropImage_Cancelled$stableprop_getter|com_github_skydoves_crayfish_ui_CropImage_Cancelled$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropImage_Failure$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropImage_Failure$stableprop_getter|com_github_skydoves_crayfish_ui_CropImage_Failure$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropImage_Success$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropImage_Success$stableprop_getter|com_github_skydoves_crayfish_ui_CropImage_Success$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropOutcome_OfBytes$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropOutcome_OfBytes$stableprop_getter|com_github_skydoves_crayfish_ui_CropOutcome_OfBytes$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropOutcome_OfImage$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropOutcome_OfImage$stableprop_getter|com_github_skydoves_crayfish_ui_CropOutcome_OfImage$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropOutput_Bytes$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropOutput_Bytes$stableprop_getter|com_github_skydoves_crayfish_ui_CropOutput_Bytes$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropOutput_Image$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropOutput_Image$stableprop_getter|com_github_skydoves_crayfish_ui_CropOutput_Image$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropPixels_Ready$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropPixels_Ready$stableprop_getter|com_github_skydoves_crayfish_ui_CropPixels_Ready$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropPixels_Refused$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropPixels_Refused$stableprop_getter|com_github_skydoves_crayfish_ui_CropPixels_Refused$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropRecipe$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropRecipe$stableprop_getter|com_github_skydoves_crayfish_ui_CropRecipe$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropResult_Cancelled$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropResult_Cancelled$stableprop_getter|com_github_skydoves_crayfish_ui_CropResult_Cancelled$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropResult_Failure$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropResult_Failure$stableprop_getter|com_github_skydoves_crayfish_ui_CropResult_Failure$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropResult_Success$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropResult_Success$stableprop_getter|com_github_skydoves_crayfish_ui_CropResult_Success$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropShape_Circle$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropShape_Circle$stableprop_getter|com_github_skydoves_crayfish_ui_CropShape_Circle$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropShape_Custom$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropShape_Custom$stableprop_getter|com_github_skydoves_crayfish_ui_CropShape_Custom$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropShape_Rectangle$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropShape_Rectangle$stableprop_getter|com_github_skydoves_crayfish_ui_CropShape_Rectangle$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropShape_RoundedRectangle$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropShape_RoundedRectangle$stableprop_getter|com_github_skydoves_crayfish_ui_CropShape_RoundedRectangle$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropStatus_Failed$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropStatus_Failed$stableprop_getter|com_github_skydoves_crayfish_ui_CropStatus_Failed$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropStatus_Loading$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropStatus_Loading$stableprop_getter|com_github_skydoves_crayfish_ui_CropStatus_Loading$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropStatus_Ready$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropStatus_Ready$stableprop_getter|com_github_skydoves_crayfish_ui_CropStatus_Ready$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropStyle$stableprop_getter(): kotlin/Int // com.github.skydoves.crayfish.ui/com_github_skydoves_crayfish_ui_CropStyle$stableprop_getter|com_github_skydoves_crayfish_ui_CropStyle$stableprop_getter(){}[0]
+final fun com.github.skydoves.crayfish.ui/defaultCropActionLabel(com.github.skydoves.crayfish.ui/CropAccessibilityAction): kotlin/String // com.github.skydoves.crayfish.ui/defaultCropActionLabel|defaultCropActionLabel(com.github.skydoves.crayfish.ui.CropAccessibilityAction){}[0]
+final fun com.github.skydoves.crayfish.ui/defaultCropDescription(com.github.skydoves.crayfish.geometry/FloatRect, com.github.skydoves.crayfish.geometry/FloatSize): kotlin/String // com.github.skydoves.crayfish.ui/defaultCropDescription|defaultCropDescription(com.github.skydoves.crayfish.geometry.FloatRect;com.github.skydoves.crayfish.geometry.FloatSize){}[0]
+final fun com.github.skydoves.crayfish.ui/rememberCropSource(androidx.compose.ui.graphics.painter/Painter, kotlin/String, androidx.compose.ui.unit/IntSize?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int): com.github.skydoves.crayfish.decode/CropSource? // com.github.skydoves.crayfish.ui/rememberCropSource|rememberCropSource(androidx.compose.ui.graphics.painter.Painter;kotlin.String;androidx.compose.ui.unit.IntSize?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun com.github.skydoves.crayfish.ui/rememberCropSource(androidx.compose.ui.graphics/ImageBitmap, kotlin/String, androidx.compose.runtime/Composer?, kotlin/Int): com.github.skydoves.crayfish.decode/CropSource // com.github.skydoves.crayfish.ui/rememberCropSource|rememberCropSource(androidx.compose.ui.graphics.ImageBitmap;kotlin.String;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun com.github.skydoves.crayfish.ui/rememberCropState(com.github.skydoves.crayfish.decode/CropSource, com.github.skydoves.crayfish.ui/AspectRatio?, com.github.skydoves.crayfish.ui/CropRecipe?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int): com.github.skydoves.crayfish.ui/CropState // com.github.skydoves.crayfish.ui/rememberCropState|rememberCropState(com.github.skydoves.crayfish.decode.CropSource;com.github.skydoves.crayfish.ui.AspectRatio?;com.github.skydoves.crayfish.ui.CropRecipe?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun com.github.skydoves.crayfish.ui/rememberImageCropper(androidx.compose.runtime/Composer?, kotlin/Int): com.github.skydoves.crayfish.ui/ImageCropper // com.github.skydoves.crayfish.ui/rememberImageCropper|rememberImageCropper(androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final suspend fun com.github.skydoves.crayfish.decode/createRegionDecoder(com.github.skydoves.crayfish.decode/CropSource): com.github.skydoves.crayfish.decode/RegionDecoder? // com.github.skydoves.crayfish.decode/createRegionDecoder|createRegionDecoder(com.github.skydoves.crayfish.decode.CropSource){}[0]
+final suspend fun com.github.skydoves.crayfish.encode/encodeImage(com.github.skydoves.crayfish.decode/PlatformImage, com.github.skydoves.crayfish.encode/EncodeOptions): kotlin/ByteArray? // com.github.skydoves.crayfish.encode/encodeImage|encodeImage(com.github.skydoves.crayfish.decode.PlatformImage;com.github.skydoves.crayfish.encode.EncodeOptions){}[0]

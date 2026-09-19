@@ -1,0 +1,10 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /* The cropper handles its own panning; letting the page scroll under a drag fights it. */
+  overflow: hidden;
+  background-color: #141218;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}

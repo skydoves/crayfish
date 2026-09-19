@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>Crayfish</title>
+  <desc>Crayfish, a Compose Multiplatform image cropper. The pincer notches are square on purpose:
+        a claw and a crop mark are the same shape.</desc>
+  <defs>
+    <linearGradient id="shell" x1="0.2" y1="0" x2="0.75" y2="1">
+      <stop offset="0" stop-color="#FF7A55"/>
+      <stop offset="1" stop-color="#D33A1E"/>
+    </linearGradient>
+
+    <!-- Claw drawn tip-up about its own base. The notch is part of the outline, not an overlay:
+         an overlay would need an opaque background and this mark has none. -->
+    <path id="claw" d="M0 0
+      C -33 -11, -51 -46, -46 -83
+      C -42 -108, -24 -125, -4 -127
+      L 2 -86 L 20 -86 L 26 -127
+      C 48 -123, 64 -103, 64 -76
+      C 64 -39, 40 -7, 11 4 Z"/>
+
+    <!-- The left half. The right is this mirrored about the canvas centre, so the mark cannot
+         drift out of symmetry: rotating an asymmetric path by plus and minus the same angle does
+         not give a symmetric pair, which is how an earlier draft ended up 10px off centre. -->
+    <g id="half">
+      <path d="M240 150 C 216 108, 182 74, 140 50" fill="none" stroke="#C8341C"
+            stroke-width="11" stroke-linecap="round"/>
+      <path d="M220 252 L 186 246" fill="none" stroke="url(#shell)"
+            stroke-width="30" stroke-linecap="round"/>
+      <use href="#claw" transform="translate(180 246) rotate(-20) scale(0.88)" fill="url(#shell)"/>
+      <path d="M247 381 C 214 387, 185 405, 167 431 C 189 453, 219 456, 245 440
+               C 249 421, 250 400, 247 381 Z" fill="url(#shell)"/>
+    </g>
+  </defs>
+
+  <use href="#half"/>
+  <use href="#half" transform="translate(512 0) scale(-1 1)"/>
+
+  <!-- carapace -->
+  <path d="M256 120 C 291 147, 310 183, 310 222 C 310 261, 293 291, 256 305
+           C 219 291, 202 261, 202 222 C 202 183, 221 147, 256 120 Z" fill="url(#shell)"/>
+  <circle cx="233" cy="189" r="13" fill="#3A0F08"/>
+  <circle cx="279" cy="189" r="13" fill="#3A0F08"/>
+
+  <!-- abdomen -->
+  <g fill="url(#shell)">
+    <rect x="217" y="301" width="78" height="32" rx="15"/>
+    <rect x="223" y="329" width="66" height="30" rx="14"/>
+    <rect x="229" y="355" width="54" height="28" rx="13"/>
+  </g>
+
+  <!-- telson -->
+  <path d="M256 378 C 243 388, 235 412, 235 438 C 235 452, 244 460, 256 460
+           C 268 460, 277 452, 277 438 C 277 412, 269 388, 256 378 Z" fill="url(#shell)"/>
+</svg>
