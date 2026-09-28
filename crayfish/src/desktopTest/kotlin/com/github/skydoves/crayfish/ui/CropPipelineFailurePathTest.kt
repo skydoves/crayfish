@@ -29,15 +29,18 @@ import com.github.skydoves.crayfish.exif.ImageOrientation
 import com.github.skydoves.crayfish.geometry.FloatRect
 import com.github.skydoves.crayfish.geometry.FloatSize
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
+import kotlin.coroutines.cancellation.CancellationException
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
@@ -78,25 +81,36 @@ class CropPipelineFailurePathTest {
    * reporting a cancelled crop as a failure puts an error in front of a user who pressed back. The
    * distinction is made from the coroutine's own state, so this test cancels the job the crop is
    * running under and asserts the *other* answer to the same input.
+   *
+   * That answer is the `CancellationException` any suspend function throws, not a value. A value,
+   * even [CropResult.Cancelled], resumes the code after `crop()` in a scope that has gone, and the
+   * dialog's own confirm would then complete whichever crop request came next.
    */
   @Test
   fun reportsCancellationRatherThanFailureWhenTheJobEndedDuringTheDecode() = runBlocking<Unit> {
     // The cancellation has to be visible to the pipeline's own coroutine, so the crop runs in a
-    // job the decoder itself cancels on the way out. `launch` absorbs the cancellation and `join`
-    // waits for the body, which has already written its answer to `result`.
+    // job the decoder itself cancels on the way out. Started lazily so the decoder cannot run
+    // before `running` points at the job.
     var running: Job? = null
     val state = stateWith(FailingDecoder(imageSize, onDecode = { running?.cancel() }))
 
     var result: CropResult? = null
+    var thrown: Throwable? = null
     val scope = CoroutineScope(Dispatchers.Default)
-    val job = scope.launch { result = state.crop(EncodeOptions(EncodedFormat.PNG)) }
+    val job = scope.launch(start = CoroutineStart.LAZY) {
+      try {
+        result = state.crop(EncodeOptions(EncodedFormat.PNG))
+      } catch (error: Throwable) {
+        thrown = error
+        throw error
+      }
+    }
     running = job
+    job.start()
     job.join()
 
-    assertIs<CropResult.Cancelled>(
-      assertNotNull(result, "the pipeline returned nothing at all"),
-      "a cancelled decode was reported as a failure",
-    )
+    assertNull(result, "a cancelled caller was handed $result, so code after crop() ran")
+    assertIs<CancellationException>(thrown, "the crop ended in $thrown rather than cancellation")
   }
 
   // -----------------------------------------------------------------------------------------
