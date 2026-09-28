@@ -111,9 +111,12 @@ public sealed interface CropState {
   /**
    * Decodes and encodes the cropped region.
    *
-   * Suspends; the work runs off the caller's thread. Cancelling the calling scope cancels the
-   * decode between steps, though not the encode itself, which is a blocking platform call with no
-   * suspension point, so a cancelled job is detected after it returns rather than during.
+   * Suspends; the work runs off the caller's thread, so a UI scope can call it without freezing.
+   * The browser is the exception, having only the one thread. The frame and transform are read
+   * when this is called: a gesture that lands while it runs changes the next crop, not this one.
+   * Cancelling the calling scope cancels the decode between steps, though not the encode itself,
+   * which is a blocking platform call with no suspension point, so a cancelled job is detected
+   * after it returns rather than during.
    *
    * @param budget the ceiling on what this crop is allowed to allocate. The default caps it at
    *   192MiB, which is what makes a 200 megapixel source croppable at all. Lower it when the result
@@ -147,7 +150,8 @@ public sealed interface CropState {
    * Shorter than [crop] rather than a wrapper around it. Going through bytes to reach something
    * drawable means encoding and immediately decoding again, which costs a second full copy of the
    * crop and, in a lossy format, quality that does not come back. There are no [EncodeOptions]
-   * here because nothing is encoded, and alpha survives for the same reason.
+   * here because nothing is encoded, and alpha survives for the same reason. Like [crop], it runs
+   * off the caller's thread and crops the frame as it was when called.
    *
    * @param budget the same ceiling [crop] takes.
    */

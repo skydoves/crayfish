@@ -30,10 +30,14 @@ import com.github.skydoves.crayfish.encode.encodeImage
 import com.github.skydoves.crayfish.exif.ImageOrientation
 import com.github.skydoves.crayfish.exif.toOrientedRegion
 import com.github.skydoves.crayfish.exif.toRawRegion
+import com.github.skydoves.crayfish.geometry.CoordinateSpace
 import com.github.skydoves.crayfish.geometry.CropTransform
-import com.github.skydoves.crayfish.geometry.FloatPoint
+import com.github.skydoves.crayfish.geometry.FloatRect
+import com.github.skydoves.crayfish.geometry.ViewportToImage
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.withContext
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.math.roundToInt
 
@@ -72,24 +76,24 @@ import kotlin.math.roundToInt
  * The source's own Exif orientation is applied before any of this, by `reorient`, so the two never
  * compose in the wrong order.
  */
-private suspend fun cropPixels(state: RealCropState, budget: DecodeBudget): CropPixels {
+private suspend fun cropPixels(inputs: CropInputs, budget: DecodeBudget): CropPixels {
   // The state already knows why a source it failed to open failed; repeating that here as a
   // generic SourceUnreadable would throw away a cause the caller could have shown.
-  (state.status as? CropStatus.Failed)?.let {
+  (inputs.status as? CropStatus.Failed)?.let {
     return CropPixels.Refused(CropResult.Failure(it.reason, it.cause))
   }
-  val decoder = state.decoder
+  val decoder = inputs.decoder
     ?: return CropPixels.Refused(CropResult.Failure(CropResult.Failure.Reason.SourceUnreadable))
 
   // The frame on screen, in the image's oriented coordinates. `toImageRegion` inverts the
   // transform, rounds to whole pixels and clips to the image, so a frame dragged off the edge
   // arrives legal and a frame dragged entirely off the image arrives as null.
-  val orientedRegion = state.coordinateSpace.toImageRegion(state.cropRect)
+  val orientedRegion = inputs.space.toImageRegion(inputs.cropRect)
     ?: return CropPixels.Refused(CropResult.Failure(CropResult.Failure.Reason.EmptyRegion))
 
   // Down onto the file's own grid, which is the only space the decoder accepts. The state's
   // rectangles live in oriented space; the decoder reads the raw one.
-  val outstanding = state.outstandingOrientation(decoder)
+  val outstanding = inputs.outstandingOrientation(decoder)
   val rawSize = decoder.imageSize
   val rawRegion = outstanding.toRawRegion(orientedRegion, rawSize)
     .intersect(ImageRegion.of(rawSize))
@@ -101,7 +105,7 @@ private suspend fun cropPixels(state: RealCropState, budget: DecodeBudget): Crop
   // all by bytes: a rotated crop of a 108MP source asked for a single 166MB allocation on a device
   // whose entire heap cap was 192MB, and the OutOfMemoryError escaped to the caller, which is
   // exactly the failure this library exists to prevent.
-  val bakesTransform = state.transform.sanitized().baked
+  val bakesTransform = inputs.space.transform.sanitized().baked
   val decodeBudget = if (bakesTransform) budget.halved() else budget
 
   // The budget applies even though the caller wants every pixel of the region. Passing the
@@ -151,8 +155,8 @@ private suspend fun cropPixels(state: RealCropState, budget: DecodeBudget): Crop
   // `toImageRegion` already inverted the whole transform to choose *which* pixels to decode, so at
   // a quarter turn those pixels are the right ones lying on their side, and at a free angle they
   // are the axis aligned bounding box of the tilted frame, a superset. This turns them.
-  val framed = frameThroughViewerTransform(state, uprightPixels, orientedRegion, sampleSize)
-  if (framed == null && state.transform.baked) {
+  val framed = frameThroughViewerTransform(inputs, uprightPixels, orientedRegion, sampleSize)
+  if (framed == null && inputs.space.transform.baked) {
     reoriented?.close()
     decoded.close()
     return CropPixels.Refused(
@@ -195,7 +199,16 @@ internal suspend fun cropToBytes(
   options: EncodeOptions,
   budget: DecodeBudget = DecodeBudget.ForOutput,
 ): CropResult {
-  val pixels = when (val outcome = cropPixels(state, budget)) {
+  val inputs = CropInputs(state)
+  return offTheCallersThread { cropToBytes(inputs, options, budget) }
+}
+
+private suspend fun cropToBytes(
+  inputs: CropInputs,
+  options: EncodeOptions,
+  budget: DecodeBudget,
+): CropResult {
+  val pixels = when (val outcome = cropPixels(inputs, budget)) {
     is CropPixels.Refused -> return outcome.result
     is CropPixels.Ready -> outcome
   }
@@ -203,7 +216,7 @@ internal suspend fun cropToBytes(
   // Cut before the alpha check, not after: the mask is what puts the transparency there, and
   // checking first would ask whether the *unmasked* pixels need an alpha channel.
   val masked = if (options.format.supportsAlpha) {
-    maskToShape(pixels.image, state.shape, state.cornerRadiusInOutputPixels(pixels.size))
+    maskToShape(pixels.image, inputs.shape, inputs.cornerRadiusInOutputPixels(pixels.size))
   } else {
     // A circle written to a JPEG would come back on a background nobody chose. Documented on
     // `CropState.shape`, and the reason this is a skip rather than a refusal.
@@ -271,7 +284,12 @@ internal suspend fun cropToImage(
   state: RealCropState,
   budget: DecodeBudget = DecodeBudget.ForOutput,
 ): CropImage {
-  val pixels = when (val outcome = cropPixels(state, budget)) {
+  val inputs = CropInputs(state)
+  return offTheCallersThread { cropToImage(inputs, budget) }
+}
+
+private suspend fun cropToImage(inputs: CropInputs, budget: DecodeBudget): CropImage {
+  val pixels = when (val outcome = cropPixels(inputs, budget)) {
     is CropPixels.Refused -> return outcome.result.asCropImage()
     is CropPixels.Ready -> outcome
   }
@@ -281,10 +299,11 @@ internal suspend fun cropToImage(
   // buffers.
   val masked = maskToShape(
     image = pixels.image,
-    shape = state.shape,
-    cornerRadiusPx = state.cornerRadiusInOutputPixels(pixels.size),
+    shape = inputs.shape,
+    cornerRadiusPx = inputs.cornerRadiusInOutputPixels(pixels.size),
   )
   val handedOut = masked ?: pixels.image
+  var delivered = false
 
   return try {
     // The conversion copies on Skia and wraps on Android, and either way the result has to outlive
@@ -299,10 +318,22 @@ internal suspend fun cropToImage(
       )
     if (!currentCoroutineContext().isActive) return CropImage.Cancelled
     CropImage.Success(image = bitmap, size = pixels.size, region = pixels.region)
+      .also { delivered = true }
   } finally {
     // Whichever buffer the returned ImageBitmap wraps is the one kept; the rest go. When a mask was
-    // cut, that is the mask's own buffer, and every decode buffer is released.
-    if (masked != null) pixels.close() else pixels.closeAllExcept(handedOut)
+    // cut, that is the mask's own buffer, and every decode buffer is released. Only a Success hands
+    // one over: a caller that has gone, the common way to end up here now that the crop runs off
+    // its thread, never draws it, so it goes too.
+    when {
+      !delivered -> {
+        masked?.close()
+        pixels.close()
+      }
+
+      masked != null -> pixels.close()
+
+      else -> pixels.closeAllExcept(handedOut)
+    }
   }
 }
 
@@ -314,12 +345,47 @@ internal suspend fun cropToImage(
  * that yields a 2000px crop has to round its corners five times as hard, or the result is a
  * rectangle with a barely visible nick in each corner.
  */
-private fun RealCropState.cornerRadiusInOutputPixels(output: ImageSize): Float {
+private fun CropInputs.cornerRadiusInOutputPixels(output: ImageSize): Float {
   val shape = shape as? CropShape.RoundedRectangle ?: return 0f
   val frameWidth = cropRect.width
   if (frameWidth <= 0f || output.width <= 0) return shape.cornerRadius.value * density
   return shape.cornerRadius.value * density * (output.width / frameWidth)
 }
+
+/**
+ * Everything the pipeline reads from the state, read once on the caller's thread.
+ *
+ * The state is Compose state that the UI thread keeps writing while a crop runs. The frame used to
+ * be read twice, once to choose which pixels to decode and again after the decode suspended to
+ * turn them, so a flip landing in between turned one frame's pixels through another frame's
+ * transform and the crop came back mirrored. Reading it here, before [offTheCallersThread], also
+ * means no worker thread ever reads the state at all.
+ */
+private class CropInputs(state: RealCropState) {
+  val status: CropStatus = state.status
+  val decoder: RegionDecoder? = state.decoder
+  val space: CoordinateSpace = state.coordinateSpace
+  val cropRect: FloatRect = state.cropRect
+  val orientation: ImageOrientation = state.orientation
+  val shape: CropShape = state.shape
+  val density: Float = state.density
+}
+
+/**
+ * Runs [block] on [Dispatchers.Default].
+ *
+ * Off the caller's thread because the caller is usually a UI scope, the dialog's own confirm
+ * included, and everything after the decode is CPU work on the caller's thread otherwise: the turn,
+ * the mask, the bitmap and, on Skia, the encode. Reported on an iPhone as a three to four second
+ * freeze on confirming a rotated crop.
+ *
+ * A caller cancelled meanwhile gets the [CancellationException] `withContext` throws, and that is
+ * deliberately not caught and turned into [CropResult.Cancelled]. A value resumes the code after
+ * the call in a scope that has gone: the dialog's confirm then completes whichever crop request
+ * came next, and an activity finishes its own recreated instance.
+ */
+private suspend fun <T> offTheCallersThread(block: suspend () -> T): T =
+  withContext(Dispatchers.Default) { block() }
 
 /** Maps the failure half of a [CropResult] across, so the two paths refuse for the same reasons. */
 private fun CropResult.asCropImage(): CropImage = when (this) {
@@ -399,7 +465,8 @@ private val CropTransform.baked: Boolean
  * The map is one line, and it is the same one the preview draws through:
  * [CoordinateSpace.viewportToImage] inverts the whole transform, so walking the frame's own grid
  * and asking where each point lands in the image handles a quarter turn, a free angle and either
- * flip with no special case for any of them. At a quarter turn the samples land on pixel centres
+ * flip with no special case for any of them. It is asked through [ViewportToImage], which gives the
+ * same answer without allocating per pixel. At a quarter turn the samples land on pixel centres
  * and the bilinear weights collapse to one and zero, so it is a permutation rather than a blur.
  *
  * @return the turned pixels, or `null` both when there is nothing to turn and when the pixels could
@@ -407,16 +474,16 @@ private val CropTransform.baked: Boolean
  *   a failure.
  */
 private fun frameThroughViewerTransform(
-  state: RealCropState,
+  inputs: CropInputs,
   image: PlatformImage,
   region: ImageRegion,
   sampleSize: Int,
 ): PlatformImage? {
-  val transform = state.transform.sanitized()
+  val space = inputs.space
+  val transform = space.transform.sanitized()
   if (!transform.baked) return null
 
-  val space = state.coordinateSpace
-  val crop = state.cropRect
+  val crop = inputs.cropRect
   if (crop.isEmpty || !crop.isFinite || !space.isValid) return null
 
   val source = image.readArgbPixels() ?: return null
@@ -430,16 +497,16 @@ private fun frameThroughViewerTransform(
   val width = (crop.width * perDecoded).roundToInt().coerceIn(1, MAX_FRAMED_DIMENSION)
   val height = (crop.height * perDecoded).roundToInt().coerceIn(1, MAX_FRAMED_DIMENSION)
 
+  val toImage = ViewportToImage(space)
   val out = IntArray(width * height)
   for (y in 0 until height) {
     val viewportY = crop.top + (y + 0.5f) * crop.height / height
     for (x in 0 until width) {
       val viewportX = crop.left + (x + 0.5f) * crop.width / width
-      val inImage = space.viewportToImage(FloatPoint(viewportX, viewportY))
       // Into the decoded buffer's own grid: minus the region's origin, divided by the sample size,
       // and shifted half a pixel because a sample names a centre and an index names a corner.
-      val sampleX = (inImage.x - region.left) / sampleSize - 0.5f
-      val sampleY = (inImage.y - region.top) / sampleSize - 0.5f
+      val sampleX = (toImage.x(viewportX, viewportY) - region.left) / sampleSize - 0.5f
+      val sampleY = (toImage.y(viewportX, viewportY) - region.top) / sampleSize - 0.5f
       out[y * width + x] = sampleBilinear(source, sourceWidth, sourceHeight, sampleX, sampleY)
     }
   }
@@ -468,7 +535,8 @@ private fun sampleBilinear(pixels: IntArray, width: Int, height: Int, x: Float, 
   val bottomRight = pixels[y1 * width + x1]
 
   var result = 0
-  for (shift in intArrayOf(24, 16, 8, 0)) {
+  // A progression rather than `intArrayOf(24, 16, 8, 0)`, which allocated an array per pixel.
+  for (shift in 24 downTo 0 step 8) {
     val a = (topLeft ushr shift) and 0xFF
     val b = (topRight ushr shift) and 0xFF
     val c = (bottomLeft ushr shift) and 0xFF
@@ -520,7 +588,7 @@ private fun DecodeBudget.halved(): DecodeBudget =
  * already unit-tested in isolation and all of those stayed green with `sourceOrientation` stubbed
  * to NORMAL, so the seams are the only place this bug can now live.
  */
-private fun RealCropState.outstandingOrientation(decoder: RegionDecoder): ImageOrientation =
+private fun CropInputs.outstandingOrientation(decoder: RegionDecoder): ImageOrientation =
   if (decoder.appliedOrientation == ImageOrientation.NORMAL) {
     orientation
   } else {

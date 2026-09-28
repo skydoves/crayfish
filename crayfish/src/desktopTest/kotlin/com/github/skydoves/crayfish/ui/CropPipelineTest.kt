@@ -19,6 +19,7 @@ import com.github.skydoves.crayfish.decode.CropSource
 import com.github.skydoves.crayfish.decode.DecodedRegion
 import com.github.skydoves.crayfish.decode.ImageRegion
 import com.github.skydoves.crayfish.decode.ImageSize
+import com.github.skydoves.crayfish.decode.PlatformImage
 import com.github.skydoves.crayfish.decode.RegionDecoder
 import com.github.skydoves.crayfish.decode.TestImages
 import com.github.skydoves.crayfish.decode.assertColour
@@ -31,6 +32,7 @@ import com.github.skydoves.crayfish.exif.ImageOrientation
 import com.github.skydoves.crayfish.geometry.FloatRect
 import com.github.skydoves.crayfish.geometry.FloatSize
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -39,11 +41,13 @@ import kotlinx.coroutines.test.runTest
 import java.awt.image.BufferedImage
 import java.io.ByteArrayInputStream
 import javax.imageio.ImageIO
+import kotlin.coroutines.cancellation.CancellationException
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
@@ -247,13 +251,17 @@ class CropPipelineTest {
   }
 
   /**
-   * A job cancelled while the encode was running is reported as [CropResult.Cancelled].
+   * A job cancelled while the encode was running is reported as cancellation, not a failure.
    *
    * The ordering this pins: the encode bottoms out in one blocking platform call with no suspension
    * point, so it cannot be interrupted and the job can only be consulted once it returns, and that
    * consultation has to happen *before* the encoder's null is read, because both Skia and Android
    * report a cancelled caller with the same null they use for a format they cannot write. Reading
    * the null first turns a cancelled crop into `EncodeUnsupported` for PNG.
+   *
+   * Cancellation reaches the caller as the `CancellationException` any suspend function throws.
+   * A value, even [CropResult.Cancelled], would run the code after the call in a scope that has
+   * gone.
    */
   @Test
   fun reportsCancellationRatherThanAnEncodeFailureWhenTheJobEndedMidEncode() = runBlocking<Unit> {
@@ -263,12 +271,82 @@ class CropPipelineTest {
       CoarseningDecoder(assertNotNull(state.decoder), onDecoded = { running?.cancel() })
 
     var result: CropResult? = null
+    var thrown: Throwable? = null
     val scope = CoroutineScope(Dispatchers.Default)
-    val job = scope.launch { result = cropToBytes(state, EncodeOptions(EncodedFormat.PNG)) }
+    // Lazy, so the decoder cannot finish before `running` points at the job.
+    val job = scope.launch(start = CoroutineStart.LAZY) {
+      try {
+        result = cropToBytes(state, EncodeOptions(EncodedFormat.PNG))
+      } catch (error: Throwable) {
+        thrown = error
+        throw error
+      }
+    }
     running = job
+    job.start()
     job.join()
 
-    assertIs<CropResult.Cancelled>(assertNotNull(result, "the pipeline returned nothing at all"))
+    assertNull(result, "a cancelled caller was handed $result, so code after the crop ran")
+    assertIs<CancellationException>(thrown, "the crop ended in $thrown rather than cancellation")
+  }
+
+  /**
+   * A crop whose caller has gone releases the buffer it would have handed over.
+   *
+   * `cropToImage` gives its last buffer to the caller inside the `ImageBitmap` rather than copying
+   * it. A caller cancelled mid-crop never receives it, and now that the crop runs off the caller's
+   * thread that is what pressing back during a slow crop does, so the buffer is closed rather than
+   * left to a collector that, on Kotlin/Native, does not count native memory.
+   */
+  @Test
+  fun aCancelledCropToImageReleasesTheBufferItWouldHaveHandedOver() = runBlocking<Unit> {
+    // Unturned, unmasked and upright, so the decoded buffer is the one that would be handed over.
+    val state = quadrantState(crop = FloatRect(0f, 0f, 0.5f, 0.5f))
+    var running: Job? = null
+    var decoded: PlatformImage? = null
+    state.decoder = CoarseningDecoder(
+      assertNotNull(state.decoder),
+      onDecoded = {
+        decoded = it.image
+        running?.cancel()
+      },
+    )
+
+    val scope = CoroutineScope(Dispatchers.Default)
+    val job = scope.launch(start = CoroutineStart.LAZY) { cropToImage(state) }
+    running = job
+    job.start()
+    job.join()
+
+    val image = assertNotNull(decoded, "the decode never ran, so this proves nothing")
+    assertTrue(job.isCancelled, "the job was never cancelled, so this proves nothing")
+    assertTrue(image.isClosed, "the cancelled crop left the buffer it would have handed over open")
+  }
+
+  /**
+   * A gesture that lands while the decode is in flight does not reach the crop already running.
+   *
+   * The frame used to be read twice: once to choose which pixels to decode, and again after the
+   * decode suspended, to turn them. A flip landing in between turned pixels chosen for one frame
+   * through another frame's transform, and the crop came back mirrored. The user confirmed the
+   * frame they could see, so that is the one the crop has to use.
+   */
+  @Test
+  fun aFlipThatLandsDuringTheDecodeDoesNotReachTheCropInFlight() = runTest {
+    val state = quadrantState(crop = FloatRect(0.25f, 0.25f, 0.75f, 0.75f))
+    state.decoder = CoarseningDecoder(
+      assertNotNull(state.decoder),
+      onDecoded = { state.toggleFlipHorizontal() },
+    )
+
+    val result = assertSuccess(cropToBytes(state, EncodeOptions(EncodedFormat.PNG)))
+
+    assertTrue(state.transform.flipHorizontal, "the flip never landed, so this proves nothing")
+    val image = result.decoded()
+    assertColour(TestImages.TOP_LEFT, image.getRGB(0, 0), "top-left")
+    assertColour(TestImages.TOP_RIGHT, image.getRGB(31, 0), "top-right")
+    assertColour(TestImages.BOTTOM_LEFT, image.getRGB(0, 23), "bottom-left")
+    assertColour(TestImages.BOTTOM_RIGHT, image.getRGB(31, 23), "bottom-right")
   }
 
   // -------------------------------------------------------------------------------------------
@@ -487,12 +565,12 @@ class CropPipelineTest {
 private class CoarseningDecoder(
   private val delegate: RegionDecoder,
   private val coarsenBy: Int = 1,
-  private val onDecoded: () -> Unit = {},
+  private val onDecoded: (DecodedRegion) -> Unit = {},
 ) : RegionDecoder by delegate {
 
   override suspend fun decodeRegion(region: ImageRegion, sampleSize: Int): DecodedRegion? {
     val decoded = delegate.decodeRegion(region, sampleSize * coarsenBy) ?: return null
-    onDecoded()
+    onDecoded(decoded)
     return decoded
   }
 }

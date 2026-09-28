@@ -57,7 +57,12 @@ public sealed interface CropImage {
     public val painter: Painter = BitmapPainter(image)
   }
 
-  /** The user dismissed the cropper, or the caller's scope was cancelled. */
+  /**
+   * The user dismissed the cropper.
+   *
+   * A caller whose own scope is cancelled gets a `CancellationException` instead, as from any
+   * suspend function, so nothing after the call runs in a scope that has gone.
+   */
   public data object Cancelled : CropImage
 
   /** The crop could not be produced. [reason] is the same vocabulary [CropResult] uses. */

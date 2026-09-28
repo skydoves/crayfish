@@ -145,3 +145,62 @@ public data class CoordinateSpace(
     )
   }
 }
+
+/**
+ * [CoordinateSpace.viewportToImage] for a loop over every pixel of a crop.
+ *
+ * The same arithmetic in the same order, so each answer is bit for bit the point-based one, which
+ * `ViewportToImageTest` holds it to. Only what does not depend on the point is hoisted: the
+ * sanitised transform, the pivot and two trig calls. The point-based path paid those, plus five
+ * `FloatPoint` allocations, on every call.
+ */
+internal class ViewportToImage(space: CoordinateSpace) {
+  private val valid = space.isValid
+  private val offsetX: Float
+  private val offsetY: Float
+  private val pivotX: Float
+  private val pivotY: Float
+  private val cos: Float
+  private val sin: Float
+  private val scaleX: Float
+  private val scaleY: Float
+  private val left = space.contentBounds.left
+  private val top = space.contentBounds.top
+  private val boundsWidth = space.contentBounds.width
+  private val boundsHeight = space.contentBounds.height
+  private val imageWidth = space.imageSize.width
+  private val imageHeight = space.imageSize.height
+
+  init {
+    val transform = space.transform.sanitized()
+    val pivot = space.pivot.sanitized()
+    offsetX = transform.offset.x
+    offsetY = transform.offset.y
+    pivotX = pivot.x
+    pivotY = pivot.y
+    cos = cosDegrees(transform.rotationDegrees)
+    sin = sinDegrees(transform.rotationDegrees)
+    scaleX = transform.signedScaleX
+    scaleY = transform.signedScaleY
+  }
+
+  fun x(viewportX: Float, viewportY: Float): Float {
+    if (!valid) return 0f
+    val dx = finite(viewportX) - offsetX - pivotX
+    val dy = finite(viewportY) - offsetY - pivotY
+    val unrotated = pivotX + dx * cos + dy * sin
+    val local = pivotX + (unrotated - pivotX) / scaleX
+    return (local - left) * imageWidth / boundsWidth
+  }
+
+  fun y(viewportX: Float, viewportY: Float): Float {
+    if (!valid) return 0f
+    val dx = finite(viewportX) - offsetX - pivotX
+    val dy = finite(viewportY) - offsetY - pivotY
+    val unrotated = pivotY - dx * sin + dy * cos
+    val local = pivotY + (unrotated - pivotY) / scaleY
+    return (local - top) * imageHeight / boundsHeight
+  }
+
+  private fun finite(value: Float): Float = if (value.isFinite()) value else 0f
+}
