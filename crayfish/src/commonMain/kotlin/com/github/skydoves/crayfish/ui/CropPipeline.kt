@@ -32,8 +32,8 @@ import com.github.skydoves.crayfish.exif.toOrientedRegion
 import com.github.skydoves.crayfish.exif.toRawRegion
 import com.github.skydoves.crayfish.geometry.CoordinateSpace
 import com.github.skydoves.crayfish.geometry.CropTransform
-import com.github.skydoves.crayfish.geometry.FloatPoint
 import com.github.skydoves.crayfish.geometry.FloatRect
+import com.github.skydoves.crayfish.geometry.ViewportToImage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.isActive
@@ -465,7 +465,8 @@ private val CropTransform.baked: Boolean
  * The map is one line, and it is the same one the preview draws through:
  * [CoordinateSpace.viewportToImage] inverts the whole transform, so walking the frame's own grid
  * and asking where each point lands in the image handles a quarter turn, a free angle and either
- * flip with no special case for any of them. At a quarter turn the samples land on pixel centres
+ * flip with no special case for any of them. It is asked through [ViewportToImage], which gives the
+ * same answer without allocating per pixel. At a quarter turn the samples land on pixel centres
  * and the bilinear weights collapse to one and zero, so it is a permutation rather than a blur.
  *
  * @return the turned pixels, or `null` both when there is nothing to turn and when the pixels could
@@ -496,16 +497,16 @@ private fun frameThroughViewerTransform(
   val width = (crop.width * perDecoded).roundToInt().coerceIn(1, MAX_FRAMED_DIMENSION)
   val height = (crop.height * perDecoded).roundToInt().coerceIn(1, MAX_FRAMED_DIMENSION)
 
+  val toImage = ViewportToImage(space)
   val out = IntArray(width * height)
   for (y in 0 until height) {
     val viewportY = crop.top + (y + 0.5f) * crop.height / height
     for (x in 0 until width) {
       val viewportX = crop.left + (x + 0.5f) * crop.width / width
-      val inImage = space.viewportToImage(FloatPoint(viewportX, viewportY))
       // Into the decoded buffer's own grid: minus the region's origin, divided by the sample size,
       // and shifted half a pixel because a sample names a centre and an index names a corner.
-      val sampleX = (inImage.x - region.left) / sampleSize - 0.5f
-      val sampleY = (inImage.y - region.top) / sampleSize - 0.5f
+      val sampleX = (toImage.x(viewportX, viewportY) - region.left) / sampleSize - 0.5f
+      val sampleY = (toImage.y(viewportX, viewportY) - region.top) / sampleSize - 0.5f
       out[y * width + x] = sampleBilinear(source, sourceWidth, sourceHeight, sampleX, sampleY)
     }
   }
@@ -534,7 +535,8 @@ private fun sampleBilinear(pixels: IntArray, width: Int, height: Int, x: Float, 
   val bottomRight = pixels[y1 * width + x1]
 
   var result = 0
-  for (shift in intArrayOf(24, 16, 8, 0)) {
+  // A progression rather than `intArrayOf(24, 16, 8, 0)`, which allocated an array per pixel.
+  for (shift in 24 downTo 0 step 8) {
     val a = (topLeft ushr shift) and 0xFF
     val b = (topRight ushr shift) and 0xFF
     val c = (bottomLeft ushr shift) and 0xFF
