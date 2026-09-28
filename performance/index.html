@@ -1,0 +1,853 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Compose Multiplatform image cropper with gestures, free angle rotation, Exif orientation, and large image support.">
+      
+      
+        <meta name="author" content="Jaewoong (skydoves)">
+      
+      
+        <link rel="canonical" href="https://github.com/skydoves/crayfish/performance/">
+      
+      
+        <link rel="prev" href="../accessibility/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Performance - Crayfish</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#performance" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Crayfish" class="md-header__button md-logo" aria-label="Crayfish" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 17V1H5v4H1v2h4v10a2 2 0 0 0 2 2h10v4h2v-4h4v-2m-6-2h2V7a2 2 0 0 0-2-2H9v2h8z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Crayfish
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Performance
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/skydoves/crayfish" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Crayfish
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Crayfish" class="md-nav__button md-logo" aria-label="Crayfish" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 17V1H5v4H1v2h4v10a2 2 0 0 0 2 2h10v4h2v-4h4v-2m-6-2h2V7a2 2 0 0 0-2-2H9v2h8z"/></svg>
+
+    </a>
+    Crayfish
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/skydoves/crayfish" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Crayfish
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://skydoves.github.io/crayfish/demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Large images and memory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../orientation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orientation and Exif
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../accessibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accessibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-ships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What ships
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-is-worth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it is worth
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-these-numbers-do-not-cover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What these numbers do not cover
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-is-generated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it is generated
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-filter-and-the-gate-on-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The filter, and the gate on it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-benchmarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the benchmarks
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-ships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What ships
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-is-worth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it is worth
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-these-numbers-do-not-cover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What these numbers do not cover
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-is-generated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it is generated
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-filter-and-the-gate-on-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The filter, and the gate on it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-benchmarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the benchmarks
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h1>
+<h2 id="what-ships">What ships<a class="headerlink" href="#what-ships" title="Permanent link">&para;</a></h2>
+<p>The Android artifact carries a baseline profile at the root of the AAR. A consumer gets it by
+depending on Crayfish: AGP merges library profiles into the app's own, and the platform compiles
+those methods ahead of time at install. Nothing to add, nothing to configure, and no runtime cost
+for apps that never crop.</p>
+<p>The profile covers only this library. It holds 787 rules across the five packages Crayfish
+publishes:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>What it covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui</code></td>
+<td><code>CropState</code>, the tile store, the overlay, gesture handling</td>
+</tr>
+<tr>
+<td><code>geometry</code></td>
+<td>The transform, bounds fitting, rotation coverage</td>
+</tr>
+<tr>
+<td><code>decode</code></td>
+<td>Region decoding and the sampling budget</td>
+</tr>
+<tr>
+<td><code>exif</code></td>
+<td>Orientation parsing and normalisation</td>
+</tr>
+<tr>
+<td><code>encode</code></td>
+<td>JPEG, PNG and WebP output</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-it-is-worth">What it is worth<a class="headerlink" href="#what-it-is-worth" title="Permanent link">&para;</a></h2>
+<p>Measured on a Galaxy S23, Android 16, five iterations per condition. The comparison is
+<code>CompilationMode.None()</code> against <code>CompilationMode.Partial(BaselineProfileMode.Require)</code> on the same
+build of the demo app, so the only variable is whether the profile was installed.</p>
+<p>Cold start to the first frame, <code>StartupTimingMetric</code>:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>median</th>
+<th>min</th>
+<th>max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Without profile</td>
+<td>312.2 ms</td>
+<td>303.2 ms</td>
+<td>328.9 ms</td>
+</tr>
+<tr>
+<td>With profile</td>
+<td>262.1 ms</td>
+<td>249.8 ms</td>
+<td>293.7 ms</td>
+</tr>
+</tbody>
+</table>
+<p>50 ms, or 16%. The two ranges do not overlap, which is the part worth trusting: five samples each,
+and no sample from either condition lands inside the other.</p>
+<p>Dragging the crop frame, <code>FrameTimingMetric</code>:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>P50</th>
+<th>P90</th>
+<th>P95</th>
+<th>P99</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>frameDurationCpuMs</code> without profile</td>
+<td>5.29</td>
+<td>25.21</td>
+<td>28.55</td>
+<td>49.83</td>
+</tr>
+<tr>
+<td><code>frameDurationCpuMs</code> with profile</td>
+<td>4.83</td>
+<td>11.67</td>
+<td>12.90</td>
+<td>24.22</td>
+</tr>
+<tr>
+<td><code>frameOverrunMs</code> without profile</td>
+<td>-0.06</td>
+<td>23.04</td>
+<td>30.81</td>
+<td>43.23</td>
+</tr>
+<tr>
+<td><code>frameOverrunMs</code> with profile</td>
+<td>-1.34</td>
+<td>5.61</td>
+<td>7.73</td>
+<td>17.76</td>
+</tr>
+</tbody>
+</table>
+<p><code>frameOverrunMs</code> is how late a frame was against its deadline, so a negative number is a frame that
+finished early. The medians barely move because the median frame was never the problem. The P90 is
+where a profile earns its place: 23.04 ms late becomes 5.61 ms late, which is the difference between
+a drag that stutters and one that does not.</p>
+<h2 id="what-these-numbers-do-not-cover">What these numbers do not cover<a class="headerlink" href="#what-these-numbers-do-not-cover" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>One device.</strong> An S23 is a fast phone. The shape of the result should hold on slower hardware,
+  and the size of it is unmeasured there.</li>
+<li><strong>P99 is thin.</strong> Each condition pooled about 130 frames, so the 99th percentile is one or two
+  frames. P50 and P90 are the defensible columns.</li>
+<li><strong><code>CompilationMode.None()</code> is the floor, not what a user sees.</strong> It means JIT only. A real install
+  gets whatever the installer and the Play Store compiled, which is somewhere between the two
+  columns. The pair measures what the profile contributes, not what any particular user experiences.</li>
+<li><strong>The journey is the demo.</strong> Opening a bundled photo, dragging the frame, cropping to JPEG. A
+  screen that does something else exercises different code.</li>
+</ul>
+<h2 id="how-it-is-generated">How it is generated<a class="headerlink" href="#how-it-is-generated" title="Permanent link">&para;</a></h2>
+<p><code>:benchmark</code> is a <code>com.android.test</code> module that drives the demo app through
+<code>BaselineProfileGenerator</code>. The journey is in <code>CropperJourney</code>, and it is deliberately the same one
+the benchmarks measure, because a profile is only worth the code paths it actually walked.</p>
+<div class="highlight"><pre><span></span><code>./gradlew :crayfish:generateBaselineProfile
+./gradlew :androidApp:generateBaselineProfile
+</code></pre></div>
+<p>Both need a <strong>rootable</strong> device: the rule pulls the profile back with <code>adb root</code>, which a Play Store
+system image refuses. An <code>aosp</code> or <code>google_apis</code> emulator image, or any userdebug device, works.</p>
+<p>On CI there is no device attached, so a Gradle managed device stands in. <code>-Pcrayfish.managedDevice</code>
+picks it, which is what the <code>Baseline profile</code> workflow passes:</p>
+<div class="highlight"><pre><span></span><code>./gradlew :crayfish:generateBaselineProfile :androidApp:generateBaselineProfile \
+    -Pcrayfish.managedDevice
+</code></pre></div>
+<p>It is opt in rather than the default because the managed device downloads a system image on first
+use, and a local run already has a device attached. The two are exclusive: adding the managed device
+while leaving the connected one enabled puts both in the task graph, and a local run then pays for
+an image it never uses.</p>
+<p>The output lands in the source tree and is committed:</p>
+<ul>
+<li><code>crayfish/src/androidMain/generated/baselineProfiles/baseline-prof.txt</code>, filtered to the library</li>
+<li><code>androidApp/src/release/generated/baselineProfiles/baseline-prof.txt</code>, the whole demo</li>
+</ul>
+<p>Every step of the journey asserts. An earlier version used <code>findObject(...)?.click()</code>, which is a
+silent no op when nothing matches: every step reported success, the task exited 0, and the profile it
+produced had 11,756 rules and not one for the cropper, because the run never left the gallery.</p>
+<h2 id="the-filter-and-the-gate-on-it">The filter, and the gate on it<a class="headerlink" href="#the-filter-and-the-gate-on-it" title="Permanent link">&para;</a></h2>
+<p>The journey runs inside the demo, and the demo's package sits under the library's own. A plain
+<code>include("com.github.skydoves.crayfish.**")</code> therefore shipped 224 rules for demo classes that no
+consumer has. The filter excludes them:</p>
+<div class="highlight"><pre><span></span><code><span class="n">baselineProfile</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">filter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">include</span><span class="p">(</span><span class="s">"com.github.skydoves.crayfish.**"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">exclude</span><span class="p">(</span><span class="s">"com.github.skydoves.crayfish.demo.**"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">exclude</span><span class="p">(</span><span class="s">"com.github.skydoves.crayfishdemo.**"</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>A filter is a thing that drifts, so <code>:crayfish:verifyBaselineProfile</code> opens the built AAR and checks
+that its profile exists, is not empty, and names no class outside the packages the library's own
+sources declare. The allowed set is read from those sources rather than written into the task, so a
+package added tomorrow is covered without anyone remembering the gate exists.</p>
+<div class="highlight"><pre><span></span><code>./gradlew :crayfish:verifyBaselineProfile
+</code></pre></div>
+<h2 id="running-the-benchmarks">Running the benchmarks<a class="headerlink" href="#running-the-benchmarks" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>ANDROID_SERIAL=&lt;device&gt; ./gradlew :benchmark:connectedBenchmarkReleaseAndroidTest
+</code></pre></div>
+<p>This one does not need root, and a physical device is the right target: an emulator's numbers are a
+property of the host. Results land in
+<code>benchmark/build/outputs/connected_android_test_additional_output/</code>, with the frame percentiles under
+<code>sampledMetrics</code> rather than <code>metrics</code> in the JSON.</p>
+<p><code>CropperBenchmark</code> runs every case twice, once with the profile and once without, because a profile
+that is never compared against its absence is a file nobody can defend.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

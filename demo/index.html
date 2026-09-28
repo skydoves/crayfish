@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crayfish: a Compose Multiplatform image cropper</title>
+  <link type="text/css" rel="stylesheet" href="style.css">
+  <!-- `type="module"`, not `application/javascript`: the webpack bundle contains an
+       `import.meta` (kotlinx-io's Node `require` shim, dead in a browser but still emitted).
+       `import.meta` is a parse error in a classic script, so the whole file fails to parse
+       and nothing runs at all, leaving only the CSS background on screen. -->
+  <script type="module" src="composeApp.js"></script>
+</head>
+<body>
+</body>
+</html>
